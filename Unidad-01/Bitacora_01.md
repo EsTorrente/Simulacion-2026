@@ -207,8 +207,11 @@ class Walker {
 
 ## Actividad 06
 > Quería replicar el efecto wave warp de after effects. Los ejemplos que vi en la biblioteca de p5.js me recordaron mucho al turbulent noise del programa, y me llevó a pensar si podría usarlo para imitar ese efecto :0
-
-
+  
+> Lo que espero es que el programa agarre una tirita delgadita de la imagen (con cantidad de px que le diga), calcule cuánto desplazarla en X y Y usando el perlin para que no sea un cambio muy drástico, vuelva a dibujarla en la nueva posición y siga así hasta terminar el width de la imagen. Como no creo que quede muy smooth desde el inicio, uso dos perlin y los sumo para hacerlo más orgánico. También le puse octavas súper bajitas en intento de suavizarlo más.
+  
+Link: https://editor.p5js.org/EsTorrente/sketches/iNwzV2WZD  
+  
 ```.js
 let img;
 let t = 0;
@@ -286,19 +289,19 @@ function draw() {
       map(n2y, 0, 1, -sAmp * 0.3, sAmp * 0.3);
 
     image(
-      img,
+      img, //imagen
 
-      x + dx,
-      dy,
+      x + dx, //destino en x, mueve la tira
+      dy, //destino en y
 
-      fxSlice + 1,
-      img.height,
+      fxSlice + 2, //destino ancho (+2 para overlap chiquito porque me daba scanlines)
+      img.height, //destino largo
 
-      x,
-      0,
+      x, //origen x donde empieza la tira
+      0, //origen y
 
-      fxSlice,
-      img.height
+      fxSlice, //origen ancho
+      img.height //origen largo
     );
   }
 
