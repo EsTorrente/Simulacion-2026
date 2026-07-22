@@ -723,4 +723,647 @@ ___
 
 ## ✨ RESULTADOS INICIALES:
 
-   
+🌱 **`ChatGPT:`** sin pro no sirve para nada, literal no corrió. Flop.  
+  
+🌱 **`Claude:`** corrió correctamente, pero es menos bonito que gemini. Se influencian correctamente entre ellas, y logran rotar entre los distintos estados. No me termina de convencer... algo en el de Gemini lo hacía sentir más vivo. Su comportamiento era mucho más orgánico. Creo que voy a continuar con el código de gemini, y pulir su estética.    
+<img width="680" height="580" alt="image" src="https://github.com/user-attachments/assets/afa39dbe-4ea5-4317-9d2f-ceca1f8d084e" />  
+  
+🌱 **`Gemini:`** interesante :o    
+Funciona correctamente. Pude ver cómo se contagiaban algunas partículas (por ejemplo, una sensible que adoptó el comportamiento de una meticulosa. También pude ver una partícula curiosa que fue observada y se volvió medio loquita de la emoción. Todo parece funcionar correctamente. Además, vi como una partícula sensible entró en crisis y borró un espacio. Entran y salen correctamente de cada estado. Me sorprendió que pudiera lidiar con tanta info.    
+<img width="379" height="671" alt="image" src="https://github.com/user-attachments/assets/5024d463-5f20-4c66-8582-1f9768cee7e7" />
+<img width="386" height="672" alt="image" src="https://github.com/user-attachments/assets/5586cecd-32a7-4afd-b1b3-e30c1b269f12" />
+<img width="188" height="300" alt="image" src="https://github.com/user-attachments/assets/8fd091fe-5b65-44fa-9bd7-1990ec8a6ba5" />
+<img width="373" height="658" alt="image" src="https://github.com/user-attachments/assets/0f9974cb-cf3c-428a-9be0-51e849e74c64" />
+
+
+# Código:
+🌻html:
+```.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergent Art Ecosystem</title>
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"></script>
+    <!-- ml5.js -->
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d12;
+            color: #d1d1e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #ui-container {
+            width: 100%;
+            max-width: 1080px;
+            padding: 15px 20px;
+            box-sizing: border-box;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 15, 20, 0.9);
+            border-bottom: 1px solid #333;
+            z-index: 10;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            max-width: 400px;
+            padding: 10px 15px;
+            border: 1px solid #444;
+            border-radius: 20px;
+            background: #1a1a24;
+            color: #fff;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #5ab0ff;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #5ab0ff;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background: #7cc0ff;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .status-badge {
+            background: #2a2a35;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #canvas-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        canvas {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            border-radius: 4px;
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+        
+        .accent {
+            color: #5ab0ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="ui-container">
+        <input type="text" id="textInput" placeholder="Enter text to spawn a new creative entity..." autocomplete="off">
+        <button id="submitBtn" disabled>Loading Model...</button>
+        <div class="status-badge" id="sentimentDisplay">
+            Sentiment: <span id="sentimentValue" class="accent">N/A</span>
+        </div>
+        <div class="status-badge">
+            Population: <span id="populationValue" class="accent">1</span>
+        </div>
+    </div>
+    
+    <div id="canvas-container"></div>
+
+    <script src="sketch.js"></script>
+</body>
+</html>
+```
+🌻 sketch:
+
+```.js
+// --- Constants & Configurations ---
+const CANVAS_W = 1080;
+const CANVAS_H = 1920;
+const BG_COLOR = [13, 13, 18];
+
+const PARTICLE_TYPES = {
+    SENSITIVE: 'Sensitive',
+    CURIOUS: 'Curious',
+    METICULOUS: 'Meticulous'
+};
+
+const STATES = {
+    CREATION: 'Creation',
+    OBSERVATION: 'Observation',
+    CRISIS: 'Crisis',
+    REST: 'Rest'
+};
+
+// --- Global Variables ---
+let sentiment;
+let particles = [];
+let spawnCooldown = 0;
+let modelReadyFlag = false;
+
+// UI Elements
+let textInput, submitBtn, sentimentValue, populationValue;
+
+// --- Setup & Initialization ---
+function setup() {
+    let canvas = createCanvas(CANVAS_W, CANVAS_H);
+    canvas.parent('canvas-container');
+    background(BG_COLOR[0], BG_COLOR[1], BG_COLOR[2]);
+
+    // Initialize ml5 Sentiment Model
+    sentiment = ml5.sentiment("MovieReviews", modelLoaded);
+
+    // Bind UI Elements
+    textInput = document.getElementById('textInput');
+    submitBtn = document.getElementById('submitBtn');
+    sentimentValue = document.getElementById('sentimentValue');
+    populationValue = document.getElementById('populationValue');
+
+    submitBtn.addEventListener('click', handleTextInput);
+    textInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleTextInput();
+    });
+
+    // Initial Population: Exactly one particle
+    particles.push(createParticle(PARTICLE_TYPES.SENSITIVE, width / 2, height / 2));
+}
+
+function modelLoaded() {
+    modelReadyFlag = true;
+    submitBtn.innerText = "Spawn Particle";
+    submitBtn.disabled = false;
+    sentimentValue.innerText = "Ready";
+}
+
+// --- Main Loop ---
+function draw() {
+    // Fading effect: patterns slowly disappear over time
+    // We use a very low opacity rectangle drawn every frame
+    noStroke();
+    fill(BG_COLOR[0], BG_COLOR[1], BG_COLOR[2], 4);
+    rect(0, 0, width, height);
+
+    // Update and display particles
+    let currentObserved = new Set();
+
+    // First pass: identify who is being observed this frame
+    for (let p of particles) {
+        if (p.state === STATES.OBSERVATION && p.targetParticle) {
+            currentObserved.add(p.targetParticle);
+        }
+    }
+
+    // Second pass: process logic
+    for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        p.isObserved = currentObserved.has(p);
+        p.update(particles);
+        p.display();
+    }
+
+    // Social Interaction & Balance
+    manageInteractions();
+    balancePopulation();
+
+    // Update UI
+    populationValue.innerText = particles.length;
+}
+
+// --- Interaction & Simulation Management ---
+function manageInteractions() {
+    // Every frame, check proximity for influence
+    // O(N^2) approach is acceptable for < 200 particles
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            let p1 = particles[i];
+            let p2 = particles[j];
+            
+            // Interaction radius
+            let d = dist(p1.position.x, p1.position.y, p2.position.x, p2.position.y);
+            if (d < 60) {
+                attemptInfluence(p1, p2, d);
+                attemptInfluence(p2, p1, d);
+            }
+        }
+    }
+}
+
+function attemptInfluence(source, target, distance) {
+    // Cannot influence if source is observing or resting
+    if (source.state === STATES.OBSERVATION || source.state === STATES.REST) return;
+    
+    // Calculate influence probability based on stats and distance
+    let distFactor = map(distance, 0, 60, 1, 0.1);
+    let probability = source.influence * target.susceptibility * distFactor * 0.05; // 0.05 scaling for frame-rate iteration
+    
+    if (random() < probability) {
+        // Success: target adopts source's inclination
+        target.inclination = source.inclination;
+        target.observationBehavior = getObservationBehavior(target.inclination);
+        
+        // If target was resting, it awakens to create
+        if (target.state === STATES.REST) {
+            target.state = STATES.CREATION;
+        }
+    }
+}
+
+function balancePopulation() {
+    if (spawnCooldown > 0) {
+        spawnCooldown--;
+        return;
+    }
+
+    if (particles.length === 0) return;
+
+    // Monitor dominant inclination
+    let counts = {};
+    for (let p of particles) {
+        counts[p.inclination] = (counts[p.inclination] || 0) + 1;
+    }
+
+    let dominantType = null;
+    let maxRatio = 0;
+
+    for (let type in counts) {
+        let ratio = counts[type] / particles.length;
+        if (ratio > maxRatio) {
+            maxRatio = ratio;
+            dominantType = type;
+        }
+    }
+
+    // If over 80% share the same inclination, spawn 2 from remaining types
+    if (maxRatio > 0.8 && particles.length < 250) { // Safety cap
+        let availableTypes = Object.values(PARTICLE_TYPES).filter(t => t !== dominantType);
+        
+        // Spawn first minority
+        let type1 = availableTypes[0];
+        particles.push(createParticle(type1, random(width), random(height)));
+        
+        // Spawn second minority (if available, else duplicate first)
+        let type2 = availableTypes.length > 1 ? availableTypes[1] : availableTypes[0];
+        particles.push(createParticle(type2, random(width), random(height)));
+
+        spawnCooldown = 300; // 5 seconds at 60fps
+    }
+}
+
+// --- Text Input & Sentiment Spawning ---
+function handleTextInput() {
+    if (!modelReadyFlag) return;
+    
+    let txt = textInput.value.trim();
+    if (!txt) return;
+
+    // Reset input
+    textInput.value = '';
+    
+    // Predict sentiment
+    sentiment.predict(txt, (result) => {
+        // ml5 v1 sentiment returns result.score or result.confidence
+        let score = result.score !== undefined ? result.score : (result.confidence !== undefined ? result.confidence : 0.5);
+        
+        sentimentValue.innerText = score.toFixed(3);
+        
+        // Map confidence value to particle type
+        let newType;
+        if (score <= 0.33) {
+            newType = PARTICLE_TYPES.SENSITIVE;
+        } else if (score <= 0.66) {
+            newType = PARTICLE_TYPES.METICULOUS;
+        } else {
+            newType = PARTICLE_TYPES.CURIOUS;
+        }
+
+        // Spawn particle in center with small offset
+        particles.push(createParticle(newType, width/2 + randomGaussian(0, 50), height/2 + randomGaussian(0, 50)));
+    });
+}
+
+// --- Particle Factory & Configuration ---
+function createParticle(type, x, y) {
+    let baseColor, susceptibility, influence, curiosity;
+
+    switch (type) {
+        case PARTICLE_TYPES.SENSITIVE:
+            baseColor = color(135 + randomGaussian(0, 20), 206 + randomGaussian(0, 20), 235 + randomGaussian(0, 20), 120); // Cyan-ish, slightly transparent
+            susceptibility = constrain(randomGaussian(0.85, 0.1), 0, 1);
+            influence = constrain(randomGaussian(0.2, 0.1), 0, 1);
+            curiosity = constrain(randomGaussian(0.2, 0.1), 0, 1);
+            break;
+            
+        case PARTICLE_TYPES.CURIOUS:
+            baseColor = color(255 + randomGaussian(0, 10), 165 + randomGaussian(0, 20), 0 + randomGaussian(0, 20), 240); // Yellow/Orange, opaque
+            susceptibility = constrain(randomGaussian(0.95, 0.05), 0, 1);
+            influence = constrain(randomGaussian(0.5, 0.1), 0, 1);
+            curiosity = constrain(randomGaussian(0.9, 0.1), 0, 1);
+            break;
+            
+        case PARTICLE_TYPES.METICULOUS:
+            let gray = 150 + randomGaussian(0, 30);
+            baseColor = color(gray, gray, gray, 255); // Gray/Black, opaque
+            susceptibility = constrain(randomGaussian(0.1, 0.05), 0, 1);
+            influence = constrain(randomGaussian(0.8, 0.1), 0, 1);
+            curiosity = constrain(randomGaussian(0.5, 0.1), 0, 1);
+            break;
+    }
+
+    return new Particle({
+        type: type,
+        x: x,
+        y: y,
+        baseColor: baseColor,
+        susceptibility: susceptibility,
+        influence: influence,
+        curiosity: curiosity
+    });
+}
+
+function getObservationBehavior(inclination) {
+    // Returns a function defining how the particle reacts when observed based on its CURRENT inclination
+    return function(particle) {
+        if (!particle.isObserved) return;
+
+        switch (inclination) {
+            case PARTICLE_TYPES.SENSITIVE:
+                // Slows down, trembling, hesitant
+                particle.velocity.mult(0.6);
+                particle.position.x += randomGaussian(0, 1.5);
+                particle.position.y += randomGaussian(0, 1.5);
+                break;
+            case PARTICLE_TYPES.CURIOUS:
+                // Faster, larger, brighter
+                particle.velocity.mult(1.4);
+                // Brighter color handled in display()
+                break;
+            case PARTICLE_TYPES.METICULOUS:
+                // No visible change
+                break;
+        }
+    };
+}
+
+// --- Particle Class ---
+class Particle {
+    constructor(config) {
+        // Core Identity
+        this.type = config.type;
+        this.baseColor = config.baseColor;
+        this.currentColor = this.baseColor;
+        
+        // Behavioral Traits
+        this.inclination = config.type; 
+        this.susceptibility = config.susceptibility;
+        this.influence = config.influence;
+        this.curiosity = config.curiosity;
+        this.observationBehavior = getObservationBehavior(this.inclination);
+        
+        // State Machine
+        this.state = STATES.CREATION;
+        this.stateTimer = 0;
+        this.targetParticle = null;
+        this.isObserved = false;
+        
+        // Physics & Metrics
+        this.position = createVector(config.x, config.y);
+        this.velocity = p5.Vector.random2D().mult(random(1, 3));
+        this.noiseOffset = createVector(random(1000), random(1000));
+        this.energy = 100;
+        this.age = 0;
+        
+        // Specific drawing states
+        this.meticulousDirection = random([0, PI/2, PI, 3*PI/2]); // For strict geometric movement
+    }
+
+    update(allParticles) {
+        this.age++;
+        
+        // Occasional State Transitions
+        if (this.state === STATES.CREATION && random() < 0.005) {
+            // Chance to observe someone
+            let potentialTargets = allParticles.filter(p => p !== this && dist(this.position.x, this.position.y, p.position.x, p.position.y) < 200);
+            if (potentialTargets.length > 0) {
+                this.state = STATES.OBSERVATION;
+                this.targetParticle = random(potentialTargets);
+                this.stateTimer = floor(randomGaussian(100, 20));
+            }
+        } else if (this.state === STATES.CREATION && random() < 0.001) {
+            // Very rare chance for Crisis
+            this.state = STATES.CRISIS;
+            this.stateTimer = floor(randomGaussian(60, 15));
+        }
+
+        // State Execution
+        switch (this.state) {
+            case STATES.CREATION:
+                this.moveCreative();
+                break;
+                
+            case STATES.OBSERVATION:
+                if (!this.targetParticle || this.stateTimer <= 0) {
+                    this.state = STATES.CREATION;
+                    this.targetParticle = null;
+                } else {
+                    // Move towards target and stop drawing
+                    let dir = p5.Vector.sub(this.targetParticle.position, this.position);
+                    if (dir.mag() > 30) {
+                        dir.normalize().mult(1.5);
+                        this.position.add(dir);
+                    }
+                    this.stateTimer--;
+                }
+                break;
+                
+            case STATES.CRISIS:
+                this.stateTimer--;
+                // Slight chaotic movement during crisis
+                this.position.add(p5.Vector.random2D().mult(randomGaussian(2, 1)));
+                if (this.stateTimer <= 0) {
+                    this.state = STATES.REST;
+                }
+                break;
+                
+            case STATES.REST:
+                // Stops moving, waits for influence (handled externally)
+                break;
+        }
+
+        // Apply observation behaviors (if someone is observing this particle)
+        this.observationBehavior(this);
+
+        // Keep within bounds (Wrap around creates a continuous ecosystem)
+        this.wrapBounds();
+    }
+
+    moveCreative() {
+        // Base movement logic based on inclination
+        let noiseScale = 0.01;
+        let speed = 2;
+        
+        switch (this.inclination) {
+            case PARTICLE_TYPES.SENSITIVE:
+                // Smooth Perlin movement, revisits areas
+                let angleSen = noise(this.noiseOffset.x) * TWO_PI * 2;
+                this.velocity.lerp(p5.Vector.fromAngle(angleSen).mult(1.5), 0.1);
+                this.noiseOffset.x += 0.005;
+                break;
+                
+            case PARTICLE_TYPES.CURIOUS:
+                // Fast, chaotic
+                let angleCur = noise(this.noiseOffset.x) * TWO_PI * 4;
+                this.velocity.lerp(p5.Vector.fromAngle(angleCur).mult(3.5), 0.2);
+                this.noiseOffset.x += 0.02;
+                break;
+                
+            case PARTICLE_TYPES.METICULOUS:
+                // Straight paths, constant speed
+                if (random() < 0.02) { // Occasionally change direction strictly by 90 degrees
+                    this.meticulousDirection += random([-PI/2, PI/2]);
+                }
+                let targetVel = p5.Vector.fromAngle(this.meticulousDirection).mult(2.5);
+                this.velocity.lerp(targetVel, 0.5); // Fast adaptation to strict angle
+                break;
+        }
+
+        // Lévy Flight implementation (Heavy-tailed random jumps based on curiosity)
+        if (random() < this.curiosity * 0.03) {
+            // Inverse transform sampling for pareto-like distribution
+            let jumpLength = pow(random(0.01, 1), -1.5) * 5; 
+            jumpLength = min(jumpLength, 150); // Cap jump length
+            let jumpDir = p5.Vector.random2D().mult(jumpLength);
+            this.position.add(jumpDir);
+        }
+
+        // Apply Velocity
+        this.position.add(this.velocity);
+    }
+
+    display() {
+        // Crisis State erases artwork
+        if (this.state === STATES.CRISIS) {
+            noStroke();
+            fill(BG_COLOR[0], BG_COLOR[1], BG_COLOR[2], 200); // Mostly opaque background color
+            let eraseSize = abs(randomGaussian(60, 20));
+            ellipse(this.position.x, this.position.y, eraseSize, eraseSize);
+            return; // Do not draw normal artwork
+        }
+        
+        // Rest and Observation states do not draw
+        if (this.state === STATES.REST || this.state === STATES.OBSERVATION) return;
+
+        // Visual setup based on original color and current inclination
+        push();
+        translate(this.position.x, this.position.y);
+        
+        // Adjust color if curious and observed
+        let drawColor = this.baseColor;
+        if (this.isObserved && this.inclination === PARTICLE_TYPES.CURIOUS) {
+            colorMode(HSB);
+            let h = hue(this.baseColor);
+            let s = saturation(this.baseColor);
+            let b = brightness(this.baseColor);
+            drawColor = color(h, s * 0.8, min(b * 1.5, 100), alpha(this.baseColor));
+            colorMode(RGB);
+        }
+
+        noFill();
+        stroke(drawColor);
+        
+        let sizeMod = (this.isObserved && this.inclination === PARTICLE_TYPES.CURIOUS) ? 2.5 : 1.0;
+        let baseSize = abs(randomGaussian(10, 4)) * sizeMod;
+
+        // Draw based on inclination
+        switch (this.inclination) {
+            case PARTICLE_TYPES.SENSITIVE:
+                strokeWeight(abs(randomGaussian(1, 0.5)));
+                if (random() < 0.1) {
+                    arc(0, 0, baseSize * 2, baseSize * 2, random(TWO_PI), random(TWO_PI) + PI);
+                } else {
+                    ellipse(0, 0, baseSize, baseSize);
+                }
+                break;
+                
+            case PARTICLE_TYPES.CURIOUS:
+                strokeWeight(abs(randomGaussian(1.5, 0.8)));
+                if (random() < 0.5) {
+                    ellipse(0, 0, baseSize, baseSize);
+                } else {
+                    let r = baseSize;
+                    triangle(
+                        0, -r,
+                        r * 0.866, r * 0.5,
+                        -r * 0.866, r * 0.5
+                    );
+                }
+                
+                // Explosive clusters
+                if (random() < 0.05) {
+                    for(let i=0; i<3; i++) {
+                        let offX = randomGaussian(0, baseSize*1.5);
+                        let offY = randomGaussian(0, baseSize*1.5);
+                        point(offX, offY);
+                    }
+                }
+                break;
+                
+            case PARTICLE_TYPES.METICULOUS:
+                strokeWeight(abs(randomGaussian(2, 0.2)));
+                rotate(this.meticulousDirection);
+                if (random() < 0.1) {
+                    rect(-baseSize/2, -baseSize/2, baseSize, baseSize);
+                } else {
+                    line(-baseSize, 0, baseSize, 0);
+                }
+                break;
+        }
+        pop();
+    }
+
+    wrapBounds() {
+        if (this.position.x < 0) this.position.x = width;
+        if (this.position.x > width) this.position.x = 0;
+        if (this.position.y < 0) this.position.y = height;
+        if (this.position.y > height) this.position.y = 0;
+    }
+}
+```
+
+___
+
+## ✨ PROTOTIPO 2:
+
+La verdad es que el de Gemini está SÚPER bien. Muy cercano a lo que quería!!!
+Un problema que noté al correrlo por un tiempo es que al disminuir el tamaño de la pantalla a 360x640px, las partículas tenían menos espacio para recorrer y por ende entraban más fácilmente en estado de observación. No me molesta mucho... se ve chévere... pero sí se vuelve un poco monótono porque Gemini no agregó mucha diferencia en la velocidad de las partículas. Voy a pedirle que realentice más las partículas sensibles, que agrege un poco de variación a las formas (están saliendo todas con la misma rotación), y que lo haga ver un poco más estéticamente atractivo (tengo curiosidad de ver qué se le ocurre)
+
