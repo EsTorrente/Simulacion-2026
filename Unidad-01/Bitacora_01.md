@@ -68,9 +68,11 @@ class Walker {
 ## Actividad 04
 
 **Crea un nuevo sketch en p5.js que represente una distribución normal, pero visualizándola de manera diferente a la del ejemplo.**
-> Quería hacer algo con cajitas que me dejara contar a ojo cuántas bolitas salían en cada una. Usé la dist. normal para determinar en qué cajita saldrían, y luego para variar un poquito el color del circulito dependiendo de dónde quedó.    
+> Quería hacer algo con cajitas que me dejara contar a ojo cuántas bolitas salían en cada una. Usé la dist. normal para determinar en qué cajita saldrían (con tendencia a la del medio, es decir, index 1), y luego para variar un poquito el color del circulito dependiendo de dónde quedó. Así, me permite corroborar y visualizar muy fácilmente el funcionamiento de la distribución sin hacerlo de la manera tradicional.    
 <img width="915" height="336" alt="image" src="https://github.com/user-attachments/assets/f5386f89-7b68-4513-831d-9b19940a4ae2" />  
-
+  
+⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹    
+  
 ```.js
 function setup() {
   createCanvas(900, 300);
@@ -143,10 +145,12 @@ function draw() {
 ```
 
 ## Actividad 05
-> Usé esta técnica para adaptarlo porque me pareció muy sencilla e intuitiva. No necesitaba hacerle cambios raros al código original, solamente agregar una variable chiquita que pudiera exagerar un tris la distancia del movimiento del puntico. Lo que espero es que al ejecutarlo siga funcionando con las mismas probabilidades que el original (sigue sacando números enteros del 0 al 3)... lo que cambia es que hay un 5% de veces en las que va a ir más lejos en la dirección que eligió y, por ende, no se pise tanto a sí mismo.    
+> Usé esta técnica para adaptarlo porque me pareció muy sencilla e intuitiva. No necesitaba hacerle cambios raros al código original, solamente agregar una variable chiquita que pudiera exagerar un tris la distancia del movimiento del puntico. Lo que espero es que al ejecutarlo siga funcionando con las mismas probabilidades que el original (sigue sacando números enteros del 0 al 3)... lo que cambia es que hay un 5% de veces en las que va a ir más lejos en la dirección que eligió y, por ende, no se pise tanto a sí mismo. Sin embargo, según decía en el texto guía, tengo entendido que no es 100% un lévy flight sino una versión simplificada.      
 
 <img width="649" height="276" alt="image" src="https://github.com/user-attachments/assets/099eacc5-9bfd-456c-8cf1-b51ec0487523" />  
   
+⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹    
+    
 ```.js
 // The Nature of Code
 // Daniel Shiffman
@@ -208,9 +212,17 @@ class Walker {
 ## Actividad 06
 > Quería replicar el efecto wave warp de after effects. Los ejemplos que vi en la biblioteca de p5.js me recordaron mucho al turbulent noise del programa, y me llevó a pensar si podría usarlo para imitar ese efecto :0
   
+⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹    
+  
 > Lo que espero es que el programa agarre una tirita delgadita de la imagen (con cantidad de px que le diga), calcule cuánto desplazarla en X y Y usando el perlin para que no sea un cambio muy drástico, vuelva a dibujarla en la nueva posición y siga así hasta terminar el width de la imagen. Como no creo que quede muy smooth desde el inicio, uso dos perlin y los sumo para hacerlo más orgánico. También le puse octavas súper bajitas en intento de suavizarlo más.
   
+⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹    
+    
+> **PROBLEMA ENCONTRADO:** al correrlo en el celular, los frames droppearon mucho. Además, luego de unos 15 segundos, arrojó un error de loop infinito para el for loop que redibuja la imagen. No le veía mucho sentido, porque dentro de mi entendimiento, el for loop estaba bien construido... pero igual fui a la IA para confirmar. Efectivamente, la IA me dijo que el loop estaba bien, y que quizás estaba arrojando el error porque en algún punto la variable de `fxSlice` o `img.width` no fuera tipo number. Puse un debug antes del loop para confirmar... y no; el error volvía a salir, aunque el dato continuara siendo un number en todo momento. Al probarlo en PC, me di cuenta de que ese error no aparece sino hasta unos 10 minutos de estar corriendo. Mi hipótesis es que llega un punto en el que el acto de redibujar cada slice un montón de veces es demasiado pesado para el PC, empieza a droppear los frames, y p5.js interpreta la tardanza de la ejecución como un leak o un loop infinito. En ese sentido, ya entiendo mucho mejor por qué after effects está LLENO DE FUGAS DE MEMORIA Y CRASHEA CON MÁS DE 3 EFECTOS EN LA ESCENA AAAAAAAH LO ODIO!!!!!!!!!  
+  
 Link: https://editor.p5js.org/EsTorrente/sketches/iNwzV2WZD  
+
+⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹    
   
 ```.js
 let img;
