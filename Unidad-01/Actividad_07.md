@@ -37,10 +37,20 @@ Ya teniendo una idea que sí me entusiasmaba, empecé a considerar todos los pos
 > ⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹   
 > *`estado:`* determina si está en estado de creación, observación, crisis o reposo. Cada partícula realizará los métodos con velocidades e intervalos diferentes.   
 
+___
+
 🌿 **`Tipos de partículas:`** se me ocurren los siguientes tipos:
 
 1) PARTÍCULA SENSIBLE:
+   - **Color**: azul y aguamarina claro, semitraslúcido.  
+   - **Inclinación**: patrones redondeados, lentos, cíclicos... como alguien que se queda rumiando toda la noche y se pierde en escenarios ficticios en su cabeza.  
+   - **Sugestibilidad:** alta. Son el tipo de personas que funcionan como esponjitas: las emociones de los demás las sienten como propias, y los consumen fácilmente.  
+   - **Influencia:** media. Cuando están inspirados, su sensibilidad logra llegar a los demás e inspirarlos... eso cuando logran superar la timidez e interactuar con otras.  
+   - **Curiosidad:** baja. Tienden a quedarse en su zona de confort. En lugar de perseguir lo desconocido, lo desconocido viene a ellos.  
+   - **Observación:** al ser observados, se vuelven tímidos y nerviosos. Sus movimientos son un poquito más erráticos, como si temblaran, y más lentos porque están pensando cada movimiento antes de actuar.
+> ⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹   
    
+___
 
 🍃 **`Estados de las partículas:`** 
 > *`creación`* la partícula recorre el canvas y dibuja patrones en él.  
@@ -48,8 +58,9 @@ Ya teniendo una idea que sí me entusiasmaba, empecé a considerar todos los pos
 > *`observación`*: la partícula se acerca a otras partículas cercanas, se detiene a observarlas por un momento, y continúa su exploración. Si está en modo de observación, su atributo de influencia es nulo pero permanece susceptible a la influencia de la partícula observada.  
 > ⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹   
 > *`crisis:`* en lugar de dibujar con su color asignado, la partícula dibuja sobre su zona con el color del fondo, borrando su progreso y el de los demás.   
-> ⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹ 
+> ⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹  
 > *`reposo`* luego de un periodo de crisis, la partícula se detiene en su lugar hasta que otra partícula se acerque lo suficiente como para influenciarla y reiniciar su proceso de creación.  
+___
 
 ☘️ **Inicio de vida de la partícula:** estaba pensando en la manera en la que las haditas nacen en TinkerBell. Ahí, la risa de un niño crea una hadita con una personalidad y talento ligado a ella. Mirando la biblioteca de `ml5.js`, vi que hay una opción para tomar un string de texto e identificar el sentimiento con un valor que oscila entre 0 (negativo) a 1 (positivo), entrenado con reviews de películas. Se me ocurre que haya una sola partícula spawneada al inicio, y se entregue en pantalla una zona de input de texto donde los usuarios puedan escribir una palabra o frase corta que cree una nueva partícula, cuya predisposición es influenciada por la emoción identificada.
 
