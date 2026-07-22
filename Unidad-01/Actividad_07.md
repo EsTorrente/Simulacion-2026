@@ -1,4 +1,4 @@
-<img width="377" height="645" alt="image" src="https://github.com/user-attachments/assets/d5494061-66ab-4b74-9d45-0926b9ad6c10" /># ACTIVIDAD 07
+# ACTIVIDAD 07
 
 ## ✨ Etapa 1: ideación
 
