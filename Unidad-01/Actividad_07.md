@@ -1489,7 +1489,7 @@ Focus on polish, visual quality, and more expressive behavior rather than introd
 
 ____
 
-### ✨ RESULTADO FINAL:
+### ⭐ RESULTADO FINAL:
   
 Me gusta!! :0  
 Se siente muy arte moderno. Me quedé observando por un rato, y pasó por muchas fases distintas. Hubo un momento donde eran principalmente meticulosas, y unos segundos después habían puras sentimentales. El sistema solito se ve equilibrando, y siguen spawneando partículas aunque nadie influya. También vi cómo salían algunas partículas que eran figuritas muy chiquitas, haciendo que se vieran como manchitas de polvo!!  otros que era semi-círculos. Me gustó esa cantidad de variación. Sí es MUY evidente cuando todos están tomando una tendencia, y de repente sale una y TUN, rompe con los patrones hasta que todos vuelven a medio reiniciarse. También es genial que cuando ya llegó un punto donde habían más de 100 partículas, las curiosas entraban muy seguido en estado de observación y empezaban a correr por todos lados como luchando por atención. Me dio la sensación de que estaban intentando resaltar entre los demás y decir HOLA MÍRAME AQUÍ ESTOY!!!!!!  
