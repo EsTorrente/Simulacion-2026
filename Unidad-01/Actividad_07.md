@@ -721,6 +721,6 @@ Only output the complete source code.
 
 ___
 
-✨ ## RESULTADOS INICIALES:
+## ✨ RESULTADOS INICIALES:
 
    
