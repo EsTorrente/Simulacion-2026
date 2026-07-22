@@ -93,29 +93,634 @@ ___
 
 🍂 **REGLAS DE LA SIMULACIÓN:**  
 1) Si en algún momento más del 80% de las partículas comparten la misma inclinación, aparecerán 2 partículas más de los tipos restantes para equilibrar la población un poco. Representa que cuando hay una moda o estándar en las comunidades creativas, siempre aparecerá una nueva corriente rebelde para innovar.  
-2) Cada partícula hará uso del algoritmo de `random walk` y `lévy flight`, modificándolo de acuerdo a sus atributos, para los recorridos en su estado de creación.  
-3) Se hará uso de `perlin noise` para darle una sensación más orgánica y menos aleatoria a los patrones dibujados por las partículas.
+2) Cada partícula hará uso del algoritmo de `random walk` y `lévy flight`, modificándolo de acuerdo a sus atributos, para los recorridos en su estado de creación.   
+3) Se hará uso de `perlin noise` para darle una sensación más orgánica y menos aleatoria a los patrones dibujados por las partículas.  
 4) Los colores base con los que pintará cada partícula, junto a los atributos de las formas que usen para hacerlo, tendrán leves variaciones por medio de una distribución normal.  
+5) Los valores de inclinación, sugestibilidad, influencia y curiosidad se generarán semi-aleatoriamente con distribución normal que tienda hacia el rango establecido por su tipo, permitiendo que cada partícula sea única.  
+6) El usuario no modifica el resultado, solo mueve un poco las posibilidades al agregar nuevos tipos de partículas con su input escrito. Todas las demás decisiones son tomadas por las probabilidades y las predisposiciones de las partículas.
+7) Al ser influenciado por la inclinación de otra partícula, adopta por completo sus figuras y patrones (todo lo descrito).  
 
   
 ⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹  
  
 ## ✨ Etapa 3: Primeros prototipos
+  
+Mi guess es que la idea va a ser inicialmente muy compleja para la IA y el alcance de p5.js. Maybe no me de los resultados tal cuál como me gustarían al inicio. Voy a darle el prompt a gemini, chatGPT y claude, todos en modo deep think, para comparar resultados. Como se supone que ya ni siquiera nosotros debemos escribir los prompts, le pasé toda esta bitácora a ChatGPT y le pedí que me devolviera el prompt detallado. Este fue el resultado:  
+___
 
+# Prompt
 
+You are an expert creative coding engineer specialized in **p5.js**, **ml5.js**, generative art, particle systems, and emergent simulations.
 
+Your task is to build a **complete, production-quality p5.js project**, not pseudocode.
 
+The output must be fully runnable.
 
+Use:
 
+* p5.js
+* ml5.js Sentiment library
+* the MovieReviews sentiment model
 
+Use exactly this library:
 
+[https://docs.ml5js.org/#/reference/sentiment](https://docs.ml5js.org/#/reference/sentiment)
 
+The project must include complete code for:
 
+* index.html
+* sketch.js
 
+The HTML must load:
 
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.10/p5.min.js"></script>
+<script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+```
 
+The sentiment model must be initialized exactly like the ml5 example:
 
+```javascript
+sentiment = ml5.sentiment("MovieReviews");
+```
 
-https://docs.ml5js.org/#/reference/bodypose
+Do not omit any implementation.
 
-https://cc.acm.org/2026/
+Do not leave TODOs.
+
+Do not write pseudocode.
+
+Write the full project.
+
+---
+
+# Project concept
+
+The sketch is an artistic simulation representing how creativity evolves inside communities.
+
+Particles represent people.
+
+Each particle has an innate personality that influences the kind of creative marks it leaves behind.
+
+The simulation should become an emergent ecosystem where behaviors spread, mutate and compete.
+
+The canvas should slowly become filled with generative artwork created entirely by the particles.
+
+The user has very little control.
+
+The system itself should evolve naturally.
+
+---
+
+# Architecture
+
+Organize the code cleanly.
+
+Create:
+
+* Particle class
+* ParticleType definitions
+* Utility functions
+* Simulation manager if necessary
+
+Avoid giant functions.
+
+Comment the code well.
+
+Use constants whenever possible.
+
+---
+
+# Particle attributes
+
+Every particle stores:
+
+```javascript
+type
+baseColor
+currentColor
+
+inclination
+
+susceptibility
+
+influence
+
+curiosity
+
+observationBehavior
+
+state
+
+position
+
+velocity
+
+noiseOffset
+
+energy
+
+age
+```
+
+Each particle permanently remembers its original type.
+
+Even after changing its inclination, it keeps its original base color.
+
+---
+
+# Particle types
+
+Implement three types.
+
+---
+
+## Sensitive particle
+
+Color
+
+light blue
+
+cyan
+
+slightly transparent
+
+Behavior
+
+Creates rounded flowing patterns.
+
+Mostly circles.
+
+Moves slowly.
+
+Frequently revisits previous areas.
+
+Uses smooth Perlin movement.
+
+Susceptibility
+
+High.
+
+Easily adopts behaviors from nearby particles.
+
+Influence
+
+Low.
+
+Curiosity
+
+Low.
+
+Prefers remaining near its spawn location.
+
+Observation behavior
+
+When another particle watches it:
+
+movement slows
+
+slight trembling
+
+small random jitter
+
+becomes more hesitant
+
+---
+
+## Curious particle
+
+Color
+
+yellow
+
+orange
+
+opaque
+
+Behavior
+
+Chaotic.
+
+Uses circles and triangles.
+
+Frequently changes direction.
+
+Moves quickly.
+
+Large Lévy jumps.
+
+Very dynamic.
+
+Susceptibility
+
+Very high.
+
+Completely adopts nearby behaviors.
+
+Influence
+
+Medium.
+
+Curiosity
+
+Very high.
+
+Rarely stays in one area.
+
+Observation behavior
+
+When observed:
+
+colors become brighter
+
+movement becomes faster
+
+shapes become larger
+
+---
+
+## Meticulous particle
+
+Color
+
+black
+
+gray
+
+opaque
+
+Behavior
+
+Straight paths.
+
+Occasional squares.
+
+Constant speed.
+
+Very geometric.
+
+Uses minimal randomness.
+
+Susceptibility
+
+Very low.
+
+Influence
+
+High.
+
+Curiosity
+
+Medium.
+
+Observation behavior
+
+No visible change.
+
+---
+
+# Particle states
+
+Each particle can be in one of four states.
+
+---
+
+## Creation
+
+Default state.
+
+Moves and draws.
+
+Uses random walk mixed with Perlin noise.
+
+Occasionally performs Lévy flights according to curiosity.
+
+---
+
+## Observation
+
+Particle temporarily stops drawing.
+
+Moves toward another nearby particle.
+
+Pauses briefly while observing.
+
+While observing:
+
+cannot influence others
+
+can still be influenced
+
+Returns to creation afterwards.
+
+---
+
+## Crisis
+
+Instead of drawing with its own color,
+
+draw using the background color.
+
+This erases existing artwork.
+
+Both its own and nearby marks disappear.
+
+Remain in crisis for a random duration.
+
+Then transition into Rest.
+
+---
+
+## Rest
+
+Particle stops moving.
+
+Does not draw.
+
+Waits until another nearby particle influences it.
+
+Then returns to Creation.
+
+---
+
+# Movement
+
+Movement combines:
+
+Random Walk
+
+Lévy Flight
+
+Perlin Noise
+
+Every particle always uses all three.
+
+The weights depend on its personality.
+
+Curiosity controls:
+
+probability of Lévy jumps
+
+average jump length
+
+Perlin noise should make movement feel organic.
+
+Avoid robotic movement.
+
+---
+
+# Drawing behavior
+
+Particles leave permanent marks.
+
+Do NOT clear the canvas every frame.
+
+Background is drawn only once.
+
+Each particle draws according to its inclination.
+
+Examples:
+
+Sensitive
+
+soft circles
+
+spirals
+
+arcs
+
+slow loops
+
+Curious
+
+circles
+
+triangles
+
+explosive clusters
+
+quick direction changes
+
+Meticulous
+
+lines
+
+rectangles
+
+grids
+
+precise geometry
+
+Drawing sizes should vary slightly.
+
+Opacity should vary slightly.
+
+Use Gaussian random values.
+
+---
+
+# Randomness
+
+Use randomGaussian() extensively.
+
+Apply Gaussian variation to:
+
+colors
+
+shape sizes
+
+movement speed
+
+curiosity
+
+susceptibility
+
+influence
+
+inclination strength
+
+Every particle should be unique.
+
+No two particles should behave identically.
+
+---
+
+# Social interaction
+
+Particles constantly search nearby particles.
+
+If another particle enters an interaction radius:
+
+they may influence one another.
+
+Influence probability depends on:
+
+source influence
+
+target susceptibility
+
+distance
+
+current state
+
+When influence succeeds:
+
+the target completely adopts the inclination and drawing behavior of the source.
+
+It does NOT change:
+
+base color
+
+particle type
+
+Only behavioral inclination changes.
+
+---
+
+# Population balancing
+
+Continuously monitor the dominant inclination.
+
+If over 80% of particles currently share the same inclination:
+
+spawn
+
+2 particles
+
+from the remaining personality types.
+
+This represents new artistic movements emerging against conformity.
+
+Do not spawn endlessly.
+
+Use a cooldown.
+
+---
+
+# Initial population
+
+Begin with exactly one particle.
+
+---
+
+# Creating particles using sentiment analysis
+
+The page must include:
+
+a text input
+
+a submit button
+
+When the user submits text:
+
+run
+
+```javascript
+sentiment.predict(...)
+```
+
+using ml5.
+
+Interpret confidence value as follows:
+
+0.00–0.33
+
+Sensitive particle
+
+0.34–0.66
+
+Meticulous particle
+
+0.67–1.00
+
+Curious particle
+
+Create one new particle of the corresponding type.
+
+Display the sentiment score beside the input.
+
+Do not remove previous particles.
+
+The simulation should continue forever.
+
+---
+
+# Visual requirements
+
+1080 x 1920 canvas.
+
+Dark background.
+
+Particles leave trails, but patterns slowly dissappear over time.
+
+No UI except:
+
+text input
+
+submit button
+
+sentiment score
+
+optional particle count
+
+The artwork should slowly become dense and beautiful.
+
+The simulation should feel alive.
+
+---
+
+# Performance
+
+The sketch should comfortably handle at least
+
+150 particles
+
+without significant slowdown.
+
+Avoid unnecessary allocations.
+
+Reuse objects where possible.
+
+---
+
+# Code quality
+
+Write readable code.
+
+Use descriptive variable names.
+
+Separate logic into methods.
+
+Comment important algorithms.
+
+Avoid duplicate code.
+
+Do not use external libraries besides:
+
+p5.js
+
+ml5.js
+
+---
+
+# Deliverables
+
+Return:
+
+1. Complete index.html
+
+2. Complete sketch.js
+
+Both must be fully implemented and immediately runnable without requiring any additional code.
+
+Do not summarize.
+
+Do not explain.
+
+Only output the complete source code.
+
+___
+
+✨ # RESULTADOS INICIALES:
+
+   
