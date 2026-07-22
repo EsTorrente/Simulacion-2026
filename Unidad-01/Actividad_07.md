@@ -1,4 +1,4 @@
-# ACTIVIDAD 07
+<img width="377" height="645" alt="image" src="https://github.com/user-attachments/assets/d5494061-66ab-4b74-9d45-0926b9ad6c10" /># ACTIVIDAD 07
 
 ## ✨ Etapa 1: ideación
 
@@ -1365,5 +1365,142 @@ ___
 ## ✨ PROTOTIPO 2:
 
 La verdad es que el de Gemini está SÚPER bien. Muy cercano a lo que quería!!!
-Un problema que noté al correrlo por un tiempo es que al disminuir el tamaño de la pantalla a 360x640px, las partículas tenían menos espacio para recorrer y por ende entraban más fácilmente en estado de observación. No me molesta mucho... se ve chévere... pero sí se vuelve un poco monótono porque Gemini no agregó mucha diferencia en la velocidad de las partículas. Voy a pedirle que realentice más las partículas sensibles, que agrege un poco de variación a las formas (están saliendo todas con la misma rotación), y que lo haga ver un poco más estéticamente atractivo (tengo curiosidad de ver qué se le ocurre)
+Un problema que noté al correrlo por un tiempo es que al disminuir el tamaño de la pantalla a 360x640px, las partículas tenían menos espacio para recorrer y por ende entraban más fácilmente en estado de observación. No me molesta mucho... se ve chévere... pero sí se vuelve un poco monótono porque Gemini no agregó mucha diferencia en la velocidad de las partículas. Voy a pedirle que realentice más las partículas sensibles, que agrege un poco de variación a las formas (están saliendo todas con la misma rotación), y que lo haga ver un poco más estéticamente atractivo (tengo curiosidad de ver qué se le ocurre).
+
+**`PROMP 2:`**
+
+## Follow-up Prompt
+
+Keep the existing architecture and codebase. Do **not** rewrite the project from scratch.
+
+Modify the current implementation while preserving all existing mechanics, particle types, and sentiment integration.
+
+Implement the following improvements:
+
+### 1. Make Sensitive particles noticeably slower
+
+Sensitive particles should feel calm, hesitant and contemplative.
+
+Reduce their average movement speed significantly compared to the other types.
+
+They should spend more time exploring a small area instead of constantly drifting away.
+
+Their movement should feel gentle and deliberate rather than simply having a lower velocity.
+
+Increase the influence of Perlin noise on their movement so they appear to "wander thoughtfully."
+
+---
+
+### 2. Add more variation to the generated artwork
+
+Currently many shapes are drawn with nearly identical orientations, making the artwork feel repetitive.
+
+Introduce controlled randomness using Gaussian variation and Perlin noise to create much richer compositions.
+
+For example, vary:
+
+* rotation
+* scale
+* aspect ratio
+* stroke weight
+* opacity
+* spacing between repeated marks
+* curvature
+* offsets from the movement path
+
+Every particle should develop its own visual "handwriting."
+
+Avoid completely random results; the variations should remain coherent with each particle's personality.
+
+---
+
+### 3. Improve the overall aesthetics
+
+Without changing the conceptual rules of the simulation, make the resulting artwork feel significantly more beautiful and organic.
+
+You are encouraged to creatively improve the visual design.
+
+Possible ideas include:
+
+* smoother transitions
+* layered transparent marks
+* richer color blending
+* more elegant trail composition
+* subtle fading instead of harsh overlaps
+* improved balance between empty and dense regions
+* more expressive particle paths
+* more interesting combinations of primitive shapes
+
+Use your own artistic judgment to enhance the appearance while keeping the simulation minimalist and generative.
+
+The goal is for the canvas to resemble an evolving piece of generative art rather than a technical demonstration.
+
+---
+
+### 4. Shorten the Crisis state
+
+Particles currently remain in Crisis for too long.
+
+Adjust the state machine so that:
+
+* Crisis never lasts more than approximately **15 seconds**.
+* Most Crisis periods should be shorter than the maximum.
+* After Crisis, particles should transition into Rest briefly and then be able to return to Creation naturally.
+* The simulation should not accumulate large numbers of inactive particles.
+
+The creative process should recover more quickly after destructive periods.
+
+---
+
+### 5. Slow down Meticulous particles
+
+Meticulous particles currently move too quickly.
+
+Reduce their movement speed so they feel:
+
+* patient
+* deliberate
+* precise
+* methodical
+
+They should still draw straight, geometric paths, but with a slower, more intentional rhythm.
+
+---
+
+### 6. Preserve all existing behavior
+
+Do **not** remove or simplify any existing mechanics.
+
+Keep:
+
+* sentiment analysis
+* particle interactions
+* influence system
+* susceptibility system
+* Gaussian variation
+* Perlin noise
+* Lévy flights
+* creation, observation, crisis, and rest states
+* population balancing rule
+
+Only refine and improve the current implementation.
+
+Focus on polish, visual quality, and more expressive behavior rather than introducing entirely new systems.
+
+____
+
+### ✨ RESULTADO FINAL:
+  
+Me gusta!! :0  
+Se siente muy arte moderno. Me quedé observando por un rato, y pasó por muchas fases distintas. Hubo un momento donde eran principalmente meticulosas, y unos segundos después habían puras sentimentales. El sistema solito se ve equilibrando, y siguen spawneando partículas aunque nadie influya. También vi cómo salían algunas partículas que eran figuritas muy chiquitas, haciendo que se vieran como manchitas de polvo!!  otros que era semi-círculos. Me gustó esa cantidad de variación. Sí es MUY evidente cuando todos están tomando una tendencia, y de repente sale una y TUN, rompe con los patrones hasta que todos vuelven a medio reiniciarse. También es genial que cuando ya llegó un punto donde habían más de 100 partículas, las curiosas entraban muy seguido en estado de observación y empezaban a correr por todos lados como luchando por atención. Me dio la sensación de que estaban intentando resaltar entre los demás y decir HOLA MÍRAME AQUÍ ESTOY!!!!!!  
+También me pareció chévere que la primera vez que lo probé, la primera partícula meticulosa que spawneó tenía forma de cruz... entonces siguieron habiendo MUCHAS cruces en el canvas; pero la segunda vez, esa primera meticulosa salió como un cuadradito, y por ende hubo muchos más cuadraditos que cruces.  
+Estoy súper satisfecha con el resultado!!! :DDD  
+Es justo lo que me imaginaba.  
+
+<img width="370" height="639" alt="image" src="https://github.com/user-attachments/assets/d1287461-89b4-4a3e-aa81-d7d2da261e93" />
+<img width="376" height="648" alt="image" src="https://github.com/user-attachments/assets/63491d36-221b-4b72-85f7-bc44ebfcf309" />
+<img width="377" height="645" alt="image" src="https://github.com/user-attachments/assets/ad38f645-9d2f-4e8e-ae72-473cb7c89a4b" />
+<img width="367" height="643" alt="image" src="https://github.com/user-attachments/assets/8a894e3f-589b-4e48-a11c-c43acc297f5c" />
+  
+Link: https://editor.p5js.org/EsTorrente/sketches/ibQwv8rRU
 
