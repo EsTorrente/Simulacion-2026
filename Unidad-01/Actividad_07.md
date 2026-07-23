@@ -1499,7 +1499,7 @@ Es justo lo que me imaginaba.
 
 <img width="370" height="639" alt="image" src="https://github.com/user-attachments/assets/d1287461-89b4-4a3e-aa81-d7d2da261e93" />
 <img width="376" height="648" alt="image" src="https://github.com/user-attachments/assets/63491d36-221b-4b72-85f7-bc44ebfcf309" />
-<img width="377" height="645" alt="image" src="https://github.com/user-attachments/assets/ad38f645-9d2f-4e8e-ae72-473cb7c89a4b" />
+<img width="354" height="643" alt="image" src="https://github.com/user-attachments/assets/fbd24b29-ff09-4f57-8e8d-c94c1b4a2d94" />
 <img width="367" height="643" alt="image" src="https://github.com/user-attachments/assets/8a894e3f-589b-4e48-a11c-c43acc297f5c" />
   
 Link: https://editor.p5js.org/EsTorrente/sketches/ibQwv8rRU
