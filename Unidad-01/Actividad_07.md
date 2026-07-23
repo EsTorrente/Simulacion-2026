@@ -86,17 +86,18 @@ ___
 > ⊹₊˚‧︵‿₊⊱·✶·⊰₊‿︵‧˚₊⊹  
 > *`reposo`* luego de un periodo de crisis, la partícula se detiene en su lugar hasta que otra partícula se acerque lo suficiente como para influenciarla y reiniciar su proceso de creación.  
 ___
-
-☘️ **Inicio de vida de la partícula:** estaba pensando en la manera en la que las haditas nacen en TinkerBell. Ahí, la risa de un niño crea una hadita con una personalidad y talento ligado a ella. Mirando la biblioteca de `ml5.js`, vi que hay una opción para tomar un string de texto e identificar el sentimiento con un valor que oscila entre 0 (negativo) a 1 (positivo), entrenado con reviews de películas. Se me ocurre que haya una sola partícula spawneada al inicio, y se entregue en pantalla una zona de input de texto donde los usuarios puedan escribir una palabra o frase corta que cree una nueva partícula, cuya predisposición es influenciada por la emoción identificada. Valores más cercanos a 0 crean partículas sensibles, valores más cercanos a 1 crean partículas curiosas, y valores intermedios crean partículas meticulosas.  
+<a name="inicio-vida"></a>
+☘️ **Inicio de vida de la partícula:** estaba pensando en la manera en la que las haditas nacen en TinkerBell. Ahí, la risa de un niño crea una hadita con una personalidad y talento ligado a ella. Mirando la biblioteca de `ml5.js`, vi que hay una opción para tomar un string de texto e identificar el sentimiento con un valor que oscila entre 0 (negativo) a 1 (positivo), entrenado con reviews de películas. Se me ocurre que haya una sola partícula spawneada al inicio, y se entregue en pantalla una zona de input de texto donde los usuarios puedan escribir una palabra o frase corta que cree una nueva partícula, cuya predisposición es influenciada por la emoción identificada. Valores más cercanos a 0 crean partículas sensibles, valores más cercanos a 1 crean partículas curiosas, y valores intermedios crean partículas meticulosas. De esta manera el usuario influenciaría la población, y por ende, alteraría las probabilidades de los patrones en pantalla.    
 
 ___
 
+<a name="reglas-simulacion"></a>
 🍂 **REGLAS DE LA SIMULACIÓN:**  
 1) Si en algún momento más del 80% de las partículas comparten la misma inclinación, aparecerán 2 partículas más de los tipos restantes para equilibrar la población un poco. Representa que cuando hay una moda o estándar en las comunidades creativas, siempre aparecerá una nueva corriente rebelde para innovar.  
 2) Cada partícula hará uso del algoritmo de `random walk` y `lévy flight`, modificándolo de acuerdo a sus atributos, para los recorridos en su estado de creación.   
 3) Se hará uso de `perlin noise` para darle una sensación más orgánica y menos aleatoria a los patrones dibujados por las partículas.  
 4) Los colores base con los que pintará cada partícula, junto a los atributos de las formas que usen para hacerlo, tendrán leves variaciones por medio de una distribución normal.  
-5) Los valores de inclinación, sugestibilidad, influencia y curiosidad se generarán semi-aleatoriamente con distribución normal que tienda hacia el rango establecido por su tipo, permitiendo que cada partícula sea única.  
+5) Los valores de inclinación, sugestibilidad, influencia y curiosidad se generarán semi-aleatoriamente con `distribución normal` que tienda hacia el rango establecido por su tipo, permitiendo que cada partícula sea única.  
 6) El usuario no modifica el resultado, solo mueve un poco las posibilidades al agregar nuevos tipos de partículas con su input escrito. Todas las demás decisiones son tomadas por las probabilidades y las predisposiciones de las partículas.
 7) Al ser influenciado por la inclinación de otra partícula, adopta por completo sus figuras y patrones (todo lo descrito).  
 
@@ -1502,5 +1503,16 @@ Es justo lo que me imaginaba.
 <img width="354" height="643" alt="image" src="https://github.com/user-attachments/assets/fbd24b29-ff09-4f57-8e8d-c94c1b4a2d94" />
 <img width="365" height="645" alt="image" src="https://github.com/user-attachments/assets/fc63eb45-cdad-4731-8b04-81f8da0c9fb7" />
   
-Link: https://editor.p5js.org/EsTorrente/sketches/ibQwv8rRU
+[Link al sketch](https://editor.p5js.org/EsTorrente/sketches/ibQwv8rRU)
 
+___
+
+# 🌼 AUTOEVALUACIÓN 
+
+| Criterio	| Cumplo / No cumplo	| Evidencia |
+| ------------- | ------------- | ------------- |
+**Encargo completo:** interpreto los cinco momentos dentro de un mismo sistema visual. | ✅ | 🌱 **Posibilidad:** las partículas pueden tomar cualquier dirección, cualquier inclinación, entrar a cualquier estado... cualquier inclinación puede dominar sobre las demás en un momento dado (y tiende a suceder, dado suficiente tiempo).  🌱 **Tendencia:** cada partícula tiene pequeñas preferencias en su comportamiento (patrones de desplazamiento, formas para dibujar, influencia, sugestibilidad...). 🌱 **Normalidad:** el sistema es predecible a grandes rasgos. Por ejemplo, sé que la mayoría de partículas tomará la forma con la que spawnee la primera partícula meticulosa; es algo que puedo esperar en cada recorrido. 🌱**Excepción:** además del uso evidente del lévy flight, también se ve evidenciado en eventos como que una partícula sentimental, a pesar de su baja influencia, logre contagiar a una meticulosa y su patrón empiece a dominar el canvas. No es común, pero lo pude ver. 🌱 **Influencia:** el visitante manipula la población de partículas de un tipo específico, cambiando un poco las probabilidades de ciertos patrones apareciendo. |
+**Simulación con intención:** utilizo al menos tres conceptos de la unidad para comunicar las ideas del encargo. | ✅ | [Caminata aleatoria, lévy flight, distribución normal, ruido perlin](#reglas-simulacion) |
+Interacción significativa: la interacción modifica el comportamiento o las probabilidades del sistema, que también funciona sin intervención. | ✅ | [Usuario afecta población y probabilidades](#inicio-vida) |
+Prototipo funcional: la experiencia puede ejecutarse y recorrerse completa sin errores que impidan comprenderla. | ✅ | [Link al sketch](https://editor.p5js.org/EsTorrente/sketches/ibQwv8rRU) |
+Proceso documentado: la bitácora evidencia avances, decisiones, dificultades, soluciones, uso de IA y enlace al prototipo.	| ✅ | Llevé registros de proceso de ideación, parámetros, construcción de prompts, pruebas con distintos modelos de IA, análisis de los resultados y decisiones tomadas |
