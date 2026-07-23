@@ -1505,6 +1505,10 @@ Es justo lo que me imaginaba.
   
 [Link al sketch](https://editor.p5js.org/EsTorrente/sketches/ibQwv8rRU)
 
+Por último, también le pedí a la IA (chatGPT) que resumiera el código en un diagrama sencillito. Este es el resultado:  
+<img width="746" height="628" alt="image" src="https://github.com/user-attachments/assets/f7eb72f4-37dc-4ed7-810a-3ee4df24f872" />
+
+
 ___
 
 # 🌼 AUTOEVALUACIÓN 
