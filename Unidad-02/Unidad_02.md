@@ -222,4 +222,5 @@ Aquí ya sentí que no estaban cuadrando las cosas. Volví a reevaluar mi matriz
 
 <img width="848" height="541" alt="image" src="https://github.com/user-attachments/assets/086f2460-c473-4416-b4d2-3f3f5e880501" />
 
-<img width="847" height="531" alt="image" src="https://github.com/user-attachments/assets/a6083b5c-40c7-43e1-bc70-9dfef9a16cfa" />
+<img width="847" height="531" alt="image" src="https://github.com/user-attachments/assets/19181a7e-05ad-4c3f-9b43-1137c38dcaad" />
+
