@@ -131,7 +131,10 @@ ___
 
 🌿 `Todo completito:`  Quiero explorar la tensión entre `los anhelos` y `los miedos`.  
 Quiero representar la tensión entre los anhelos y los miedos como un conflicto dinámico, donde una criatura oscila constantemente entre avanzar hacia sus metas y retroceder por la influencia de sus propias dudas. Mi intención es que esta contradicción no se explique mediante símbolos, sino que sea visible en el comportamiento emergente del sistema.  
+  
+<img width="662" height="98" alt="image" src="https://github.com/user-attachments/assets/8d96ed18-71cc-4273-98b8-06b03ad7005f" />  
 
+  
 | **Característica**           | **Miedos**                                                                 | **Anhelos**                                                       | **Pulsos de Vida**                                                  | **Pulsos de Muerte**                                             | **Alma**                                                                                                                                       |
 | ---------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Significado**              | Dudas, ansiedad y pensamientos que frenan el avance.                       | Metas, curiosidad y deseo de crecer.                              | Esperanza y resiliencia que fortalecen los anhelos e impulsan a movimiento.                 | Desesperanza y estancamiento.                                    | La esencia de la criatura; representa su voluntad de seguir existiendo.                                                                        |
@@ -147,3 +150,65 @@ Quiero representar la tensión entre los anhelos y los miedos como un conflicto 
 | **Qué atrae**                | Pulsos de muerte                                                           | Pulsos de vida                                                    | Anhelos                                                             | Miedos                                                           | —                                                                                                                                              |
 | **Qué repele**               | Anhelos                                                                    | Miedos                                                            | Pulsos de muerte                                                    | Pulsos de vida                                                   | —                                                                                                                                              |
 | **Efecto emergente**         | Forman redes cada vez más grandes que dificultan alcanzar nuevos anhelos.  | Generan movimiento y reorganización constante de la criatura.     | Mantienen vivo el sistema y evitan que los miedos dominen.          | Favorecen el crecimiento de los miedos y aceleran la decadencia. | Si predominan la vida y los anhelos permanece brillante; si predominan el miedo y la muerte, se apaga hasta provocar la muerte de la criatura. |
+
+
+___
+
+# DESARROLLO
+
+Comencé por pedirle a cada una de las IAs que me entregara un sistema de particle life para p5.js que simulara el movimiento de olas o corrientes.  
+  
+**Resultado inicial de DeepSeek:**
+<img width="919" height="878" alt="image" src="https://github.com/user-attachments/assets/214ee728-4e33-4f69-a2f6-8802dc55a8fa" />
+  
+**Resultado inicial de Gemini:**
+<img width="921" height="786" alt="image" src="https://github.com/user-attachments/assets/ad910934-8dbe-4290-aec6-951a9ff517dc" />
+  
+**Resultado inicial de ChatGPT:**
+<img width="917" height="785" alt="image" src="https://github.com/user-attachments/assets/c2c568fc-1841-4935-b218-f75242d83567" />
+  
+**Resultado inicial de Claude:**
+<img width="1101" height="916" alt="image" src="https://github.com/user-attachments/assets/9a5b65fd-a42e-4185-9850-4f9116bdcb6f" />
+
+  
+Me voy a ir con Gemini y claude de nuevo. Ahora le pedí que agregaran la interacción del mouse a ella.  
+  
+**Segundo resultado de Gemini:**
+<img width="920" height="793" alt="image" src="https://github.com/user-attachments/assets/681f394f-9bfc-4b57-8bf2-ded7e0bd0869" />
+
+**Resultado inicial de Claude:**
+<img width="1101" height="916" alt="image" src="https://github.com/user-attachments/assets/9a5b65fd-a42e-4185-9850-4f9116bdcb6f" />
+
+___
+
+**Tercer resultado de Gemini:**
+<img width="917" height="778" alt="image" src="https://github.com/user-attachments/assets/bd62ce75-019e-412d-a567-c7bac252c5d3" />
+
+**Intento de gemini de replicar el de Claude:**
+<img width="1186" height="782" alt="image" src="https://github.com/user-attachments/assets/3694c1f6-912c-47d4-ba17-a7d2d701e26a" />
+
+___
+
+Aquí ya sentí que no estaban cuadrando las cosas. Volví a reevaluar mi matriz, y llegué a esto:
+
+<img width="661" height="117" alt="image" src="https://github.com/user-attachments/assets/613bf9d1-c19f-4912-b3fb-bfd3beba3d03" />
+
+<img width="1187" height="784" alt="image" src="https://github.com/user-attachments/assets/ea3a16f5-f58a-4031-834d-5a6e02c0f5fd" />
+
+<img width="1187" height="766" alt="image" src="https://github.com/user-attachments/assets/62572c69-944e-4a13-83d0-0a1cdadab06c" />
+
+<img width="907" height="916" alt="image" src="https://github.com/user-attachments/assets/0ad4e660-17a6-4f55-915b-1dad426b4de2" />
+
+<img width="887" height="902" alt="image" src="https://github.com/user-attachments/assets/fbe69e6e-243b-465e-845f-2b24eafa29dd" />
+
+<img width="838" height="758" alt="image" src="https://github.com/user-attachments/assets/a6d2aaab-9d05-4ff5-bd67-37c0f0341fd4" />
+
+<img width="838" height="780" alt="image" src="https://github.com/user-attachments/assets/c32648b6-3355-42d2-a128-ae82eb6667c1" />
+
+<img width="839" height="777" alt="image" src="https://github.com/user-attachments/assets/7e806da7-d6cb-418c-8145-e3b5edfde3f9" />
+
+<img width="942" height="543" alt="image" src="https://github.com/user-attachments/assets/04a3c020-bdf0-4424-bfa9-46bc0fbbc6d6" />
+
+
+
+
