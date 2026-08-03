@@ -209,6 +209,14 @@ Aquí ya sentí que no estaban cuadrando las cosas. Volví a reevaluar mi matriz
 
 <img width="942" height="543" alt="image" src="https://github.com/user-attachments/assets/04a3c020-bdf0-4424-bfa9-46bc0fbbc6d6" />
 
+<img width="940" height="536" alt="image" src="https://github.com/user-attachments/assets/d1b0a234-6dff-4596-b37d-f766503a5ca2" />
 
+<img width="935" height="544" alt="image" src="https://github.com/user-attachments/assets/37eb0a69-39db-4b57-9c2b-d1b3e344952d" />
+
+<img width="946" height="543" alt="image" src="https://github.com/user-attachments/assets/80d24678-dcf1-4308-acec-d07880d63708" />
+
+<img width="669" height="120" alt="image" src="https://github.com/user-attachments/assets/7322e373-5d5e-46ea-8345-7e8bc56325de" />
+
+<img width="838" height="521" alt="image" src="https://github.com/user-attachments/assets/596e585c-231e-412c-bdff-1d6a68dc69e2" />
 
 
