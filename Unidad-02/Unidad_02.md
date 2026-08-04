@@ -10,28 +10,6 @@ Es un proceso por el que paso con demasiada frecuencia. Un día estoy pensando e
 Quiero representar esa contradicción.  
   
 
-## 🌿**2) Definición**
-  
-Me gusta mucho más esta versión, de hecho.
-
-Creo que conceptualmente es más sólida porque ya no estás intentando representar la tensión *dentro* de una criatura mediante una criatura. Ahora la tensión **es el comportamiento del ecosistema**. El mar mismo se convierte en la metáfora: corrientes que avanzan, arrecifes que atrapan, redes que crecen, organismos que quedan atascados. Es bastante más elegante.
-
-Yo reescribiría la bitácora manteniendo tu forma de escribir así:
-
----
-
-# 🌿 **1) Ideación**
-
-Al ver los conjuntos de partículas creadas en los ejemplos, y con base en mi trabajo anterior, quedó en mí un asombro por lo fácil que es simular comportamientos complejos a partir de reglas muy simples. Basta con asignar pequeñas fuerzas de atracción, repulsión o movimiento para que aparezcan dinámicas que parecen tener intención propia. Me gusta mucho esa idea de que, al final, somos una colección de predisposiciones interactuando entre sí.
-
-Desde el primer momento que se mencionó el concepto de tensión, lo primero que vino a mi mente fue el movimiento de las mareas. El mar nunca está completamente quieto; constantemente empuja y luego devuelve. Nosotros parecemos seguir el mismo patrón: algo nos impulsa a buscar, investigar y perseguir aquello que queremos... y luego una palabra, una interacción, una presencia o un error nos hace retroceder.
-
-Es un proceso por el que paso con demasiada frecuencia. Un día estoy pensando en grande, imaginando proyectos ambiciosos, sintiendo la alegría de crear... y luego Juanferfranco vuelve a hablar de la IA y me achicopalo un poquito. Empiezo a dudar de la viabilidad, del concepto, del tiempo, de mi valor como artista, del valor del arte como tal, del público, de mi propósito, de mi utilidad... y bueno, la idea queda atrás (hasta que una semana después vuelve a empezar).
-
-Quiero representar precisamente esa contradicción. No como una batalla épica ni como una decisión definitiva, sino como una corriente constante. Hay algo dentro de nosotros que siempre intenta avanzar, mientras otra fuerza insiste en detenernos.
-
----
-
 # 🌿 **2) Definición**
 
 **`Intención:` ¿Qué transformación, sensación, tensión o idea debe experimentar quien observa?**
@@ -332,7 +310,7 @@ Ya por último, le agregué la variación con el tiempo de colores. Este fue el 
 | **Comportamientos emergentes, no trayectorias predefinidas** |     ✅    | Ninguna partícula sigue un camino programado. El movimiento surge de la combinación de la corriente, las fuerzas entre partículas, la fricción, las conexiones y la aleatoriedad.                                                                                    |
 | **Una identidad reconocible entre diferentes resultados**    |     ✅    | Aunque cambien las posiciones iniciales, siempre aparecen los mismos patrones: redes de miedos, agrupaciones alrededor de almas, corrientes de vida hacia la derecha, arrecifes de muerte y anhelos siguiendo la corriente.                                          |
 | **Las partículas pueden ser círculos o puntos**              |     ✅    | Todas las partículas son círculos, no se utilizan otras figuritas.                                                                                                                                                                                     |
-# ENTREGABLES 
+# ⭐ ENTREGABLES 
   
 ⭐ `LINK AL SKETCK:` [Clic aquí.](https://editor.p5js.org/EsTorrente/full/KTPeq_rUd)
   
