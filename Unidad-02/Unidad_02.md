@@ -131,7 +131,7 @@ Seleccioné una mayor proporción de miedos y anhelos porque quiero hacer percep
 ---
 
 🌿 `Matriz de atracción, repulsión e indiferencia`
-
+<a name="matrix"></a>
 <img width="512" height="119" alt="image" src="https://github.com/user-attachments/assets/9fbf0b15-9886-42b2-bb10-be3bb43516a4" />
   
 **Justificación:**
@@ -234,7 +234,7 @@ Quiero explorar la tensión entre **los anhelos** y **los miedos**.
 Quiero representar esa tensión como el flujo de corrientes marinas. Mientras las almas, los anhelos y los pulsos de vida avanzan siguiendo la corriente, los miedos nadan en sentido contrario, persiguen a las almas y construyen redes sobre arrecifes inmóviles formados por los pulsos de muerte. Cuando un anhelo queda atrapado en una de estas redes desaparece, mostrando cómo las dudas pueden extinguir una posibilidad antes de que llegue a convertirse en realidad.
   
 Mi intención es que esta contradicción no se explique mediante símbolos, sino que sea visible en el comportamiento emergente del sistema: las corrientes representan el impulso de avanzar, mientras las redes muestran cómo el miedo puede convertir el movimiento en estancamiento. Los colores cambian continuamente para recordar que las emociones rara vez son completamente claras; sólo al observar sus patrones de interacción es posible distinguirlas.
-
+<a name="particulas"></a>
 | **Característica**             | **Miedos**                                      | **Anhelos**                           | **Pulsos de vida**                  | **Pulsos de muerte**               | **Almas**                                                          |
 | ------------------------------ | ----------------------------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------- | ------------------------------------------------------------------ |
 | **Forma**                      | Círculo pequeño que puede crecer y formar redes | Círculo pequeño con pulsación suave   | Dos círculos concéntricos pulsantes | Círculo compacto                   | Núcleo brillante con halo pulsante                                 |
@@ -247,7 +247,7 @@ Mi intención es que esta contradicción no se explique mediante símbolos, sino
   
 ___
 
-# DESARROLLO
+# 🌱 DESARROLLO
 
 Comencé por pedirle a cada una de las IAs que me entregara un sistema de particle life para p5.js que simulara el movimiento de olas o corrientes.  
   
@@ -324,12 +324,127 @@ Ya por último, le agregué la variación con el tiempo de colores. Este fue el 
 | Requisito                                                    | ¿Cumple? | Evidencia                                                                                                                                                                                                                                                            |
 | ------------------------------------------------------------ | :------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Posición, velocidad y aceleración**                        |     ✅    | Cada partícula tiene `px`, `py` (posición), `vx`, `vy` (velocidad). La aceleración no se almacena explícitamente, pero se calcula cada frame acumulando fuerzas (`fx`, `fy`) y luego se integra a la velocidad: `vx += fx`, `vy += fy`. |
-| **Varias poblaciones de partículas**                         |     ✅    | Hay cinco poblaciones: **Miedos**, **Anhelos**, **Vida**, **Muerte** y **Almas**.                                                                                                                                                                 |
+| **Varias poblaciones de partículas**                         |     ✅    | [Hay cinco poblaciones:](#particulas) **Miedos**, **Anhelos**, **Vida**, **Muerte** y **Almas**.                                                                                                                                                                 |
 | **Interacciones dependientes de la distancia**               |     ✅    | Todas las fuerzas sólo se aplican si la distancia es menor que `maxR`. Además la intensidad depende de la distancia mediante `forceFn()`.                                                                                                                            |
-| **Relaciones de atracción, repulsión o indiferencia**        |     ✅    |                                                                                                                                                                              |
-| **Al menos una relación asimétrica**                         |     ✅    | No todas las relaciones son recíprocas.                                                                                       |
+| **Relaciones de atracción, repulsión o indiferencia**        |     ✅    | [Matriz](#matrix)                                                                                                                                                                             |
+| **Al menos una relación asimétrica**                         |     ✅    | No todas las relaciones son recíprocas. [Matriz](#matrix)                                                                                      |
 | **Variabilidad entre ejecuciones**                           |     ✅    | Las almas aparecen en posiciones aleatorias, las demás partículas se distribuyen aleatoriamente alrededor de ellas y además sus velocidades iniciales también son aleatorias. Cada ejecución comienza distinta.                                                      |
 | **Comportamientos emergentes, no trayectorias predefinidas** |     ✅    | Ninguna partícula sigue un camino programado. El movimiento surge de la combinación de la corriente, las fuerzas entre partículas, la fricción, las conexiones y la aleatoriedad.                                                                                    |
 | **Una identidad reconocible entre diferentes resultados**    |     ✅    | Aunque cambien las posiciones iniciales, siempre aparecen los mismos patrones: redes de miedos, agrupaciones alrededor de almas, corrientes de vida hacia la derecha, arrecifes de muerte y anhelos siguiendo la corriente.                                          |
 | **Las partículas pueden ser círculos o puntos**              |     ✅    | Todas las partículas son círculos, no se utilizan otras figuritas.                                                                                                                                                                                     |
+### ENTREGABLES 
+  
+⭐ `LINK AL SKETCK:` [Clic aquí.](https://editor.p5js.org/EsTorrente/full/KTPeq_rUd)
+  
+___
 
+## FICHA TÉCNICA:
+
+**Tensión**
+
+El sistema representa la lucha constante el miedo y los anhelos.
+
+**Intención**
+
+Hacer perceptible el conflicto emocional común de ser controlado y limitado por nuestros miedos, representando visualmente la dinámica entre estas inclinaciones internas. Se hace uso de las corrientes marinas como metáfora para representar el avance de los seres, limitado por las redes de miedo que se atascan en los pulsos de muerte.  
+
+
+**Tipos y cantidades**
+
+| Tipo             |                Cantidad |
+| ---------------- | ----------------------: |
+| Almas            |        4 (configurable) |
+| Miedos           |              aprox 45 % |
+| Anhelos          |              aprox 35 % |
+| Pulsos de vida   |              aprox 20 % |
+| Pulsos de muerte | Variable (configurable) |
+
+Los miedos y los anhelos constituyen la mayor parte del sistema porque representan el conflicto principal. Las almas funcionan como núcleos organizadores, mientras que los pulsos de vida y muerte modifican continuamente la dinámica general.
+
+
+**Reglas principales**
+
+* Las partículas interactúan mediante fuerzas de atracción, repulsión o indiferencia.
+* Las interacciones dependen de la distancia.
+* Los miedos forman redes entre sí.
+* Los pulsos de vida pueden romper esas redes.
+* Los anhelos buscan la vida y las almas.
+* Los miedos son atraídos por la muerte.
+* Las almas buscan la vida y los anhelos mientras evitan el miedo y la muerte.
+* Una corriente global desplaza los miedos hacia un lado y la vida junto con los anhelos hacia el contrario.
+* Los pulsos de muerte permanecen inmóviles.
+
+
+**Matriz de relaciones**
+
+<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/7f6d93f0-e4b8-49a4-84e7-0315829736a2" />
+
+La matriz incorpora relaciones asimétricas para representar que algunas influencias emocionales no son necesariamente recíprocas. Las principales relaciones son:  
+* Los miedos buscan a los anhelos (0.5), pero los anhelos también buscan a los miedos (0.7). Eso refleja que cuanto más importante es un sueño, más espacio ocupa también el miedo a fracasar. No es una persecución unilateral.  
+* Los pulsos de vida no persiguen los anhelos (0), pero los anhelos sí buscan los pulsos de vida (0.8). La motivación no siempre aparece cuando la buscamos; somos nosotros quienes intentamos aferrarnos a esos momentos de inspiración cuando aparecen.  
+* El alma busca intensamente los pulsos de vida (1.0), mientras que los pulsos de vida no necesitan perseguir al alma (0). La vida sucede, y la persona es quien intenta sostenerla.  
+
+
+**Parámetros principales y justificación**
+
+| Parámetro            | Valor                                |
+| -------------------- | ------------------------------------ |
+| Radio de interacción | 61 px                                |
+| Velocidad máxima     | 1.7 (excepto almas: 0.7 y muerte: 0) |
+| Fricción             | 0.900                                |
+| Corriente global     | 1.40                                 |
+| Espaciado inicial    | 1.90                                 |
+| Tamaño base          | 1.5                                  |
+
+**Justificación**
+
+Los parámetros fueron seleccionados para favorecer la aparición de estructuras colectivas en la forma de las corrientes. La velocidad limita movimientos excesivos, la fricción suaviza las trayectorias (sin ser muy alta, para que igual parezca que están flotando y siendo llevadas por la marea) y el radio de interacción permite que las relaciones locales se conviertan en patrones globales. El parámetro de la corriente es lo principal, pues sin él se perdería la mayor parte del significado.  
+
+
+**Invariantes**
+
+Siempre permanecen constantes:
+* Cinco tipos de partículas.
+* Reglas de interacción.
+* Relaciones de la matriz.
+* Corrientes principales.
+* Pulsos de muerte inmóviles.
+* Existencia de al menos un conflicto entre miedo, vida y anhelos.
+  
+**Variables**
+Pueden modificarse:
+
+* Cantidad total de partículas.
+* Número de almas.
+* Cantidad de pulsos de muerte.
+* Intensidad de la corriente.
+* Alcance de interacción.
+* Valores de la matriz.
+* Tamaño de partículas.
+* Fricción.
+* Velocidad máxima.
+* Distribución inicial.
+
+___
+
+## Variaciones del sistema:
+<img width="957" height="549" alt="image" src="https://github.com/user-attachments/assets/45b992e5-0fc5-4a66-a11f-37dcc5fb53c8" />
+<img width="954" height="523" alt="image" src="https://github.com/user-attachments/assets/5e5664da-9ac3-4120-bf0c-9bc08f9b0884" />
+<img width="958" height="536" alt="image" src="https://github.com/user-attachments/assets/eb213f2f-a71d-4dbf-bbaf-dc068b93a153" />
+<img width="952" height="530" alt="image" src="https://github.com/user-attachments/assets/40901afa-0c6b-4d8c-a074-71ad39733ed0" />
+
+
+
+## Autoevaluación:
+
+| Criterio                                                                          |   Peso   | Valoración (/100) |   Aporte  |
+| --------------------------------------------------------------------------------- | -------- | ----------------- | --------- |
+| La intención es clara y perceptible en el comportamiento.                         |    20%   |       **98**      |  **19.6** |
+| Los tipos, cantidades, matriz y parámetros están justificados desde la intención. |    25%   |       **100**      |  **25** |
+| Comprendo y puedo modificar el funcionamiento técnico del sistema.                |    20%   |       **85**      |  **17** |
+| El sistema produce variaciones con una identidad reconocible.                     |    15%   |       **100**      | **15** |
+| Experimenté, comparé, seleccioné y descarté con criterios claros.                 |    10%   |       **100**      |  **10**  |
+| Puedo distinguir y sustentar lo diseñado y lo emergente.                          |    10%   |       **100**      |  **10**  |
+| **Total**                                                                         | **100%** |                   | **96.6** |
+
+`NOTA:` 4.8
