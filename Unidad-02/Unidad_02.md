@@ -1,45 +1,100 @@
 # 🌱 ACTIVIDAD 04
 
 ## 🌿 **1) Ideación**
-Al ver los conjuntos de partículas creadas en los ejemplos, y con base en mi trabajo anterior, quedó en mí un asombro por lo fácil que es simular el comportamiento básico de un ser vivo por medio de reglas, asignando deseos y temores. Me gusta ese concepto de que somos una colección de predisposiciones.    
+Al ver los conjuntos de partículas creadas en los ejemplos, y con base en mi trabajo anterior, quedó en mí un asombro por lo fácil que es simular comportamientos complejos a partir de reglas muy simples. Basta con asignar pequeñas fuerzas de atracción, repulsión o movimiento para que aparezcan dinámicas que parecen tener intención propia. Me gusta mucho esa idea de que, al final, somos una colección de predisposiciones interactuando entre sí.  
   
-Desde el primer momento que se mencionó el concepto de tensión, lo primero que vino a mi mente es el empuje y jale de la marea en el mar. Nosotros, al igual que ella, parecemos seguir el mismo ciclo: algo nos empuja a buscar, investigar y perseguir... y luego una palabra, interacción, presencia o error nos hace echar para atrás. Es un proceso por el que paso con demasiada frecuencia; un día estoy pensando en grande, imaginando proyectos ambiciosos, sintiendo la alegría de crear... y luego Juanferfranco vuelve a hablar de la IA y me achicopalo un poquito. Empiezo a dudar de la viabilidad, del concepto, del tiempo, de mi valor como artista, del valor del arte como tal, del público, de mi propósito, de mi utilidad... y bueno, la idea queda atrás (hasta que una semana después vuelve a empezar).
+Desde el primer momento que se mencionó el concepto de tensión, lo primero que vino a mi mente fue el movimiento de las mareas. El mar nunca está completamente quieto; constantemente empuja y luego devuelve. Nosotros parecemos seguir el mismo patrón: algo nos impulsa a buscar, investigar y perseguir aquello que queremos... y luego una palabra, una interacción, una presencia o un error nos hace retroceder.  
+
+Es un proceso por el que paso con demasiada frecuencia. Un día estoy pensando en grande, imaginando proyectos ambiciosos, sintiendo la alegría de crear... y luego Juanferfranco vuelve a hablar de la IA y me achicopalo un poquito. Empiezo a dudar de la viabilidad, del concepto, del tiempo, de mi valor como artista, del valor del arte como tal, del público, de mi propósito, de mi utilidad... y bueno, la idea queda atrás (hasta que una semana después vuelve a empezar).  
+
+Quiero representar esa contradicción.  
   
-Creo que quiero representar esa experiencia de alguna manera. El deseo de serlo todo, hacerlo todo, apuntar a las estrellas... y luego el miedo que aterriza y echa atrás.
 
 ## 🌿**2) Definición**
   
-**`Intención:` ¿Qué transformación, sensación, tensión o idea debe experimentar quien observa?**
-> Debe sentir que la criatura formada por las partículas está luchando internamente entre su anhelo de perseguir algo y su miedo de salir de su zona de confort.  
-  
-**`Entidades:` ¿Qué elementos existen? Partículas, especies, campos, fronteras, memorias o señales. / `Relaciones:` ¿Cómo se afectan? Atracción, repulsión, persecución, cooperación, competencia o indiferencia.**
-> 1) **Especies:** Criatura formada por múltiples partículas pequeñas, representando los miles de deseos, miedos y pensamientos que conforman a un ser vivo. Se desplaza como grupo en dirección de partículas de anhelo que aparecen en el canvas para absorberlas. Por cada 3 anhelos, aparecerá dentro de ella un pulso de vida. Si pasan más de 20 segundos sin absorber un anhelo, aparecerá dentro de ella un miedo o un impulso de muerte.
-> 2) **Partículas:** habrán 5 tipos de partículas:
->    - `Miedos:` partículas de color azul que se mueven de forma errática, vibrando fuertemente. Repelen a los anhelos, son repelidas por los pulsos de vida, y son atraídas por los pulsos de muerte. Crean conexiones entre otros miedos más cercanos, extendiendo líneas entre sí. Cada conexión hace crecer un poco más a la partícula. Representa la manera en la que los miedos y preocupaciones, de ser dejados a continuar sin intervención, crecen exponencialmente y se alimentan los unos de los otros. Las conexiones sólo pueden ser cortadas al ser atravesadas por una partícula pulso de vida.  
->    - `Anhelos:` partículas de color amarillo con movimientos suaves, floaty, curiosas. Son repelidas por los miedos, atraen a los miedos, y no repelen a ninguna partícula. Atraen a los pulsos de vida. Si un anhelo se ve rodeado por conexiones de partículas de miedo, muere.    
->    - `Pulsos de vida:` partículas de color naranja que pulsan, haciéndose más grandes y pequeñas. Son repelidas por los pulsos de muerte y atraídas por los anhelos. Forman estructuras alrededor de los anhelos para protegerlos de las conexiones de los miedos.  
->    - `Pulsos de muerte:` Los pulsos de muerte son partículas completamente estáticas de color gris. Su color pulsa lentamente.    
->    - `Alma:` Una partícula grande y central de tipo único, color blanco e iluminada. Mientras haya un decente equilibrio entre los tipos de partículas o una mayor cantidad de anhelos y pulsos de vida, se mantendrá pura. Si predominan los miedos y pulsos de muerte, el alma se apagará hasta que la criatura no pueda desplazarse más y sus partículas mueran. Su vida disminuirá a medida que otras criaturas a su alrededor mueran.  
-> 3) Fronteras: las partículas de cada criatura serán contenidas por una membrana fluida que puede empujarlas. Al acercarse a una partícula de anhelo, se extenderá un tipo de brazo o tentáculo que la tome y absorba.
-  
-**MATRIZ (vertical partícula ejerciendo fuerza, horizontal partícula afectada:**  
-<img width="585" height="99" alt="image" src="https://github.com/user-attachments/assets/d4db6d80-fb8f-4a12-b2ec-6b7f2d5bf568" />
-  
-  
-**`Entradas:` ¿Qué alimenta el sistema? Semilla, tiempo, audio, interacción, datos o decisiones del participante.**
-> Las criaturas se unirán para formar patrones de olas y corrientes en el canvas, recorriendo el espacio y alimentándose. Las olas representan esa lucha interna de cada uno de los seres. De ser dejadas solas, dependerá de la interacción interna de sus partículas y la probabilidad de spawn de los anhelos. El participante podrá utilizar su mouse para generar un movimiento de onda o marea en las olas de las criaturas, empujándolas en dirección de sus anhelos, como lo hacen muchas de las personas a nuestro alrededor a diario (maestros, padres, amigos, modelos a seguir...)  
+Me gusta mucho más esta versión, de hecho.
 
+Creo que conceptualmente es más sólida porque ya no estás intentando representar la tensión *dentro* de una criatura mediante una criatura. Ahora la tensión **es el comportamiento del ecosistema**. El mar mismo se convierte en la metáfora: corrientes que avanzan, arrecifes que atrapan, redes que crecen, organismos que quedan atascados. Es bastante más elegante.
+
+Yo reescribiría la bitácora manteniendo tu forma de escribir así:
+
+---
+
+# 🌿 **1) Ideación**
+
+Al ver los conjuntos de partículas creadas en los ejemplos, y con base en mi trabajo anterior, quedó en mí un asombro por lo fácil que es simular comportamientos complejos a partir de reglas muy simples. Basta con asignar pequeñas fuerzas de atracción, repulsión o movimiento para que aparezcan dinámicas que parecen tener intención propia. Me gusta mucho esa idea de que, al final, somos una colección de predisposiciones interactuando entre sí.
+
+Desde el primer momento que se mencionó el concepto de tensión, lo primero que vino a mi mente fue el movimiento de las mareas. El mar nunca está completamente quieto; constantemente empuja y luego devuelve. Nosotros parecemos seguir el mismo patrón: algo nos impulsa a buscar, investigar y perseguir aquello que queremos... y luego una palabra, una interacción, una presencia o un error nos hace retroceder.
+
+Es un proceso por el que paso con demasiada frecuencia. Un día estoy pensando en grande, imaginando proyectos ambiciosos, sintiendo la alegría de crear... y luego Juanferfranco vuelve a hablar de la IA y me achicopalo un poquito. Empiezo a dudar de la viabilidad, del concepto, del tiempo, de mi valor como artista, del valor del arte como tal, del público, de mi propósito, de mi utilidad... y bueno, la idea queda atrás (hasta que una semana después vuelve a empezar).
+
+Quiero representar precisamente esa contradicción. No como una batalla épica ni como una decisión definitiva, sino como una corriente constante. Hay algo dentro de nosotros que siempre intenta avanzar, mientras otra fuerza insiste en detenernos.
+
+---
+
+# 🌿 **2) Definición**
+
+**`Intención:` ¿Qué transformación, sensación, tensión o idea debe experimentar quien observa?**
+
+> Quiero que quien observe perciba cómo las partículas que fluyen parecen atorarse a veces y ser consumidas por otras. Que hay una tensión entre aquellas que avanzan y aquellas que se estancan, y tratan al mismo tiempo de hundir a las demás.
+
+
+**`Entidades:` ¿Qué elementos existen? / `Relaciones:` ¿Cómo se afectan?**
+
+> El sistema está compuesto por cinco especies de partículas que representan distintos impulsos internos. 
+
+* **Miedos:** partículas que viajan en dirección contraria a la corriente principal. Se desplazan de manera errática, buscan acercarse a las almas y forman redes al conectarse entre sí. También se adhieren a los pulsos de muerte, utilizando estas partículas como puntos de anclaje. A medida que la red crece, aumenta su capacidad para atrapar y matar otras partículas.
+
+* **Anhelos:** partículas que siguen el flujo de la corriente principal. Se desplazan suavemente intentando avanzar junto a las almas y los pulsos de vida. Cuando entran en contacto con una red de miedos, desaparecen, representando la manera en que las dudas pueden extinguir una posibilidad antes de que llegue a materializarse.
+
+* **Pulsos de vida:** partículas que acompañan el movimiento de los anhelos. Su comportamiento refuerza la corriente principal y generan conexiones visuales que representan momentos de impulso, motivación o creatividad.
+
+* **Pulsos de muerte:** partículas completamente inmóviles que funcionan como arrecifes. No persiguen nada ni cambian con el tiempo, pero sirven como puntos donde los miedos pueden sujetarse y extender sus redes, convirtiéndose en obstáculos permanentes dentro del paisaje.
+
+* **Almas:** representan a cada organismo del sistema. Son las partículas alrededor de las cuales se organizan los demás impulsos. Avanzan siguiendo la corriente principal mientras son constantemente perseguidas por los miedos.
+
+
+**`Matriz:`**
+<img width="508" height="120" alt="image" src="https://github.com/user-attachments/assets/f44b49c3-38fa-46f3-a5e8-b02331361dd3" />
+  
+* Los miedos buscan a los anhelos (0.5), pero los anhelos también buscan a los miedos (0.7). Eso refleja que cuanto más importante es un sueño, más espacio ocupa también el miedo a fracasar. No es una persecución unilateral.  
+* Los pulsos de vida no persiguen los anhelos (0), pero los anhelos sí buscan los pulsos de vida (0.8). La motivación no siempre aparece cuando la buscamos; somos nosotros quienes intentamos aferrarnos a esos momentos de inspiración cuando aparecen.  
+* El alma busca intensamente los pulsos de vida (1.0), mientras que los pulsos de vida no necesitan perseguir al alma (0). La vida sucede, y la persona es quien intenta sostenerla.  
+  
+**`Entradas:` ¿Qué alimenta el sistema?**
+  
+> El sistema evoluciona principalmente a partir del tiempo y de las interacciones entre partículas. Sobre estas dinámicas actúa una corriente marina global que empuja constantemente a la mayoría de especies en una dirección, mientras los miedos avanzan en sentido contrario.
+  
+> El participante puede intervenir utilizando el mouse para alterar localmente estas corrientes, generando pequeños remolinos que modifican temporalmente el recorrido de las partículas. No controla directamente a ninguna de ellas; únicamente altera el flujo que las transporta.
+  
+  
 **`Reglas:` ¿Cómo cambia el estado de un frame al siguiente?**
-> Las olas se verían afectadas por las almas de las criaturas, permitiendo el movimiento de marea mientras suficientes de ellas permanezcan vivas. A medida que pasa el tiempo, más y más citraturias morirán, reduciendo la resistencia de las demás. Lo que quedará finalmente es una imagen estática de los cadáveres, representando a todos aquellos que se permitieron ser consumidos por sus temores y apagaron su voluntad.  
+  
+> En cada actualización, las partículas calculan las fuerzas ejercidas por las demás mediante una matriz de atracción y repulsión. A esto se suma una corriente global que desplaza a casi todas las especies hacia un mismo lado del espacio, mientras los miedos se resisten avanzando en dirección opuesta.
+  
+> Los miedos generan conexiones entre sí cuando se encuentran suficientemente cerca, formando redes que pueden apoyarse sobre los pulsos de muerte. Si un anhelo entra en contacto con una de estas redes, desaparece. Las almas continúan intentando avanzar mientras son perseguidas continuamente por los miedos.
+  
 
 **`Invariantes:` ¿Qué debe permanecer para conservar la identidad del sistema?**
-> Aunque el número de criaturas pueda ser controlado, siempre deben haber suficientes de ellas como para que el patrón de la ola sea visible. Cada criatura debe spawnear por lo menos 3 de cada tipo de partícula, garantizando la interacción de estas desde el inicio. Además, las partículas internas no deben salirse de sus membranas. También, las dinámicas de atracción y repulsión entre partículas.      
+  
+> Siempre deben existir corrientes claramente identificables moviéndose en sentidos opuestos. Los miedos deben conservar la capacidad de formar redes, los pulsos de muerte deben permanecer completamente inmóviles y las almas deben continuar desplazándose dentro de la corriente principal mientras son perseguidas.
+  
+> Aunque cambien los parámetros del sistema, estas relaciones deben mantenerse para preservar la tensión entre avanzar y desistir.
+  
 
-**`Variabilidad:` ¿Qué puede ser diferente en cada ejecución sin destruir esa identidad?**
-> La cantidad exacta de las partículas iniciales, la cantidad exacta de las criaturas, el color y tamaño de las partículas (mientras se mantengan dentro de distintos tonos de su color), el rate de spawn de los anhelos, la velocidad de movimiento de las partículas y de las criaturas, los tamaños y las formas de las partículas...  
+**`Variabilidad:` ¿Qué puede cambiar sin destruir esa identidad?**
+  
+> Puede variar la cantidad de partículas, el número de almas presentes, la intensidad de la corriente, el alcance de las fuerzas de atracción, el tamaño de las partículas, la longitud de los rastros y los valores de la matriz de interacción.
+  
+> Además, los colores cambian lentamente con el paso del tiempo. Ninguna especie conserva un color fijo, obligando al observador a identificar los comportamientos antes que los colores. Esto busca representar cómo las emociones rara vez son completamente distinguibles; suelen confundirse entre sí hasta que prestamos atención a los patrones que generan.
+  
 
-**`Curaduría y reflexión:` ¿Qué resultado es significativo y cuál es solo un accidente interesante?**  
-Los patrones de olas y corrientes, junto a la muerte eventual de las criaturas, son significativas. Por otro lado, los patrones formados dentro de ellas es un accidente interesante.  
+**`Curaduría y reflexión:` ¿Qué resultado es significativo y cuál es solo un accidente interesante?**
+
+> El resultado significativo es la aparición de corrientes que constantemente intentan avanzar mientras otras fuerzas construyen obstáculos capaces de detenerlas. También lo es la formación espontánea de redes de miedo alrededor de los arrecifes y la desaparición gradual de los anhelos cuando quedan atrapados por ellas.  
+  
+> En cambio, las formas exactas que adoptan las redes, las trayectorias particulares de cada organismo y las composiciones visuales que aparecen en cada ejecución son accidentes emergentes. No fueron diseñadas directamente, sino que nacen de la interacción entre reglas simples.  
+
 ___
 
 # 🌱 ACTIVIDAD 5
@@ -47,111 +102,149 @@ ___
 🌿 **Formula la tensión:**  
 Quiero explorar la tensión entre `los anhelos` y `los miedos`.  
   
-🌿 **Describe brevemente cómo esperas que se manifieste en el comportamiento del sistema.**
+🌿 **Describe brevemente cómo esperas que se manifieste en el comportamiento del sistema.**  
     
-Espero que esta tensión se manifieste como un comportamiento oscilante. La criatura nunca debería avanzar de manera continua hacia sus objetivos ni permanecer inmóvil indefinidamente. Cada vez que aparezca un anhelo, la criatura reorganizará sus partículas internas para perseguirlo; sin embargo, el crecimiento de los miedos y de sus conexiones generará una fuerza opuesta que ralentizará, desviará o incluso impedirá ese movimiento.
+Espero que esta tensión se manifieste como un flujo constante de corrientes que avanzan en direcciones opuestas. La mayor parte del sistema intentará desplazarse siguiendo una misma marea, mientras los miedos nadarán contra ella, buscando tanto a las almas como a los arrecifes formados por los pulsos de muerte.  
   
-La contradicción está incorporada en las reglas del sistema. Los anhelos producen organización, expansión y desplazamiento hacia el exterior, mientras que los miedos generan redes que aumentan su propia influencia y restringen progresivamente el movimiento de la criatura. Ninguno de los dos estados es permanente: el sistema oscila constantemente entre ambos dependiendo de las interacciones internas y de los eventos que ocurran durante la simulación.
-  
+La contradicción está incorporada en las reglas del sistema. Los anhelos, los pulsos de vida y las almas favorecen el movimiento continuo, mientras que los miedos construyen redes que nacen de los arrecifes y bloquean ese avance. Cuando un anhelo queda atrapado por una de estas redes desaparece, representando cómo una posibilidad puede extinguirse antes de llegar a realizarse.  
+   
+Ninguna de las dos fuerzas domina completamente el sistema. Las corrientes nunca dejan de avanzar, pero tampoco dejan de encontrar obstáculos.  
+
+
 🌿 **Diseño del sistema**
-  
-1) `Tipos de partículas:` seleccioné cinco tipos de partículas (alma, anhelos, miedos, pulsos de vida y pulsos de muerte) porque quiero hacer perceptible que un estado emocional complejo surge de múltiples comportamientos simples y no de un único elemento. Espero que produzca una organización interna donde cada población contribuya con un rol diferente al comportamiento colectivo de la criatura.
-  
-2) `Cantidad de partículas de cada tipo:`
-Por criatura:
-- 1 Alma
-- 10–15 Miedos
-- 8-12 Anhelos
-- 3 Pulsos de Vida iniciales
-- 1 Pulso de Muerte inicial (o ninguno hasta que pase suficiente tiempo)
 
-Seleccioné una mayor cantidad de miedos y anhelos porque quiero hacer perceptible que el conflicto principal ocurre entre estas dos fuerzas. Espero que produzca una lucha constante en lugar de depender únicamente de eventos excepcionales como los pulsos.
+1) `Tipos de partículas`
 
-🌿 `Matriz de atracción, repulsión e indiferencia`  
-<img width="585" height="99" alt="image" src="https://github.com/user-attachments/assets/d4db6d80-fb8f-4a12-b2ec-6b7f2d5bf568" />  
+Seleccioné cinco tipos de partículas (alma, anhelos, miedos, pulsos de vida y pulsos de muerte) porque quiero hacer perceptible que un estado emocional complejo puede surgir de la interacción entre varios impulsos simples y no de una única fuerza dominante. Espero que produzca un sistema donde el comportamiento global emerja de las relaciones entre especies, permitiendo que aparezcan momentos de estabilidad, conflicto y reorganización sin necesidad de reglas específicas para cada situación.  
+  
+2) `Cantidad de partículas de cada tipo`
+  
+* 4 Almas (configurable)
+* Aproximadamente 45 % Miedos
+* Aproximadamente 35 % Anhelos
+* Aproximadamente 20 % Pulsos de Vida
+* Cantidad variable de Pulsos de Muerte (configurable)
+
+**Justificación:**
+Seleccioné una mayor proporción de miedos y anhelos porque quiero hacer perceptible que el conflicto principal ocurre entre estas dos fuerzas, mientras que la vida y la muerte actúan como influencias que modifican ese equilibrio. Espero que produzca una tensión constante en la que ninguna de las dos fuerzas desaparezca completamente y donde pequeñas variaciones puedan alterar el comportamiento colectivo.  
+
+---
+
+🌿 `Matriz de atracción, repulsión e indiferencia`
+
+<img width="512" height="119" alt="image" src="https://github.com/user-attachments/assets/9fbf0b15-9886-42b2-bb10-be3bb43516a4" />
   
 **Justificación:**
-Seleccioné relaciones asimétricas entre algunas partículas porque quiero hacer perceptible que las influencias emocionales no siempre son recíprocas. Espero que produzca dinámicas impredecibles donde una población pueda modificar profundamente a otra sin recibir el mismo efecto de regreso.  
+  
+Seleccioné relaciones asimétricas entre algunas especies porque quiero representar que las influencias emocionales no siempre son recíprocas. En muchos casos una emoción puede afectar profundamente a otra sin recibir el mismo efecto de regreso.  
+  
+Algunas partículas persiguen aquello que desean, otras buscan aquello que las amenaza y otras simplemente permanecen inmóviles permitiendo que aparezcan nuevas dinámicas.  
+  
+🌿 `Intensidad y alcance de cada relación`
+
+**Miedos**
    
-🌿 `Intensidad y alcance de cada relación`  
-1) **Miedos**  
-- repulsión media/fuerte a anhelos  
-- alcance medio  
+* Atracción fuerte hacia pulsos de muerte y almas.  
+* Atracción moderada hacia otros miedos y anhelos.  
+* Repulsión frente a los pulsos de vida.  
   
-2) **Anhelos**  
-- atracción suave entre sí  
-- alcance largo  
+**Anhelos**
   
-3) **Vida**  
-- atracción fuerte hacia anhelos  
-- alcance corto  
+* Atracción fuerte hacia pulsos de vida.  
+* Atracción moderada hacia almas.  
+* Ligera cohesión entre ellos.
+* Evitan los pulsos de muerte.
   
-4) **Muerte**
-- atracción fuerte sobre miedos  
-- alcance medio  
+**Pulsos de vida**
+  
+* Repelen los miedos.
+* Debilitan la influencia de los pulsos de muerte.
+  
+**Pulsos de muerte**
+  
+* Permanecen inmóviles.
+* Funcionan como arrecifes que atraen a los miedos y repelen la vida.
 
-**Justificación:**  
-Seleccioné distintas intensidades y alcances porque quiero hacer perceptible que algunas emociones actúan lentamente mientras otras tienen efectos inmediatos. Espero que produzca cambios graduales interrumpidos por momentos de reorganización rápida.  
+**Almas**
   
-🌿 `Distancias de interacción`   
-Cada partícula puede variar entre:  
-- **corto:** 20 px  
-- **medio:** 50 px  
-- **largo:** 90 px  
+* Buscan la vida y los anhelos.
+* Evitan los miedos y los pulsos de muerte.
 
-**Justificación:**  
-Seleccioné diferentes radios de interacción porque quiero hacer perceptible que no todas las influencias afectan desde la misma distancia. Espero que las criaturas desarrollen estructuras internas cambiantes y no únicamente grupitos compactos.  
-
+**Justificación**
+  
+Seleccioné distintas intensidades porque quiero que algunas relaciones dominen el comportamiento del sistema mientras otras únicamente introduzcan pequeñas desviaciones. De esta manera aparecen corrientes generales claramente reconocibles sin eliminar la complejidad local del movimiento. También porque quiero que los miedos sean como especies aisladas de la corriente principal, intentando acercarse a las demás, pero atorándose en sus pulsos de muerte.  
+  
+🌿 `Distancias de interacción`
+  
+Cada partícula puede interactuar dentro de un radio configurable que determina hasta dónde alcanza su influencia sobre las demás.  
+  
+**Justificación:**
+  
+Seleccioné un radio de interacción compartido porque quiero que el comportamiento global dependa principalmente de las relaciones entre especies y no de diferencias arbitrarias en la distancia. Esto facilita que aparezcan estructuras colectivas como las redes de miedo o las corrientes de partículas.  
+  
+  
 🌿 `Fricción y velocidad máxima`
 
-| | Miedos | Anhelos | Vida | Muerte | Alma |
-|--|--------|---------|------|--------|------|
-|Velocidad | alta | media-baja | media | cero | movimiento únicamente con la criatura |
-| fricción  | alta | baja | baja | cero | cero |
-   
-**Justificación:**  
-Seleccioné velocidades y fricciones distintas porque quiero hacer perceptible que cada tipo de partícula expresa una actitud diferente frente al movimiento. Espero que los miedos transmitan ansiedad, mientras que los anhelos sugieran exploración y calma.  
-  
-🌿 `Distribución inicial`  
-Alma al centro, anhelos distribuidos alrededor del centro, miedos mezclados con ligera concentración a los bordes de la membrana, vida cerca del alma, muerte ausente o muy cercana al centro.  
-  
-**Justificación:**  
-Seleccioné una distribución inicial organizada porque quiero hacer perceptible que todas las criaturas parten de un estado relativamente estable. Espero que las diferencias entre ejecuciones aparezcan como consecuencia de las reglas y no de configuraciones completamente aleatorias.  
-
-🌿 `Parámetros constantes y variables`  
-  
-| Constantes | Variables |
-|------------|------------|
-| reglas de atracción, radios, velocidad máxima, fricción | cantidad inicial de partículas, tiempo entre aparición de anhelos, posición inicial, dirección inicial, tamaño, colores dentro de un rango |
-  
-**Justificación:**  
-Seleccioné estos parámetros constantes y variables porque quiero hacer perceptible una identidad reconocible entre simulaciones sin eliminar la posibilidad de resultados distintos y mantener las asociaciones emotivas ligadas al significado de cada color. Espero que cada ejecución conserve el mismo comportamiento general, aunque produzca historias diferentes.  
-
-___
-
-🌿 `Todo completito:`  Quiero explorar la tensión entre `los anhelos` y `los miedos`.  
-Quiero representar la tensión entre los anhelos y los miedos como un conflicto dinámico, donde una criatura oscila constantemente entre avanzar hacia sus metas y retroceder por la influencia de sus propias dudas. Mi intención es que esta contradicción no se explique mediante símbolos, sino que sea visible en el comportamiento emergente del sistema.  
-  
-<img width="662" height="98" alt="image" src="https://github.com/user-attachments/assets/8d96ed18-71cc-4273-98b8-06b03ad7005f" />  
-
-  
-| **Característica**           | **Miedos**                                                                 | **Anhelos**                                                       | **Pulsos de Vida**                                                  | **Pulsos de Muerte**                                             | **Alma**                                                                                                                                       |
-| ---------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Significado**              | Dudas, ansiedad y pensamientos que frenan el avance.                       | Metas, curiosidad y deseo de crecer.                              | Esperanza y resiliencia que fortalecen los anhelos e impulsan a movimiento.                 | Desesperanza y estancamiento.                                    | La esencia de la criatura; representa su voluntad de seguir existiendo.                                                                        |
-| **Cantidad inicial**         | 10–15                                                                      | 8–12                                                              | 3                                                                   | 0–1                                                              | 1                                                                                                                                              |
-| **Color**                    | Azul                                                                       | Amarillo                                                          | Naranja                                                             | Gris                                                             | Blanco brillante                                                                                                                               |
-| **Tamaño**                   | Pequeño (crece al conectarse)                                              | Pequeño                                                           | Mediano (pulsa)                                                     | Mediano                                                          | Grande                                                                                                                                         |
-| **Movimiento**               | Errático, vibrante                                                         | Suave, flotante y curioso                                         | Estable, protector                                                  | Inmóvil                                                          | Se mueve únicamente con la criatura                                                                                                            |
-| **Velocidad**                | Alta                                                                       | Media-baja                                                        | Media                                                               | Cero                                                             | Movimiento únicamente con la criatura                                                                                                          |
-| **Fricción**                 | Alta                                                                       | Baja                                                              | Baja                                                                | Cero                                                             | Cero                                                                                                                                           |
-| **Aceleración**              | Alta y cambiante                                                           | Suave y gradual                                                   | Media                                                               | Nula                                                             | Determinada por el movimiento colectivo                                                                                                        |
-| **Alcance de interacción**   | Medio                                                                      | Largo                                                             | Corto                                                               | Medio                                                            | Afecta toda la criatura                                                                                                                        |
-| **Comportamiento principal** | Se conectan entre sí formando redes que crecen y restringen el movimiento. | Buscan ser absorbidos por la criatura y favorecen su crecimiento. | Rodean y protegen a los anhelos; pueden romper conexiones de miedo. | Atraen a los miedos y debilitan el sistema.                      | Evalúa el equilibrio interno y determina la supervivencia de la criatura.                                                                      |
-| **Qué atrae**                | Pulsos de muerte                                                           | Pulsos de vida                                                    | Anhelos                                                             | Miedos                                                           | —                                                                                                                                              |
-| **Qué repele**               | Anhelos                                                                    | Miedos                                                            | Pulsos de muerte                                                    | Pulsos de vida                                                   | —                                                                                                                                              |
-| **Efecto emergente**         | Forman redes cada vez más grandes que dificultan alcanzar nuevos anhelos.  | Generan movimiento y reorganización constante de la criatura.     | Mantienen vivo el sistema y evitan que los miedos dominen.          | Favorecen el crecimiento de los miedos y aceleran la decadencia. | Si predominan la vida y los anhelos permanece brillante; si predominan el miedo y la muerte, se apaga hasta provocar la muerte de la criatura. |
+|           | Miedos | Anhelos | Vida  | Muerte | Alma  |
+| --------- | ------ | ------- | ----- | ------ | ----- |
+| Velocidad | Alta   | Media   | Media | Cero   | Baja  |
+| Fricción  | Media  | Media   | Media | Total  | Media |
 
 
+**Justificación:**
+
+Seleccioné una velocidad máxima compartida para los miedos, los anhelos y los pulsos de vida porque quiero hacer perceptible que sus diferencias de comportamiento provienen de las fuerzas que los afectan y de sus interacciones, y no de una ventaja física inherente. Espero que produzca un sistema donde cada especie exprese un movimiento característico únicamente como consecuencia de la matriz de atracción, las corrientes y las reglas emergentes.  
+  
+Seleccioné una velocidad máxima menor para las almas porque quiero hacer perceptible que actúan como núcleos estables que organizan a las demás partículas en lugar de perseguirlas activamente. Espero que produzca organismos con un centro relativamente constante alrededor del cual puedan reorganizarse los anhelos, los miedos y los pulsos de vida.  
+  
+Seleccioné una velocidad nula para los pulsos de muerte porque quiero hacer perceptible que representan obstáculos permanentes dentro del entorno y no agentes móviles. Espero que produzca puntos de influencia fijos que modifiquen el recorrido de las demás partículas y favorezcan la formación de regiones dominadas por el miedo.  
+  
+Seleccioné una fricción global para todas las partículas móviles porque quiero hacer perceptible que todas están sometidas al mismo medio, como si compartieran una misma corriente oceánica. Espero que produzca movimientos suaves y continuos, evitando aceleraciones indefinidas y permitiendo que las diferencias entre especies surjan principalmente de sus relaciones e interacciones, en lugar de parámetros físicos distintos.  
+  
+🌿 `Distribución inicial`
+
+Las almas aparecen distribuidas en distintos puntos del espacio. Alrededor de ellas se generan anhelos, miedos y pulsos de vida. Los pulsos de muerte aparecen dispersos por el escenario.  
+  
+**Justificación:**
+  
+Seleccioné una distribución inicial organizada alrededor de las almas porque quiero hacer perceptible que cada organismo comienza con un equilibrio interno antes de enfrentarse a las influencias externas. Espero que produzca varios núcleos independientes que evolucionen de forma distinta y que el comportamiento final dependa de las interacciones del sistema y no de posiciones completamente aleatorias.  
+
+### **Justificación**
+
+Seleccioné una distribución inicial agrupada alrededor de las almas porque quiero que desde el primer instante existan pequeños organismos que posteriormente sean transformados por las corrientes y por las interacciones entre especies.
+
+---
+
+🌿 `Parámetros constantes y variables`
+
+| Constantes                                                                                                                        | Variables                                                                                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tipos de partículas, reglas de interacción, dirección general de las corrientes, comportamiento estático de los pulsos de muerte. | Cantidad de partículas, número de almas, intensidad de la corriente, matriz de atracción, tamaño de partículas, colores, alcance de interacción. |
+
+### **Justificación**
+
+Seleccioné estos parámetros porque quiero mantener una identidad reconocible entre ejecuciones mientras permito que cada simulación produzca configuraciones distintas. Aunque cambien las formas, las trayectorias o los colores, siempre debe percibirse el mismo conflicto entre avanzar con la corriente y quedar atrapado por las redes del miedo.
+
+---
+
+🌿 `Todo completito`
+
+Quiero explorar la tensión entre **los anhelos** y **los miedos**.
+  
+Quiero representar esa tensión como el flujo de corrientes marinas. Mientras las almas, los anhelos y los pulsos de vida avanzan siguiendo la corriente, los miedos nadan en sentido contrario, persiguen a las almas y construyen redes sobre arrecifes inmóviles formados por los pulsos de muerte. Cuando un anhelo queda atrapado en una de estas redes desaparece, mostrando cómo las dudas pueden extinguir una posibilidad antes de que llegue a convertirse en realidad.
+  
+Mi intención es que esta contradicción no se explique mediante símbolos, sino que sea visible en el comportamiento emergente del sistema: las corrientes representan el impulso de avanzar, mientras las redes muestran cómo el miedo puede convertir el movimiento en estancamiento. Los colores cambian continuamente para recordar que las emociones rara vez son completamente claras; sólo al observar sus patrones de interacción es posible distinguirlas.
+
+| **Característica**             | **Miedos**                                      | **Anhelos**                           | **Pulsos de vida**                  | **Pulsos de muerte**               | **Almas**                                                          |
+| ------------------------------ | ----------------------------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------- | ------------------------------------------------------------------ |
+| **Forma**                      | Círculo pequeño que puede crecer y formar redes | Círculo pequeño con pulsación suave   | Dos círculos concéntricos pulsantes | Círculo compacto                   | Núcleo brillante con halo pulsante                                 |
+| **Movimiento**                 | Rápido y errático                               | Fluido y estable                      | Fluido y estable                    | Inmóvil                            | Lento y estable                                                    |
+| **Velocidad máxima (`maxSp`)** | **1.7** (Alta)                                  | **1.7** (Alta)                        | **1.7** (Alta)                      | **0.0** (Nula)                     | **0.7** (Baja)                                                     |
+| **Fricción**                   | **0.900**  (modificable)                                     | **0.900**                             | **0.900**                           | No aplica (estático)               | **0.900**                                                          |
+| **Comportamiento**             | Se agrupan, forman redes y persiguen anhelos    | Buscan vida y almas; evitan la muerte | Atraen anhelos y repelen miedos     | Actúan como obstáculos permanentes | Funcionan como núcleos alrededor de los cuales surge el ecosistema |
+| **Rol simbólico**              | Miedo y pensamientos negativos que se propagan  | Esperanza, metas y deseos             | Energía vital y crecimiento         | Estancamiento o desesperanza       | El ser vivo o la conciencia que da origen al sistema               |
+
+  
 ___
 
 # DESARROLLO
@@ -170,6 +263,7 @@ Comencé por pedirle a cada una de las IAs que me entregara un sistema de partic
 **Resultado inicial de Claude:**
 <img width="1101" height="916" alt="image" src="https://github.com/user-attachments/assets/9a5b65fd-a42e-4185-9850-4f9116bdcb6f" />
 
+___
   
 Me voy a ir con Gemini y claude de nuevo. Ahora le pedí que agregaran la interacción del mouse a ella.  
   
@@ -189,9 +283,8 @@ ___
 
 ___
 
-Aquí ya sentí que no estaban cuadrando las cosas. Volví a reevaluar mi matriz, y llegué a esto:
+Aquí ya sentí que no estaban cuadrando las cosas. Se estaban perdiendo las corrientes y el propósito inicial del modelo. Sentía que se veían mucho como células y no como corrientes:
 
-<img width="661" height="117" alt="image" src="https://github.com/user-attachments/assets/613bf9d1-c19f-4912-b3fb-bfd3beba3d03" />
 
 <img width="1187" height="784" alt="image" src="https://github.com/user-attachments/assets/ea3a16f5-f58a-4031-834d-5a6e02c0f5fd" />
 
@@ -200,28 +293,43 @@ Aquí ya sentí que no estaban cuadrando las cosas. Volví a reevaluar mi matriz
 <img width="907" height="916" alt="image" src="https://github.com/user-attachments/assets/0ad4e660-17a6-4f55-915b-1dad426b4de2" />
 
 <img width="887" height="902" alt="image" src="https://github.com/user-attachments/assets/fbe69e6e-243b-465e-845f-2b24eafa29dd" />
+  
+Por lo que volví a intentar, modificando los parámetros hasta que conseguí algo más similar a lo que buscaba inicialmente:  
 
 <img width="838" height="758" alt="image" src="https://github.com/user-attachments/assets/a6d2aaab-9d05-4ff5-bd67-37c0f0341fd4" />
 
 <img width="838" height="780" alt="image" src="https://github.com/user-attachments/assets/c32648b6-3355-42d2-a128-ae82eb6667c1" />
+  
+Comencé a iterar sobre el diseño estético para generar esa sensación de un océano profundo.  
 
 <img width="839" height="777" alt="image" src="https://github.com/user-attachments/assets/7e806da7-d6cb-418c-8145-e3b5edfde3f9" />
 
 <img width="942" height="543" alt="image" src="https://github.com/user-attachments/assets/04a3c020-bdf0-4424-bfa9-46bc0fbbc6d6" />
 
 <img width="940" height="536" alt="image" src="https://github.com/user-attachments/assets/d1b0a234-6dff-4596-b37d-f766503a5ca2" />
-
-<img width="935" height="544" alt="image" src="https://github.com/user-attachments/assets/37eb0a69-39db-4b57-9c2b-d1b3e344952d" />
-
-<img width="946" height="543" alt="image" src="https://github.com/user-attachments/assets/80d24678-dcf1-4308-acec-d07880d63708" />
-
-<img width="669" height="120" alt="image" src="https://github.com/user-attachments/assets/7322e373-5d5e-46ea-8345-7e8bc56325de" />
-
-<img width="838" height="521" alt="image" src="https://github.com/user-attachments/assets/596e585c-231e-412c-bdff-1d6a68dc69e2" />
-
+  
+Y finalmente, llegué a este resultado:
 
 <img width="848" height="541" alt="image" src="https://github.com/user-attachments/assets/086f2460-c473-4416-b4d2-3f3f5e880501" />
 
 <img width="847" height="531" alt="image" src="https://github.com/user-attachments/assets/19181a7e-05ad-4c3f-9b43-1137c38dcaad" />
 
 <img width="922" height="531" alt="image" src="https://github.com/user-attachments/assets/179a6a9f-f416-4b8a-bdb9-54456c25a884" />
+
+Ya por último, le agregué la variación con el tiempo de colores. Este fue el resultado final:
+
+### ⭐ LINK AL SKETCK:
+[Clic aquí.](https://editor.p5js.org/EsTorrente/full/KTPeq_rUd)
+
+| Requisito                                                    | ¿Cumple? | Evidencia                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------------ | :------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Posición, velocidad y aceleración**                        |     ✅    | Cada partícula tiene `px`, `py` (posición), `vx`, `vy` (velocidad). La aceleración no se almacena explícitamente, pero se calcula cada frame acumulando fuerzas (`fx`, `fy`) y luego se integra a la velocidad: `vx += fx`, `vy += fy`. |
+| **Varias poblaciones de partículas**                         |     ✅    | Hay cinco poblaciones: **Miedos**, **Anhelos**, **Vida**, **Muerte** y **Almas**.                                                                                                                                                                 |
+| **Interacciones dependientes de la distancia**               |     ✅    | Todas las fuerzas sólo se aplican si la distancia es menor que `maxR`. Además la intensidad depende de la distancia mediante `forceFn()`.                                                                                                                            |
+| **Relaciones de atracción, repulsión o indiferencia**        |     ✅    |                                                                                                                                                                              |
+| **Al menos una relación asimétrica**                         |     ✅    | No todas las relaciones son recíprocas.                                                                                       |
+| **Variabilidad entre ejecuciones**                           |     ✅    | Las almas aparecen en posiciones aleatorias, las demás partículas se distribuyen aleatoriamente alrededor de ellas y además sus velocidades iniciales también son aleatorias. Cada ejecución comienza distinta.                                                      |
+| **Comportamientos emergentes, no trayectorias predefinidas** |     ✅    | Ninguna partícula sigue un camino programado. El movimiento surge de la combinación de la corriente, las fuerzas entre partículas, la fricción, las conexiones y la aleatoriedad.                                                                                    |
+| **Una identidad reconocible entre diferentes resultados**    |     ✅    | Aunque cambien las posiciones iniciales, siempre aparecen los mismos patrones: redes de miedos, agrupaciones alrededor de almas, corrientes de vida hacia la derecha, arrecifes de muerte y anhelos siguiendo la corriente.                                          |
+| **Las partículas pueden ser círculos o puntos**              |     ✅    | Todas las partículas son círculos, no se utilizan otras figuritas.                                                                                                                                                                                     |
+
