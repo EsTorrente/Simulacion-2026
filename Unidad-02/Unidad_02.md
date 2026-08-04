@@ -332,7 +332,7 @@ Ya por último, le agregué la variación con el tiempo de colores. Este fue el 
 | **Comportamientos emergentes, no trayectorias predefinidas** |     ✅    | Ninguna partícula sigue un camino programado. El movimiento surge de la combinación de la corriente, las fuerzas entre partículas, la fricción, las conexiones y la aleatoriedad.                                                                                    |
 | **Una identidad reconocible entre diferentes resultados**    |     ✅    | Aunque cambien las posiciones iniciales, siempre aparecen los mismos patrones: redes de miedos, agrupaciones alrededor de almas, corrientes de vida hacia la derecha, arrecifes de muerte y anhelos siguiendo la corriente.                                          |
 | **Las partículas pueden ser círculos o puntos**              |     ✅    | Todas las partículas son círculos, no se utilizan otras figuritas.                                                                                                                                                                                     |
-### ENTREGABLES 
+# ENTREGABLES 
   
 ⭐ `LINK AL SKETCK:` [Clic aquí.](https://editor.p5js.org/EsTorrente/full/KTPeq_rUd)
   
