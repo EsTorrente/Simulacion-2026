@@ -214,6 +214,11 @@ Quiero explorar la tensión entre **los anhelos** y **los miedos**.
 Quiero representar esa tensión como el flujo de corrientes marinas. Mientras las almas, los anhelos y los pulsos de vida avanzan siguiendo la corriente, los miedos nadan en sentido contrario, persiguen a las almas y construyen redes sobre arrecifes inmóviles formados por los pulsos de muerte. Cuando un anhelo queda atrapado en una de estas redes desaparece, mostrando cómo las dudas pueden extinguir una posibilidad antes de que llegue a convertirse en realidad.
   
 Mi intención es que esta contradicción no se explique mediante símbolos, sino que sea visible en el comportamiento emergente del sistema: las corrientes representan el impulso de avanzar, mientras las redes muestran cómo el miedo puede convertir el movimiento en estancamiento. Los colores cambian continuamente para recordar que las emociones rara vez son completamente claras; sólo al observar sus patrones de interacción es posible distinguirlas.
+  
+**Flujo del programa:**
+<img width="692" height="390" alt="image" src="https://github.com/user-attachments/assets/0c8c12d1-3786-473c-b413-af2e1e1beb65" />  
+    
+
 <a name="particulas"></a>
 | **Característica**             | **Miedos**                                      | **Anhelos**                           | **Pulsos de vida**                  | **Pulsos de muerte**               | **Almas**                                                          |
 | ------------------------------ | ----------------------------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------- | ------------------------------------------------------------------ |
