@@ -33,7 +33,7 @@ Quiero representar esa contradicción.
 
 
 **`Matriz:`**
-<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/30cc5584-bbde-4957-b30c-96f46c6673d5" />
+<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/30cc5584-bbde-4957-b30c-96f46c6673d5" />  
 
   
 * Los miedos buscan a los anhelos (0.5), pero los anhelos también buscan a los miedos (0.7). Eso refleja que cuanto más importante es un sueño, más espacio ocupa también el miedo a fracasar. No es una persecución unilateral.  
@@ -111,7 +111,7 @@ Seleccioné una mayor proporción de miedos y anhelos porque quiero hacer percep
 
 🌿 `Matriz de atracción, repulsión e indiferencia`
 <a name="matrix"></a>
-<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/b2d75afd-ba37-453d-b38e-f83dce107f31" />
+<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/b2d75afd-ba37-453d-b38e-f83dce107f31" />  
 
   
 **Justificación:**
@@ -357,7 +357,7 @@ Los miedos y los anhelos constituyen la mayor parte del sistema porque represent
 
 **Matriz de relaciones**
 
-<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/fa08830f-5509-4579-b86f-028233569c39" />
+<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/fa08830f-5509-4579-b86f-028233569c39" />  
 
 
 La matriz incorpora relaciones asimétricas para representar que algunas influencias emocionales no son necesariamente recíprocas. Las principales relaciones son:  
