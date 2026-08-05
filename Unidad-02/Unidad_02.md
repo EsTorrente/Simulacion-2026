@@ -33,7 +33,8 @@ Quiero representar esa contradicción.
 
 
 **`Matriz:`**
-<img width="508" height="120" alt="image" src="https://github.com/user-attachments/assets/f44b49c3-38fa-46f3-a5e8-b02331361dd3" />
+<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/30cc5584-bbde-4957-b30c-96f46c6673d5" />
+
   
 * Los miedos buscan a los anhelos (0.5), pero los anhelos también buscan a los miedos (0.7). Eso refleja que cuanto más importante es un sueño, más espacio ocupa también el miedo a fracasar. No es una persecución unilateral.  
 * Los pulsos de vida no persiguen los anhelos (0), pero los anhelos sí buscan los pulsos de vida (0.8). La motivación no siempre aparece cuando la buscamos; somos nosotros quienes intentamos aferrarnos a esos momentos de inspiración cuando aparecen.  
@@ -110,7 +111,8 @@ Seleccioné una mayor proporción de miedos y anhelos porque quiero hacer percep
 
 🌿 `Matriz de atracción, repulsión e indiferencia`
 <a name="matrix"></a>
-<img width="512" height="119" alt="image" src="https://github.com/user-attachments/assets/9fbf0b15-9886-42b2-bb10-be3bb43516a4" />
+<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/b2d75afd-ba37-453d-b38e-f83dce107f31" />
+
   
 **Justificación:**
   
@@ -355,7 +357,8 @@ Los miedos y los anhelos constituyen la mayor parte del sistema porque represent
 
 **Matriz de relaciones**
 
-<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/7f6d93f0-e4b8-49a4-84e7-0315829736a2" />
+<img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/fa08830f-5509-4579-b86f-028233569c39" />
+
 
 La matriz incorpora relaciones asimétricas para representar que algunas influencias emocionales no son necesariamente recíprocas. Las principales relaciones son:  
 * Los miedos buscan a los anhelos (0.5), pero los anhelos también buscan a los miedos (0.7). Eso refleja que cuanto más importante es un sueño, más espacio ocupa también el miedo a fracasar. No es una persecución unilateral.  
