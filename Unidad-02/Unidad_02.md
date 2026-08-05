@@ -32,7 +32,7 @@ Quiero representar esa contradicción.
 * **Almas:** representan a cada organismo del sistema. Son las partículas alrededor de las cuales se organizan los demás impulsos. Avanzan siguiendo la corriente principal mientras son constantemente perseguidas por los miedos.
 
 
-**`Matriz:`**
+**`Matriz:`**  
 <img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/30cc5584-bbde-4957-b30c-96f46c6673d5" />  
 
   
@@ -109,8 +109,8 @@ Seleccioné una mayor proporción de miedos y anhelos porque quiero hacer percep
 
 ---
 
-🌿 `Matriz de atracción, repulsión e indiferencia`
-<a name="matrix"></a>
+🌿 `Matriz de atracción, repulsión e indiferencia`  
+<a name="matrix"></a>  
 <img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/b2d75afd-ba37-453d-b38e-f83dce107f31" />  
 
   
@@ -355,8 +355,8 @@ Los miedos y los anhelos constituyen la mayor parte del sistema porque represent
 * Los pulsos de muerte permanecen inmóviles.
 
 
-**Matriz de relaciones**
-
+**Matriz de relaciones**  
+  
 <img width="513" height="119" alt="image" src="https://github.com/user-attachments/assets/fa08830f-5509-4579-b86f-028233569c39" />  
 
 
