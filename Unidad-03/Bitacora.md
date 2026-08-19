@@ -1,4 +1,5 @@
 ## 🌿 IDEACIÓN INICIAL + PROCESO CON IA  
+<a name="IA"></a>
 Escuchando la canción, lo que me imaginaba todo el tiempo era una fábrica industrial construyendo robotcitos, rodeada de fuego y chispitas. Desde el inicio, ya tenía claro que ese era el concepto por el que me quería ir. Mi objetivo era utilizar partículas con fuerzas y colores que le dieran la apariencia de fuego, acompañado de robots bailando en patrones simétricos. Busqué entre los ejemplos que nos mostraste para comprender cómo usar los modelos, y encontré uno de un robot que ya tenía incluída las animaciones de baile y caminar. Perfecto, por ahí comencé.  
    
 Lo primero que hice fue tomar el código de ese ejemplo y dárselo a la IA, pidiendo que me confirmara que era posible implementarlo, si sería demasiado pesado, y que hiciera una prueba con el proyecto original (antes de tocar las partículas). Me dijo que sí, ejecutó la prueba, y corría a +70 fps con 100 robots + un nivel intermedio de partículas.  
@@ -78,9 +79,9 @@ ___
 ___
 # 🌿 ENTREGABLES
 
-## [1. Instrumento funcional y publicado](https://estorrente.github.io/SIM-Forces-Instrument-MarTorrente/)
+## 🌻 [1. Instrumento funcional y publicado](https://estorrente.github.io/SIM-Forces-Instrument-MarTorrente/)
 
-## 2. Mapa del sistema
+## 🌻 2. Mapa del sistema
 
 ### Estado del sistema
 
@@ -169,7 +170,7 @@ ___
 
 ___
 
-## FICHA DE FUERZAS
+## 🌻 3. Ficha de fuerzas 
 
 ### FUERZA 1: MODO GRID (Fuego fluido de arriba y abajo)
 
@@ -383,7 +384,7 @@ ___
 
 ___
 
-## PRUEBAS AISLADAS DE CADA FUERZA
+## 🌻 4. Pruebas aisladas de cada fuerza
   
 ### MODOS DE FUERZAS  
     
@@ -431,7 +432,25 @@ Formación 0:
 
 ___
 
-## SCORE VISUAL
+## 5. 🌻 Score visual
 
+`0:00 - 0:19`: se va a iniciar desde vista de arriba, con la formación en X. Al ritmo de la música, se seguirá reiniciando la formación para mantenerla en el centro, y se utilizarán las pulsaciones para enfatizar el movimiento. El mouse se mantendrá en la zona superior de la pantalla para que no se vean aún las partículas.  
+`0:20 - 0:30`: se baja el mouse para que las partículas comiencen a fluir en el modo 1. Al ritmo del beat, se sigue usando el pulso y se va rotando entre la formación en X y la formación en círculo. Rotación cámara Y.   
+`0:31 - 0:32`: Se sostiene un poco la fechita derecha.  
+`0:33 - 0:50`: se va cambiando entre fuerza 1 y fuerza 2, formación en círculo y en X, y entre color azul y naranja.  
+`0:51 - 1:14`: Se sostiene flechita a la derecha para que todo se sacuda.   
+`1:15 - 1:49`: Freestyle!!!!!!!!!!!!  
+`1:50 - 1:59`: Se sostiene flechita a la derecha para que todo se sacuda.   
+`2:00 - 2:10`: Se mantiene flechita izquierda y rotación en X lenta, color azul, modo 1 y 3 de fuerzas.  
+`2:10 - 2:16`: Con rotación lenta en X, se mantiene en azul y se baja mouse en modo fuerza 1 y 3 para que atraviesen entre los robots.  
+`2:17 - 3:47`: Freestyle!!!!!!!!!  
+`3:48 - 4:15`: Colores azules, rotación cámara lenta en X o Y, modos 1 y 3. Se sigue utilizando el pulso en todo momento.  
+`4:16 - 4:42`: Freestyle!!!  
+  
+___
 
-
+## 6. 🌻 Bítacora IA
+[Estaba en el inicio de la bitácora](#IA)
+  
+## 7. 🌻 Autoevaluación
+[Estaba en el inicio de la bitácora](#IA)
