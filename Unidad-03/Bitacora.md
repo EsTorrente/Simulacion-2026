@@ -13,6 +13,7 @@ Por eso, me senté a mirar cositas de mandalas y así para buscar patrones. Haci
   
 Ya teniendo los patrones formados, lo siguiente que le pedí a la IA es que me ayudara a construir los controles que me iban a ayudar a que se viera armonioso con la música. Estos ya los tenía súper claros, porque los imaginaba desde que escuché la canción por primera vez.  
   
+<a name="controles"></a>  
 | Control | Acción |
 |---------|--------|
 | 1 | Modo de fuerza grid (fuego fluido de arriba y abajo) |
@@ -78,11 +79,13 @@ ___
 
 ___
 # 🌿 ENTREGABLES
+<a name="entregables"></a>
 
 ## 🌻 [1. Instrumento funcional y publicado](https://estorrente.github.io/SIM-Forces-Instrument-MarTorrente/)
 
 ## 🌻 2. Mapa del sistema
 
+<a name="mapa"></a>
 ### Estado del sistema
 
 | Componente | Variables de estado | Ubicación en código | Tipo de dato |
@@ -170,6 +173,7 @@ ___
 
 ___
 
+<a name="fuerzas"></a>
 ## 🌻 3. Ficha de fuerzas 
 
 ### FUERZA 1: MODO GRID (Fuego fluido de arriba y abajo)
@@ -453,4 +457,13 @@ ___
 [Estaba en el inicio de la bitácora](#IA)
   
 ## 7. 🌻 Autoevaluación
-[Estaba en el inicio de la bitácora](#IA)
+
+| Criterio | Peso | Qué debe demostrar la evidencia | Valoración | Evidencia concreta |
+|----------|------|--------------------------------|------------|-------------------|
+| **Trazabilidad y comprensión del sistema** | 25 | Puedo señalar y explicar estado, fuerzas, integración, render y controles; además puedo ubicar qué partes produjo o modificó la IA. | **25/25** | [Aquí explico el proceso de creación, las fuerzas que diseñé, lo que modifiqué en el render, etc](#IA), y [aquí lo explico de manera técnica, con los algoritmos y la justificación técnica](#mapa)|
+| **Verificación del algoritmo de fuerzas** | 25 | Estudié en detalle el proyecto y aunque no comprenda toda la sintaxis, puedo identificar su arquitectura, sus partes, puedo aislar una fuerza central, formular una predicción, la ejecuté ya analicé, comparé el resultado, cambié deliberadamente un signo o parámetro y expliqué la diferencia. | **25/25** | [Para cada fuerza realicé pruebas individuales, análisis y predicciones.](#fuerzas) |
+| **Diseño de fuerzas e intención** | 20 | Las fuerzas y sus parámetros hacen perceptible una intención; el comportamiento surge de la dinámica y no de trayectorias previamente dibujadas. | **20/20** | Las fuerzas fueron pensadas y [diseñadas cuidadosamente](#IA) alrededor de la estética, y su comportamiento está definido por algoritmos en tiempo real y la combinación de las fuerzas. Ninguna de ellas es una figura prediseñada como los patrones de los robots. |
+| **Instrumento, score e interpretación** | 15 | El score conecta la escucha con decisiones; escogí pocos controles expresivos y puedo conducir el sistema en vivo sin que el audio lo controle automáticamente. | **15/15** | Absolutamente nada está controlado por audio; todo lo manejo yo con mis controles. Sí están diseñados para dar la impresión de ser un visualizador (como lo hace el botoncito de pulso y el que las hace vibrar cuando el synth se alarga), pero todo eso se hace MANUALMENTE con los [controles](#controles). No hay ningún input de audio. |
+| **Experimentación y criterio frente a la IA** | 10 | Comparé alternativas, registré hallazgos y descartes, corregí propuestas de IA y puedo justificar por qué conservé la versión presentada. | **10/10** | Intenté iluminación con partículas emitiendo luz, no funcionó (se veía infantil). <br> Descarté y usé luces direccionales roja/azul. <br> Probé formaciones de líneas simples, no me convencieron, las reemplacé con mandalas, X y pared. <br> Probé tamaños de partículas fijos, descubrí que el toggle 0.05/0.21 mejora la expresividad. <br> • Probé el modo 2 con demasiada fuerza → Las partículas volaban. → Ajusté el multiplicador a 60. <br> Etc, etc, etc. Lo fui construyendo progresivamente e iterando, no me quedé quieta con lo primero que me propuso la ia. [Evidencia](#IA)|
+| **Entrega técnica y documentación** | 5 | la URL pública abre; la bitácora permite verificar el proceso. | **5/5** | [Todos los entregables están completos y la página web funciona](#entregables) |
+| **Total** | **100** | | **100/100** | |
