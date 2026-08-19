@@ -88,88 +88,138 @@ ___
 <a name="mapa"></a>
 ### Estado del sistema
 
-| Componente | Variables de estado | Ubicación en código | Tipo de dato |
-|------------|---------------------|---------------------|--------------|
-| **Partículas** | Posición (`p`) | `positionBuffer` en `createSimulation.js` | `vec3` por partícula |
-| | Velocidad (`v`) | `velocityBuffer` en `createSimulation.js` | `vec3` por partícula |
-| **Robots** | Posición (x,y,z) | `robots[i].position` en `main.js` | `THREE.Vector3` por robot |
-| | Rotación (y) | `robots[i].rotation.y` en `main.js` | `float` por robot |
-| | Animación actual | `robotActions[i]` en `main.js` | `AnimationAction` por robot |
-| **Cámara** | Posición | `camera.position` en `main.js` | `THREE.Vector3` |
-| | FOV | `camera.fov` en `main.js` | `float` |
-| | Modo de auto-rotación | `autoRotateAxis` en `main.js` | `string \| null` |
-| **UI** | Visibilidad | `uiVisible` en `main.js` | `boolean` |
-| | Sliders activos | `slidersContainer` en `main.js` | `DOMElement` |
-| **Luz** | Posición de luces | `particleLights[i].position` en `main.js` | `THREE.Vector3` por luz |
-| | Color de luces | `particleLights[i].color` en `main.js` | `THREE.Color` por luz |
+| Componente                       | Variables de estado        | Ubicación en código                          | Tipo de dato                     |
+| -------------------------------- | -------------------------- | -------------------------------------------- | -------------------------------- |
+| **Partículas**                   | Posición (`p`)             | `positionBuffer` en `createSimulation.js`    | `vec3` por partícula en GPU      |
+|                                  | Velocidad (`v`)            | `velocityBuffer` en `createSimulation.js`    | `vec3` por partícula en GPU      |
+| **Robots**                       | Posición (x,y,z)           | `robot.position` en `robotManager.js`        | `THREE.Vector3` por robot        |
+|                                  | Rotación (y)               | `robot.rotation.y` en `robotManager.js`      | `float` por robot                |
+|                                  | Dirección de movimiento    | `robotDirections[i]` en `robotManager.js`    | `number` por robot               |
+|                                  | Objetivo de formación      | `robotTargets[i]` en `robotManager.js`       | `THREE.Vector3` por robot        |
+|                                  | Animación                  | `robotActions[i]` en `robotManager.js`       | `AnimationAction` por robot      |
+|                                  | Mixer de animación         | `robotMixers[i]` en `robotManager.js`        | `THREE.AnimationMixer` por robot |
+|                                  | Datos enviados a GPU       | `robotDataArray[i]` en `robotManager.js`     | `THREE.Vector4` por robot        |
+| **Simulación**                   | Tiempo                     | `uTime` en `createSimulation.js`             | `TSL uniform` (`float`)          |
+|                                  | Modo de fuerza             | `uForceMode` en `createSimulation.js`        | `TSL uniform` (`float`)          |
+|                                  | Nivel de vibración         | `uVibrationLevel` en `createSimulation.js`   | `TSL uniform` (`float`)          |
+|                                  | Factor de pulso            | `uPulseFactor` en `createSimulation.js`      | `TSL uniform` (`float`)          |
+|                                  | Modo de color              | `uColorMode` en `createSimulation.js`        | `TSL uniform` (`float`)          |
+|                                  | Fuerza de repulsión        | `uRepulsion` en `createSimulation.js`        | `TSL uniform` (`float`)          |
+|                                  | Límites de simulación      | `uBounds` en `createSimulation.js`           | `TSL uniform` (`vec3`)           |
+|                                  | Tamaño de partículas       | `uParticleSize` en `createSimulation.js`     | `TSL uniform` (`float`)          |
+|                                  | Factor de velocidad        | `uSpeedFactor` en `createSimulation.js`      | `TSL uniform` (`float`)          |
+| **Cámara**                       | Posición                   | `camera.position` en `main.js`               | `THREE.Vector3`                  |
+|                                  | FOV                        | `camera.fov` en `main.js`                    | `float`                          |
+|                                  | Eje de auto-rotación       | `params.autoRotateAxis` en `parameters.js`   | `string \| null`                 |
+|                                  | Velocidad de auto-rotación | `params.autoRotateSpeed` en `parameters.js`  | `float`                          |
+| **UI**                           | Visibilidad                | `params.uiVisible` en `parameters.js`        | `boolean`                        |
+|                                  | Sliders                    | `slidersContainer` en `labPanel.js`          | `DOMElement`                     |
+| **Iluminación**                  | Posición de luces          | `particleLights[i].position` en `main.js`    | `THREE.Vector3` por luz          |
+|                                  | Color de luces             | `particleLights[i].color` en `main.js`       | `THREE.Color` por luz            |
+| **Estado global de interacción** | Modo de fuerza             | `params.forceMode` en `parameters.js`        | `float`                          |
+|                                  | Modo de color objetivo     | `params.targetColorMode` en `parameters.js`  | `float`                          |
+|                                  | Nivel de vibración         | `params.vibrationLevel` en `parameters.js`   | `float`                          |
+|                                  | Factor de pulso            | `params.pulseFactor` en `parameters.js`      | `float`                          |
+|                                  | Factor de velocidad        | `params.speedFactor` en `parameters.js`      | `float`                          |
+|                                  | Formación actual           | `params.currentFormation` en `parameters.js` | `string`                         |
+|                                  | Estado de baile            | `params.isDancing` en `parameters.js`        | `boolean`                        |
+
+
+---
 
 ### Fuerzas del sistema
 
-| Fuerza | Ecuación/Descripción | Parámetros | Archivo |
-|--------|---------------------|------------|---------|
-| **Fuerza Grid (Modo 1)** | `F = (sin(y·1.5), cos(z·1.5), sin(x·1.5)) · 40` | Ninguno | `createSimulation.js` |
-| **Fuerza Atractor (Modo 2)** | `F = normalize(p) · sin(|p|·0.8 - t·6.0) · 60` | `uTime` | `createSimulation.js` |
-| **Fuerza Diagonal (Modo 3)** | `F = (sin(z·0.5+t), sin(x·0.5-t), cos(y·0.5+t)) · 50` | `uTime` | `createSimulation.js` |
-| **Vórtice (Modo 4)** | `F = spin + expand` <br> `spin = (-z, 0, x)·1.5` <br> `expand = normalize(x,0.8y,z)·sin(r²·0.01 - t·5.0)·25` | `uTime` | `createSimulation.js` |
-| **Repulsión/Atracción de Robots** | `F = Σ (dir · (A/r - R/r²))` <br> A = 15.0 (atracción) <br> R = `uRepulsion` (repulsión) | `uRepulsion` (350-1500) | `createSimulation.js` |
-| **Micro-turbulencia** | `F = (sin(5x+3y), sin(5y+3z), sin(5z+3x)) · 10` | Ninguno | `createSimulation.js` |
-| **Vibración** | `F = (sin(150t+50x), cos(160t+50y), sin(170t+50z)) · vibración · 30` | `uVibrationLevel` | `createSimulation.js` |
-| **Amortiguamiento** | `F = -v · 1.5` | Ninguno | `createSimulation.js` |
-| **Limitador de velocidad** | `if [v] > maxSpeed: v = normalize(v) · maxSpeed` | `maxSpeed` (5.0) | `createSimulation.js` |
+| Fuerza                            | Ecuación/Descripción                                                                                                | Parámetros                 | Archivo               |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------- | --------------------- |
+| **Fuerza Grid (Modo 1)**          | `F = (sin(1.5y), cos(1.5z), sin(1.5x)) · 40`                                                                        | Ninguno                    | `createSimulation.js` |
+| **Fuerza Portal/Radial (Modo 2)** | `F = normalize(p) · sin(0.8·r - 6t) · 60`, donde `r = \|p\|`                                                        | `uTime`                    | `createSimulation.js` |
+| **Fuerza Ondulatoria (Modo 3)**   | `F = (sin(0.5z+t), sin(0.5x-t), cos(0.5y+t)) · 50`                                                                  | `uTime`                    | `createSimulation.js` |
+| **Vórtice + Expansión (Modo 4)**  | `F = spin + expand` <br> `spin = (-z, 0, x) · 1.5` <br> `expand = normalize(x, 0.8y, z) · sin(0.01(x²+z²)-5t) · 25` | `uTime`                    | `createSimulation.js` |
+| **Atracción/Repulsión de Robots** | `F = Σ [dir · (15/r - R/r²)] · active` <br> `15` = atracción <br> `R` = fuerza de repulsión                         | `uRobotData`, `uRepulsion` | `createSimulation.js` |
+| **Micro-turbulencia**             | `F = (sin(5x+3y), sin(5y+3z), sin(5z+3x)) · 10`                                                                     | Ninguno                    | `createSimulation.js` |
+| **Vibración**                     | `F = (sin(150t+50x), cos(160t+50y), sin(170t+50z)) · vibration · 30`                                                | `uTime`, `uVibrationLevel` | `createSimulation.js` |
+| **Amortiguamiento**               | `F = -v · 1.5`                                                                                                      | Ninguno                    | `createSimulation.js` |
+| **Limitador de velocidad**        | Si `\|v\| > maxSpeed`: `v = normalize(v) · maxSpeed`                                                                | `params.maxSpeed`          | `createSimulation.js` |
+
+
+___
 
 ### Integración de fuerzas
 
-| Etapa | Método | Parámetro | Archivo |
-|-------|--------|-----------|---------|
-| **Cálculo de fuerzas** | Suma vectorial de todas las fuerzas | `dt = 1/60 · timeScale · speedFactor` | `createSimulation.js` |
-| **Integración de velocidad** | Euler explícito: `v += F · dt` | `dt` calculado | `createSimulation.js` |
-| **Integración de posición** | Euler explícito: `p += v · dt` | `dt` calculado | `createSimulation.js` |
-| **Confinamiento** | Módulo en caja: `p = mod(p + bounds/2, bounds) - bounds/2` | `uBounds` | `createSimulation.js` |
-| **Limitación de velocidad** | Si `[v] > maxSpeed`: normalizar | `maxSpeed` (5.0) | `createSimulation.js` |
+| Etapa                        | Método                                                                                      | Parámetro                                          | Archivo               |
+| ---------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------- | --------------------- |
+| **Cálculo de fuerzas**       | Suma vectorial de fuerza de modo + robots + micro-turbulencia + vibración + amortiguamiento | `dt = params.dt · params.timeScale · uSpeedFactor` | `createSimulation.js` |
+| **Integración de velocidad** | Euler explícito: `v += F · dt`                                                              | `dt` calculado                                     | `createSimulation.js` |
+| **Integración de posición**  | Euler explícito: `p += v · dt`                                                              | `dt` calculado                                     | `createSimulation.js` |
+| **Confinamiento**            | Módulo en caja: `p = mod(p + bounds/2, bounds) - bounds/2`                                  | `uBounds`                                          | `createSimulation.js` |
+| **Limitación de velocidad**  | Si `\|v\| > maxSpeed`: `v = normalize(v) · maxSpeed`                                        | `params.maxSpeed` (`5.0`)                          | `createSimulation.js` |
 
-**Orden exacto de ejecución por frame:**
+**Orden exacto de ejecución dentro del compute shader por partícula:**
 
-1. Actualizar uTime, uVibrationLevel, uSpeedFactor, uPulseFactor
-2. Cálculo de fuerzas
-3. Fuerza total = Sumatoria de ( fuerza_modo + robot_pool + turbulencia + vibración + amortiguamiento )
-4. v += fuerza_total · dt
-5. Si |v| > maxSpeed: v = normalize(v) · maxSpeed
-6. p += v · dt
-7. p = mod(p + bounds/2, bounds) - bounds/2
-8. Actualizar posiciones de robots (movimiento independiente)
-9. Renderizar
+1. Calcular `dt = params.dt · params.timeScale · uSpeedFactor`.
+2. Inicializar la fuerza total en `0`.
+3. Aplicar la fuerza correspondiente al modo seleccionado (`1–4`).
+4. Sumar las fuerzas de los 50 robots.
+5. Sumar la micro-turbulencia.
+6. Sumar la vibración.
+7. Sumar el amortiguamiento `-v · 1.5`.
+8. Actualizar velocidad: `v += fuerza_total · dt`.
+9. Limitar la velocidad a `params.maxSpeed`.
+10. Actualizar posición: `p += v · dt`.
+11. Aplicar los límites periódicos mediante `mod`.
+12. Ejecutar el compute shader sobre todas las partículas.
+13. Actualizar/renderizar los robots y demás elementos de la escena en el frame loop.
+
+___
 
 ### Render
 
-| Elemento | Técnica | Ubicación |
-|----------|---------|-----------|
-| **Partículas** | `InstancedMesh` con `SpriteNodeMaterial` | `createSimulation.js` |
-| **Color de partículas** | Node en TSL: `mix(color_azul, color_rojo, colorMode) · velocidad` | `createSimulation.js` |
-| **Tamaño de partículas** | Node en TSL: `uParticleSize · (1 + uPulseFactor·1.5)` | `createSimulation.js` |
-| **Robots** | `GLTFLoader` + `AnimationMixer` con `SkeletonUtils.clone()` | `main.js` |
-| **Fog** | `Mesh` con `MeshBasicNodeMaterial` y TSL para densidad | `main.js` |
-| **Bloom** | Post-processing vía TSL `bloom(scenePass, uBloomStrength, 0.5, 0.1)` | `main.js` |
-| **Scanlines** | Post-processing TSL: `sin(uv.y · innerHeight · 1.5) · 0.12 · intensidad` | `main.js` |
-| **Viñeta** | Post-processing TSL: `(distancia_al_centro · 0.35)²` | `main.js` |
-| **Cámara** | Perspectiva con auto-rotación opcional y shake | `main.js` |
+| Elemento                     | Técnica                                                                                  | Ubicación             |
+| ---------------------------- | ---------------------------------------------------------------------------------------- | --------------------- |
+| **Partículas**               | `InstancedMesh` con `SpriteNodeMaterial` y blending aditivo                              | `createSimulation.js` |
+| **Posición de partículas**   | `positionBuffer.toAttribute()` conectado a `material.positionNode`                       | `createSimulation.js` |
+| **Color de partículas**      | Node TSL: mezcla azul/rojo según `colorMode` y según velocidad de cada partícula         | `createSimulation.js` |
+| **Tamaño de partículas**     | Node TSL: `uParticleSize · (1 + uPulseFactor · 1.5)`                                     | `createSimulation.js` |
+| **Opacidad de partículas**   | Node TSL basado en la distancia del UV al centro del sprite                              | `createSimulation.js` |
+| **Robots**                   | `GLTFLoader` + `SkeletonUtils.clone()` + `AnimationMixer`                                | `robotManager.js`     |
+| **Animación de robots**      | Clips `Walking` y `Dance` mediante `AnimationAction`                                     | `robotManager.js`     |
+| **Fog de escena**            | `THREE.FogExp2`                                                                          | `main.js`             |
+| **Fog volumétrico de suelo** | `Mesh` con `MeshBasicNodeMaterial` + nodos TSL para densidad y ondas                     | `main.js`             |
+| **Iluminación**              | 8 `PointLight` + `HemisphereLight` + `DirectionalLight`                                  | `main.js`             |
+| **Bloom**                    | Post-processing con `THREE.PostProcessing` y nodo `bloom()` de TSL                       | `main.js`             |
+| **Scanlines CRT**            | Post-processing TSL con función seno sobre `screenUV.y`                                  | `main.js`             |
+| **Viñeta**                   | Post-processing TSL basada en la distancia al centro de la pantalla                      | `main.js`             |
+| **Cámara**                   | `PerspectiveCamera` + `OrbitControls`, auto-rotación opcional y cambios dinámicos de FOV | `main.js`             |
+
 
 ### Controles
 
-| Control | Acción | Tipo | Archivo |
-|---------|--------|------|---------|
-| **Teclas 1-4** | Cambiar modo de fuerza | Teclado | `main.js` |
-| **Tecla 5** | Toggle tamaño de partículas (0.05 ↔ 0.21) | Teclado | `main.js` |
-| **Teclas 6-9, 0** | Cambiar formación de robots | Teclado | `main.js` |
-| **Tecla W** | Toggle baile/caminar de robots | Teclado | `main.js` |
-| **Flechas arriba/abajo** | Pulso / Cambio de color | Teclado | `main.js` |
-| **Flechas derecha/izquierda** | Acelerar / Cámara lenta | Teclado | `main.js` |
-| **Z, X, Y** | Auto-rotación de cámara (eje) | Teclado | `main.js` |
-| **C, V** | Velocidad auto-rotación (↑/↓) | Teclado | `main.js` |
-| **H** | Ocultar/mostrar UI | Teclado | `main.js` |
-| **F** | Pantalla completa | Teclado | `main.js` |
-| **Mouse (Y)** | Control de repulsión de robots (0-1500) | Mouse | `main.js` |
-| **Wheel** | Zoom (solo en auto-rotación) | Mouse | `main.js` |
-| **Sliders UI** | 6 sliders: escala, repulsión, tamaño, bounds X/Y/Z | UI | `main.js` |
+| Control                     | Acción                                                                         | Tipo    | Archivo                           |
+| --------------------------- | ------------------------------------------------------------------------------ | ------- | --------------------------------- |
+| **Teclas 1–4**              | Cambiar modo de fuerza                                                         | Teclado | `labPanel.js`                     |
+| **Tecla 5**                 | Alternar tamaño de partículas entre `0.05` y `0.21`                            | Teclado | `labPanel.js`                     |
+| **Teclas 6–9, 0**           | Cambiar formación de robots: `line`, `row`, `grid`, `triangle`, `classic-grid` | Teclado | `labPanel.js`                     |
+| **Tecla W**                 | Alternar entre caminar y bailar                                                | Teclado | `labPanel.js` / `robotManager.js` |
+| **Flecha ↑**                | Activar pulso                                                                  | Teclado | `labPanel.js`                     |
+| **Flecha ↓**                | Alternar color objetivo                                                        | Teclado | `labPanel.js`                     |
+| **Flecha →**                | Aumentar velocidad de simulación y vibración                                   | Teclado | `labPanel.js` / `main.js`         |
+| **Flecha ←**                | Reducir velocidad de simulación y vibración                                    | Teclado | `labPanel.js` / `main.js`         |
+| **Z**                       | Activar/desactivar auto-rotación sobre Z                                       | Teclado | `labPanel.js`                     |
+| **X**                       | Activar/desactivar auto-rotación sobre X                                       | Teclado | `labPanel.js`                     |
+| **Y**                       | Activar/desactivar auto-rotación sobre Y                                       | Teclado | `labPanel.js`                     |
+| **C**                       | Aumentar velocidad de auto-rotación ×1.5                                       | Teclado | `labPanel.js`                     |
+| **V**                       | Reducir velocidad de auto-rotación ×0.66                                       | Teclado | `labPanel.js`                     |
+| **H**                       | Ocultar/mostrar interfaz                                                       | Teclado | `labPanel.js`                     |
+| **F**                       | Activar/desactivar pantalla completa                                           | Teclado | `labPanel.js`                     |
+| **R**                       | Reiniciar partículas                                                           | Teclado | `labPanel.js`                     |
+| **Mouse (Y)**               | Controlar dinámicamente la fuerza de repulsión entre `0` y `1500`              | Mouse   | `labPanel.js`                     |
+| **Wheel**                   | Zoom de cámara cuando la auto-rotación está activa                             | Mouse   | `labPanel.js`                     |
+| **Slider: Robot Scale**     | Cambiar escala de los robots (`0.1–2.0`)                                       | UI      | `labPanel.js`                     |
+| **Slider: Repulsion Force** | Cambiar fuerza de repulsión (`0–1500`)                                         | UI      | `labPanel.js`                     |
+| **Slider: Particle Size**   | Cambiar tamaño de partículas (`0.01–0.5`)                                      | UI      | `labPanel.js`                     |
+| **Slider: Bounds X**        | Cambiar límite X de la simulación (`20–300`)                                   | UI      | `labPanel.js`                     |
+| **Slider: Bounds Y**        | Cambiar límite Y de la simulación (`20–300`)                                   | UI      | `labPanel.js`                     |
+| **Slider: Bounds Z**        | Cambiar límite Z de la simulación (`20–300`)                                   | UI      | `labPanel.js`                     |
 
 ___
 
