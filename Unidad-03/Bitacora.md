@@ -383,4 +383,55 @@ ___
 
 ___
 
+## PRUEBAS AISLADAS DE CADA FUERZA
+  
+### MODOS DE FUERZAS  
+    
+Fuerza 1 (no se ve muy bonita sola porque la repulsión es lo que hace que se note el patrón):  
+<img width="927" height="894" alt="image" src="https://github.com/user-attachments/assets/82e8025d-e9a6-41e4-9100-81bc6e6bc727" />
+    
+Fuerza 2:  
+<img width="1018" height="938" alt="image" src="https://github.com/user-attachments/assets/68ce01d4-96ed-4cd6-9a72-c427abbc7921" />  
+    
+Fuerza 3:  
+<img width="919" height="913" alt="image" src="https://github.com/user-attachments/assets/2b80bb35-cc42-4f46-ae06-94e8a32647d1" />
+  
+Fuerza 4 (no se puede ver en la imagen, pero van pulsando y rotando):  
+<img width="869" height="808" alt="image" src="https://github.com/user-attachments/assets/0bb6186a-ffc8-4109-b790-4a381d146466" />
+  
+  
+### FUERZAS DE ROBOTS
+  
+Formación 6:  
+<img width="935" height="853" alt="image" src="https://github.com/user-attachments/assets/a89282a7-565a-4085-8406-39d55f9da1ab" />
+  
+Formación 7:  
+<img width="880" height="676" alt="image" src="https://github.com/user-attachments/assets/4b1e05c2-2e90-4fb2-8612-3103d17bf6e0" />
+  
+Formación 8:  
+<img width="839" height="855" alt="image" src="https://github.com/user-attachments/assets/2bae6e8a-fa72-439e-a0f0-495fb4243455" />
+  
+Formación 9:  
+<img width="918" height="780" alt="image" src="https://github.com/user-attachments/assets/984e1501-2a80-4f35-b35f-5a565e2d8206" />
+  
+Formación 0:  
+<img width="939" height="885" alt="image" src="https://github.com/user-attachments/assets/cb2ffbcb-43b7-4eee-9b07-64e69565f4d4" />
+  
+### MICRO TURBULENCIAS  
+<img width="950" height="780" alt="image" src="https://github.com/user-attachments/assets/00f47d00-b2f8-49e3-be61-2ffeaeff0c0b" />
+  
+### VIBRACIÓN  
+<img width="783" height="802" alt="image" src="https://github.com/user-attachments/assets/d125d91a-1a8f-4aa2-adf3-95b9f117237a" />
+  
+### DAMPING (quedan estáticas)  
+<img width="869" height="804" alt="image" src="https://github.com/user-attachments/assets/57ad93d0-510e-43cd-ac0f-8903ad2c6561" />
+  
+### COMBINACIÓN  
+<img width="918" height="878" alt="image" src="https://github.com/user-attachments/assets/206e8198-dbb6-419b-a5c8-060d98378366" />
+
+___
+
+## SCORE VISUAL
+
+
 
