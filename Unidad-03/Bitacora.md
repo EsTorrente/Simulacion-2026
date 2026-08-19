@@ -1,4 +1,4 @@
-# 🌿 IDEACIÓN INICIAL + PROCESO CON IA  
+## 🌿 IDEACIÓN INICIAL + PROCESO CON IA  
 Escuchando la canción, lo que me imaginaba todo el tiempo era una fábrica industrial construyendo robotcitos, rodeada de fuego y chispitas. Desde el inicio, ya tenía claro que ese era el concepto por el que me quería ir. Mi objetivo era utilizar partículas con fuerzas y colores que le dieran la apariencia de fuego, acompañado de robots bailando en patrones simétricos. Busqué entre los ejemplos que nos mostraste para comprender cómo usar los modelos, y encontré uno de un robot que ya tenía incluída las animaciones de baile y caminar. Perfecto, por ahí comencé.  
    
 Lo primero que hice fue tomar el código de ese ejemplo y dárselo a la IA, pidiendo que me confirmara que era posible implementarlo, si sería demasiado pesado, y que hiciera una prueba con el proyecto original (antes de tocar las partículas). Me dijo que sí, ejecutó la prueba, y corría a +70 fps con 100 robots + un nivel intermedio de partículas.  
@@ -51,6 +51,8 @@ Y las fuerzas quedaron así:
 Ya estando satisfecha con el comportamiento de las partículas y de los robots, me concentré en trabajar en la estética. Comencé a buscar efectos que podrían hacerlo ver más tecnológico, edgy, misterioso. Se me ocurrió agregar una capa de fog en el suelo, un efecto de scan lines, el bloom que siempre hace que todo se vea mejor, y un shake al cambiar a la animación de baile para que se sintiera como que los robots tienen peso. Le pedí primero que me diera sliders para poder jugar con todos estos parámetros y encontrar exactamente la versión que más me gustaba, y ya con eso le dije cuáles valores debía dejar como default.  
 
 ___
+## 🌿EVIDENCIAS FOTOGRÁFICAS DE ITERACIÓN
+
 <img width="1506" height="930" alt="image" src="https://github.com/user-attachments/assets/bc4b2650-a65b-40e6-ac87-0293e50a0cce" />
 
 <img width="1515" height="947" alt="image" src="https://github.com/user-attachments/assets/6e5f9fd8-42b6-4a56-a85e-d625c212744b" />
@@ -59,7 +61,6 @@ ___
 
 <img width="1468" height="939" alt="image" src="https://github.com/user-attachments/assets/fb6c5b43-e762-4b18-af15-01187e4ba98e" />
 
-___
 <img width="917" height="814" alt="image" src="https://github.com/user-attachments/assets/309167a9-1f59-47e2-8042-c6ae204e5074" />
 <img width="926" height="752" alt="image" src="https://github.com/user-attachments/assets/7698efaa-8ed8-4103-8211-0abaa1719a0d" />
 <img width="767" height="656" alt="image" src="https://github.com/user-attachments/assets/0e95224a-e7d0-4649-b052-37060d74b63e" />
@@ -70,8 +71,377 @@ ___
 <img width="1215" height="751" alt="image" src="https://github.com/user-attachments/assets/a27b9690-2f1a-41b4-8de8-891483bc4876" />
 <img width="1849" height="967" alt="image" src="https://github.com/user-attachments/assets/ba6eefed-bbe9-4238-ab50-47a7cb81af9b" />
 
-___
-
 <img width="1786" height="889" alt="image" src="https://github.com/user-attachments/assets/be8dc8af-ba8a-47a5-a377-11ce3a54c539" />
 <img width="1189" height="779" alt="image" src="https://github.com/user-attachments/assets/4df462b0-3f6d-46bc-9fe2-9ac9ecfa48eb" />
 <img width="1130" height="823" alt="image" src="https://github.com/user-attachments/assets/a0a61094-594e-47cf-8ac3-e49c4cf98465" />
+
+___
+# 🌿 ENTREGABLES
+
+## [1. Instrumento funcional y publicado](https://estorrente.github.io/SIM-Forces-Instrument-MarTorrente/)
+
+## 2. Mapa del sistema
+
+### Estado del sistema
+
+| Componente | Variables de estado | Ubicación en código | Tipo de dato |
+|------------|---------------------|---------------------|--------------|
+| **Partículas** | Posición (`p`) | `positionBuffer` en `createSimulation.js` | `vec3` por partícula |
+| | Velocidad (`v`) | `velocityBuffer` en `createSimulation.js` | `vec3` por partícula |
+| **Robots** | Posición (x,y,z) | `robots[i].position` en `main.js` | `THREE.Vector3` por robot |
+| | Rotación (y) | `robots[i].rotation.y` en `main.js` | `float` por robot |
+| | Animación actual | `robotActions[i]` en `main.js` | `AnimationAction` por robot |
+| **Cámara** | Posición | `camera.position` en `main.js` | `THREE.Vector3` |
+| | FOV | `camera.fov` en `main.js` | `float` |
+| | Modo de auto-rotación | `autoRotateAxis` en `main.js` | `string \| null` |
+| **UI** | Visibilidad | `uiVisible` en `main.js` | `boolean` |
+| | Sliders activos | `slidersContainer` en `main.js` | `DOMElement` |
+| **Luz** | Posición de luces | `particleLights[i].position` en `main.js` | `THREE.Vector3` por luz |
+| | Color de luces | `particleLights[i].color` en `main.js` | `THREE.Color` por luz |
+
+### Fuerzas del sistema
+
+| Fuerza | Ecuación/Descripción | Parámetros | Archivo |
+|--------|---------------------|------------|---------|
+| **Fuerza Grid (Modo 1)** | `F = (sin(y·1.5), cos(z·1.5), sin(x·1.5)) · 40` | Ninguno | `createSimulation.js` |
+| **Fuerza Atractor (Modo 2)** | `F = normalize(p) · sin(|p|·0.8 - t·6.0) · 60` | `uTime` | `createSimulation.js` |
+| **Fuerza Diagonal (Modo 3)** | `F = (sin(z·0.5+t), sin(x·0.5-t), cos(y·0.5+t)) · 50` | `uTime` | `createSimulation.js` |
+| **Vórtice (Modo 4)** | `F = spin + expand` <br> `spin = (-z, 0, x)·1.5` <br> `expand = normalize(x,0.8y,z)·sin(r²·0.01 - t·5.0)·25` | `uTime` | `createSimulation.js` |
+| **Repulsión/Atracción de Robots** | `F = Σ (dir · (A/r - R/r²))` <br> A = 15.0 (atracción) <br> R = `uRepulsion` (repulsión) | `uRepulsion` (350-1500) | `createSimulation.js` |
+| **Micro-turbulencia** | `F = (sin(5x+3y), sin(5y+3z), sin(5z+3x)) · 10` | Ninguno | `createSimulation.js` |
+| **Vibración** | `F = (sin(150t+50x), cos(160t+50y), sin(170t+50z)) · vibración · 30` | `uVibrationLevel` | `createSimulation.js` |
+| **Amortiguamiento** | `F = -v · 1.5` | Ninguno | `createSimulation.js` |
+| **Limitador de velocidad** | `if |v| > maxSpeed: v = normalize(v) · maxSpeed` | `maxSpeed` (5.0) | `createSimulation.js` |
+
+### Integración de fuerzas
+
+| Etapa | Método | Parámetro | Archivo |
+|-------|--------|-----------|---------|
+| **Cálculo de fuerzas** | Suma vectorial de todas las fuerzas | `dt = 1/60 · timeScale · speedFactor` | `createSimulation.js` |
+| **Integración de velocidad** | Euler explícito: `v += F · dt` | `dt` calculado | `createSimulation.js` |
+| **Integración de posición** | Euler explícito: `p += v · dt` | `dt` calculado | `createSimulation.js` |
+| **Confinamiento** | Módulo en caja: `p = mod(p + bounds/2, bounds) - bounds/2` | `uBounds` | `createSimulation.js` |
+| **Limitación de velocidad** | Si `|v| > maxSpeed`: normalizar | `maxSpeed` (5.0) | `createSimulation.js` |
+
+**Orden exacto de ejecución por frame:**
+
+1. Actualizar uTime, uVibrationLevel, uSpeedFactor, uPulseFactor
+2. Cálculo de fuerzas
+3. Fuerza total = Sumatoria de ( fuerza_modo + robot_pool + turbulencia + vibración + amortiguamiento )
+4. v += fuerza_total · dt
+5. Si |v| > maxSpeed: v = normalize(v) · maxSpeed
+6. p += v · dt
+7. p = mod(p + bounds/2, bounds) - bounds/2
+8. Actualizar posiciones de robots (movimiento independiente)
+9. Renderizar
+
+### Render
+
+| Elemento | Técnica | Ubicación |
+|----------|---------|-----------|
+| **Partículas** | `InstancedMesh` con `SpriteNodeMaterial` | `createSimulation.js` |
+| **Color de partículas** | Node en TSL: `mix(color_azul, color_rojo, colorMode) · velocidad` | `createSimulation.js` |
+| **Tamaño de partículas** | Node en TSL: `uParticleSize · (1 + uPulseFactor·1.5)` | `createSimulation.js` |
+| **Robots** | `GLTFLoader` + `AnimationMixer` con `SkeletonUtils.clone()` | `main.js` |
+| **Fog** | `Mesh` con `MeshBasicNodeMaterial` y TSL para densidad | `main.js` |
+| **Bloom** | Post-processing vía TSL `bloom(scenePass, uBloomStrength, 0.5, 0.1)` | `main.js` |
+| **Scanlines** | Post-processing TSL: `sin(uv.y · innerHeight · 1.5) · 0.12 · intensidad` | `main.js` |
+| **Viñeta** | Post-processing TSL: `(distancia_al_centro · 0.35)²` | `main.js` |
+| **Cámara** | Perspectiva con auto-rotación opcional y shake | `main.js` |
+
+### Controles
+
+| Control | Acción | Tipo | Archivo |
+|---------|--------|------|---------|
+| **Teclas 1-4** | Cambiar modo de fuerza | Teclado | `main.js` |
+| **Tecla 5** | Toggle tamaño de partículas (0.05 ↔ 0.21) | Teclado | `main.js` |
+| **Teclas 6-9, 0** | Cambiar formación de robots | Teclado | `main.js` |
+| **Tecla W** | Toggle baile/caminar de robots | Teclado | `main.js` |
+| **Flechas arriba/abajo** | Pulso / Cambio de color | Teclado | `main.js` |
+| **Flechas derecha/izquierda** | Acelerar / Cámara lenta | Teclado | `main.js` |
+| **Z, X, Y** | Auto-rotación de cámara (eje) | Teclado | `main.js` |
+| **C, V** | Velocidad auto-rotación (↑/↓) | Teclado | `main.js` |
+| **H** | Ocultar/mostrar UI | Teclado | `main.js` |
+| **F** | Pantalla completa | Teclado | `main.js` |
+| **Mouse (Y)** | Control de repulsión de robots (0-1500) | Mouse | `main.js` |
+| **Wheel** | Zoom (solo en auto-rotación) | Mouse | `main.js` |
+| **Sliders UI** | 6 sliders: escala, repulsión, tamaño, bounds X/Y/Z | UI | `main.js` |
+
+___
+
+## FICHA DE FUERZAS
+
+### FUERZA 1: MODO GRID (Fuego fluido de arriba y abajo)
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Fuerza Grid |
+| **Tecla** | `1` |
+| **Ecuación** | `F = (sin(p.y · 1.5), cos(p.z · 1.5), sin(p.x · 1.5)) · 40` |
+| **Direccionalidad** | Crea pasillos 3D invisibles usando senos y cosenos en cada eje. Las partículas se mueven en patrones de onda, creando un flujo similar a una cuadrícula. |
+| **Parámetros** | Ninguno (fija) |
+| **Parámetros que la afectan** | `dt`, `speedFactor` (escala temporal) |
+| **Efecto visual** | Cuando las partículas son pequeñitas, se ven como un tipo de tendrils que intentan acercarse a los robots desde arriba y abajo; cuando son grandes, se ven como llamas enormes de fuego porque las partículas se mezclan como una sola masa visualmente. En el color azul y tamaño pequeño, es delicado y bonito; en el color rojo y grandes, son intensas. |
+
+**Predicciones:**
+- ✅ Como la mayoría de formaciones se extienden hacia los lados y los robots ejercen repulsión sobre ellas, las partículas se van a concentrar en la zona de arriba y abajo; la excepción a esta regla sería, creo, en la formación de pared, donde se moverían a lado y lado de ellos.    
+- ✅ Aumentar el `speedFactor` haría que las partículas recorran el grid más rápido.  
+- ✅ Si se aumenta `uBounds` , el grid se estira y los patrones de onda cubren más espacio.  
+
+**Decisiones de diseño:** 
+- Diseñada para que se vea bien desde todos los ángulos y formaciones.   
+- Multiplicador de 40 para que sea lo suficientemente fuerte pero no domine sobre las otras fuerzas.  
+- Sin parámetros para que sea predecible, porque será utilizada en muchas de las secciones y en conjunto con las demás fuerzas para jalarlas a los bordes del bound.  
+
+___
+
+### FUERZA 2: MODO ATRACTOR (Ondas de calor)
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Fuerza Atractor/Onda de calor |
+| **Tecla** | `2` |
+| **Ecuación** | `F = normalize(p) · sin(|p| · 0.8 - t · 6.0) · 60` |
+| **Direccionalidad** | Fuerza radial desde el centro que alterna entre atracción y repulsión en forma de onda expansiva. La onda se propaga desde el centro hacia afuera con el tiempo. |
+| **Parámetros** | `uTime` (tiempo de simulación) |
+| **Parámetros que la afectan** | `dt`, `speedFactor`, `uTime` |
+| **Efecto visual** | Las partículas pulsan rítmicamente hacia adentro y afuera del centro, como ondas de calor que se expanden desde el núcleo de la fábrica. |
+
+**Predicciones:**
+- ✅ **Si:** La partícula está en una zona de atracción → Se mueve hacia el centro.
+- ✅ **Si:** La partícula está en una zona de repulsión → Se aleja del centro.
+- ✅ **Si:** `speedFactor` aumenta → La frecuencia de pulsación aumenta.
+- ✅ **Si:** `uTime` avanza → El patrón de ondas se mueve radialmente.
+- ❌ **No:** Si cambiamos `uRepulsion` → La repulsión de robots cambia, no esta fuerza.
+
+**Decisiones de diseño:**
+- Frecuencia `0.8` para que el patrón de ondas sea visible pero no demasiado denso.
+- Velocidad de fase `6.0` para que la onda se mueva a una velocidad perceptible.
+- Multiplicador `60` para crear un efecto visual dramático.
+
+---
+
+### FUERZA 3: MODO FLOW DIAGONAL (Fuego tranquilo)
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Fuerza Flow Diagonal |
+| **Tecla** | `3` |
+| **Ecuación** | `F = (sin(z·0.5 + t), sin(x·0.5 - t), cos(y·0.5 + t)) · 50` |
+| **Direccionalidad** | Onda 3D que se mueve en diagonal a través del espacio. Cada componente depende de una coordenada diferente, creando un flujo complejo y menos caótico. |
+| **Parámetros** | `uTime` |
+| **Parámetros que la afectan** | `dt`, `speedFactor`, `uTime` |
+| **Efecto visual** | Flujo suave y ondulante, como una corriente de aire caliente que se desplaza lentamente entre los robots. Las partículas se mueven en trayectorias curvas y orgánicas. |
+
+**Predicciones:**
+- ✅ **Si:** `speedFactor` aumenta → El flujo se acelera.
+- ✅ **Si:** La partícula está en una posición específica → La fuerza depende de esa posición.
+- ❌ **No:** Si cambiamos `uBounds` → El patrón se estira pero la dinámica es la misma.
+- ✅ **Si:** Aumentamos `uTime` → El frente de onda avanza.
+
+**Decisiones de diseño:**
+- Usada para momentos **más tranquilos** de la música.
+- Menor multiplicador (50) que los modos 1 y 2 para un efecto más sutil.
+- Nombres de ejes cruzados para crear un flujo no trivial.
+
+---
+
+### FUERZA 4: VÓRTICE (Variación del modo 2)
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Fuerza Vórtice |
+| **Tecla** | `4` |
+| **Ecuación** | `spin = (-z, 0, x) · 1.5` <br> `expand = normalize(x, 0.8y, z) · sin(x²+z² · 0.01 - t · 5.0) · 25` <br> `F = spin + expand` |
+| **Direccionalidad** | Combina un giro constante alrededor del eje Y (`spin`) con una expansión/contracción radial (`expand`). Las partículas orbitan mientras pulsan hacia adentro y afuera. |
+| **Parámetros** | `uTime` |
+| **Parámetros que la afectan** | `dt`, `speedFactor`, `uTime` |
+| **Efecto visual** | Vórtice giratorio con ondas de presión que se expanden desde el centro, similar a un remolino de fuego industrial. |
+
+**Predicciones:**
+- ✅ **Si:** La partícula está lejos del centro → La fuerza de giro (`spin`) domina.
+- ✅ **Si:** La partícula está cerca del centro → La fuerza de expansión/contracción es más notable.
+- ✅ **Si:** `speedFactor` aumenta → El vórtice gira y pulsa más rápido.
+- ❌ **No:** Si cambiamos `uRepulsion` → No afecta esta fuerza.
+- ✅ **Si:** Aumentamos `uBounds` → El vórtice ocupa más espacio.
+
+**Decisiones de diseño:**
+- `spin` con factor 1.5 para giro moderado (ni muy lento ni muy rápido).
+- `expand` usa `0.01` para que el radio de onda sea grande y visible.
+- Multiplicador de `25` para que la expansión sea notable sin dominar el giro.
+
+---
+
+### FUERZA 5: REPULSIÓN/ATRACCIÓN DE ROBOTS
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Fuerza de Agrupación de Robots |
+| **Ecuación** | `F = Σ (dir · (A/r - R/r²))` <br> donde: <br> `dir = (robot_pos - p)/r` <br> `r = |robot_pos - p|` <br> `A = 15.0` (constante de atracción) <br> `R = uRepulsion` (constante de repulsión) |
+| **Direccionalidad** | **Atracción** a larga distancia (r grande): partículas tienden hacia los robots. <br> **Repulsión** a corta distancia (r pequeña): partículas son expulsadas violentamente. |
+| **Parámetros** | `uRepulsion` (350-1500, controlado por mouse) |
+| **Parámetros que la afectan** | `uRepulsion`, `dt`, `speedFactor`, posiciones de robots |
+| **Efecto visual** | Las partículas crean una "aura" alrededor de cada robot. A mayor repulsión, más grande y definida es la aura de vacío alrededor de los robots. |
+
+**Predicciones:**
+- ✅ **Si:** `uRepulsion` es alto → Las partículas forman un halo grande y vacío alrededor de cada robot.
+- ✅ **Si:** `uRepulsion` es bajo → Las partículas se pegan más a los robots, creando un "campo de energía" denso.
+- ✅ **Si:** Movemos el mouse arriba → Mayor repulsión → Halos más grandes.
+- ✅ **Si:** Movemos el mouse abajo → Menor repulsión → Halos más pequeños.
+- ✅ **Si:** Robot se mueve → Las partículas se mueven con él (atracción) pero mantienen distancia (repulsión).
+- ❌ **No:** Si cambiamos `forceMode` → Sigue activa (es independiente).
+- ❌ **No:** Si desactivamos robots → Esta fuerza desaparece.
+
+**Decisiones de diseño:**
+- Atracción débil (15.0) para que las partículas sigan a los robots sin volverse estáticas.
+- Repulsión variable (mouse) para dar control interpretativo en tiempo real.
+- Recorre los 50 robots en el shader (eficiente en GPU).
+- Sin límite de distancia: todas las partículas sienten todos los robots.
+
+---
+
+### FUERZA 6: MICRO-TURBULENCIA
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Micro-turbulencia |
+| **Ecuación** | `F = (sin(5x+3y), sin(5y+3z), sin(5z+3x)) · 10` |
+| **Direccionalidad** | Ruido suave basado en la posición, con frecuencias espaciales medias. Crea remolinos pequeños y orgánicos. |
+| **Parámetros** | Ninguno (fija) |
+| **Parámetros que la afectan** | Solo la posición de la partícula |
+| **Efecto visual** | Las partículas nunca se mueven en líneas perfectamente rectas. Tienen un "temblor orgánico" que evita la esterilidad matemática. |
+
+**Predicciones:**
+- ✅ **Si:** Las partículas están quietas → La turbulencia las hace vibrar ligeramente.
+- ✅ **Si:** Las partículas se mueven rápido → La turbulencia añade una pequeña componente caótica.
+- ✅ **Si:** Aumentamos `speedFactor` → La turbulencia escala con el tiempo (porque se aplica cada frame).
+- ❌ **No:** Si cambiamos `forceMode` → Sigue activa (es independiente).
+- ❌ **No:** Si cambiamos `uVibrationLevel` → Eso es otra fuerza (vibración), no turbulencia.
+
+**Decisiones de diseño:**
+- Frecuencias 5 y 3 para remolinos de tamaño medio (ni microscópicos ni gigantes).
+- Multiplicador 10 para que sea sutil pero visible.
+- Sin parámetros para mantener la consistencia.
+
+---
+
+### FUERZA 7: VIBRACIÓN
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Vibración |
+| **Ecuación** | `F = (sin(150t+50x), cos(160t+50y), sin(170t+50z)) · uVibrationLevel · 30` |
+| **Direccionalidad** | Ruido de alta frecuencia temporal. Depende del tiempo y la posición, creando un "bailoteo" errático. |
+| **Parámetros** | `uVibrationLevel` (0-1+) |
+| **Parámetros que la afectan** | `uVibrationLevel`, `uTime`, `speedFactor`, posición |
+| **Efecto visual** | **Nivel bajo:** Las partículas vibran sutilmente, como si estuvieran vivas. <br> **Nivel alto:** Las partículas explotan en un caos frenético, como si la fábrica estuviera en crisis. |
+
+**Predicciones:**
+- ✅ **Si:** `uVibrationLevel = 0` → No hay vibración.
+- ✅ **Si:** `uVibrationLevel` aumenta → Las partículas vibran más violentamente.
+- ✅ **Si:** Mantenemos presionada **Flecha derecha** → La vibración sube gradualmente.
+- ✅ **Si:** Soltamos **Flecha derecha** → La vibración vuelve a 0 suavemente.
+- ✅ **Si:** `speedFactor` es alto → La vibración se aplica con más frecuencia (más frames por segundo).
+
+**Decisiones de diseño:**
+- Frecuencias altas (150, 160, 170) para un temblor rápido, no una onda lenta.
+- Multiplicador 30 para amplificar el efecto.
+- Se acumula gradualmente (interpolación en `main.js`) para transiciones suaves.
+- Vinculada a **Flecha derecha** para momentos de caos/energía en la música.
+
+---
+
+### FUERZA 8: AMORTIGUAMIENTO (Estabilidad)
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Amortiguamiento de Estabilidad |
+| **Ecuación** | `F = -v · 1.5` |
+| **Direccionalidad** | Siempre opuesta a la velocidad actual. |
+| **Parámetros** | Ninguno (fijo: 1.5) |
+| **Parámetros que la afectan** | `v` (velocidad actual) |
+| **Efecto visual** | Las partículas alcanzan una velocidad terminal. Sin esto, las partículas acelerarían indefinidamente y explotarían. |
+
+**Predicciones:**
+- ✅ **Si:** `v` es grande → La amortiguación es fuerte (frena rápido).
+- ✅ **Si:** `v` es pequeña → La amortiguación es débil.
+- ✅ **Si:** Las fuerzas son constantes → Las partículas alcanzan equilibrio (velocidad terminal).
+- ❌ **No:** Si cambiamos `forceMode` → Sigue activa (es independiente).
+- ❌ **No:** Si cambiamos `uRepulsion` → No afecta esta fuerza.
+
+**Decisiones de diseño:**
+- Constante 1.5 para estabilidad numérica sin matar la dinámica.
+- Esencial para mantener el sistema estable en GPU compute.
+- Combinada con el limitador de velocidad para seguridad.
+
+---
+
+### FUERZA 9: LIMITADOR DE VELOCIDAD
+
+| Propiedad | Descripción |
+|-----------|-------------|
+| **Nombre** | Limitador de Velocidad |
+| **Ecuación** | `if |v| > maxSpeed: v = normalize(v) · maxSpeed` |
+| **Direccionalidad** | Conserva la dirección, reduce la magnitud. |
+| **Parámetros** | `maxSpeed` (5.0 fijo) |
+| **Parámetros que la afectan** | `v` (velocidad actual) |
+| **Efecto visual** | Las partículas nunca se mueven demasiado rápido, incluso con fuerzas muy altas. |
+
+**Predicciones:**
+- ✅ **Si:** La partícula está muy acelerada → Se limita a maxSpeed.
+- ✅ **Si:** La partícula está en reposo → No afecta.
+- ✅ **Si:** Aumentamos `speedFactor` → La partícula alcanza maxSpeed más rápido.
+- ❌ **No:** Si cambiamos `uRepulsion` → No afecta.
+
+**Decisiones de diseño:**
+- `maxSpeed = 5.0` elegido empíricamente para que el movimiento sea visible pero no borroso.
+- Crítico para la estabilidad numérica en simulaciones de GPU.
+- Se aplica **después** de la integración de velocidad.
+
+---
+
+## 🎯 RESUMEN DE INTERACCIONES ENTRE FUERZAS
+
+| Combinación | Efecto visual | Uso interpretativo |
+|-------------|---------------|-------------------|
+| **Grid (1) + Repulsión alta** | Partículas fluyen en pasillos pero rebotan en robots | "Fábrica en producción intensa" |
+| **Grid (1) + Repulsión baja** | Partículas envuelven robots en nubes de energía | "Fábrica construyendo robots" |
+| **Atractor (2) + Repulsión alta** | Ondas de calor que se chocan con halos de robots | "Pulsos de calor industrial" |
+| **Atractor (2) + Repulsión baja** | El fuego "abrasa" a los robots | "Fusión de robot y fuego" |
+| **Flow (3) + Repulsión alta** | Corrientes suaves que se curvan alrededor de robots | "Fábrica en modo reposo" |
+| **Vórtice (4) + Repulsión alta** | Remolinos de fuego que giran alrededor de robots | "Baile de fuego y robot" |
+| **Vórtice (4) + Vibración alta** | Caos total: vórtice + vibración errática | "Crisis en la fábrica" |
+| **Pulso (↑) + cualquier modo** | Explosión de luz, zoom y densidad de partículas | "Acento musical" |
+
+---
+
+## 🔄 CADENA DE DECISIONES INTERPRETATIVAS
+
+La cadena completa desde la música hasta la visualización es:
+
+```
+Música (LesAlpx)
+↓
+Percepción humana (escucha activa)
+↓
+Decisión interpretativa (qué momento de la canción es)
+↓
+Gesto → interacción con controles
+  • Teclas 1-4 (cambiar atmósfera)
+  • Teclas 6-0 (cambiar coreografía de robots)
+  • Flechas (caos / color / pulso)
+  • Mouse Y (intensidad de repulsión)
+  • Z/X/Y (movimiento de cámara)
+↓
+Fuerzas en GPU compute
+↓
+Comportamiento emergente de partículas
+↓
+Render + post-procesado
+↓
+Visualización final
+```
+
+**NO es:** `audio → FFT → parámetro visual` (music visualizer tradicional).
+
+**SÍ es:** `música → decisión humana consciente → gesto → fuerza → emergencia`.
