@@ -256,46 +256,41 @@ ___
 | **Efecto visual** | Vórtice giratorio con ondas de presión que se expanden desde el centro, similar a un remolino de fuego industrial. |
 
 **Predicciones:**
-- ✅ **Si:** La partícula está lejos del centro → La fuerza de giro (`spin`) domina.
-- ✅ **Si:** La partícula está cerca del centro → La fuerza de expansión/contracción es más notable.
-- ✅ **Si:** `speedFactor` aumenta → El vórtice gira y pulsa más rápido.
-- ❌ **No:** Si cambiamos `uRepulsion` → No afecta esta fuerza.
-- ✅ **Si:** Aumentamos `uBounds` → El vórtice ocupa más espacio.
+- Si la partícula está lejos del centro, la fuerza de giro (`spin`) domina.
+- Si la partícula está cerca del centro, la fuerza de expansión/contracción es más notable.
+- Si `speedFactor` aumenta, el vórtice gira y pulsa más rápido.
 
 **Decisiones de diseño:**
-- `spin` con factor 1.5 para giro moderado (ni muy lento ni muy rápido).
 - `expand` usa `0.01` para que el radio de onda sea grande y visible.
 - Multiplicador de `25` para que la expansión sea notable sin dominar el giro.
+- Está pensada para acompañar la formación en círculo de los robots, permitiendo que la cámara gire junto a la formación y las partículas y genere ese efecto trippy tipo mandala.  
 
----
+___
 
 ### FUERZA 5: REPULSIÓN/ATRACCIÓN DE ROBOTS
 
 | Propiedad | Descripción |
 |-----------|-------------|
 | **Nombre** | Fuerza de Agrupación de Robots |
-| **Ecuación** | `F = Σ (dir · (A/r - R/r²))` <br> donde: <br> `dir = (robot_pos - p)/r` <br> `r = |robot_pos - p|` <br> `A = 15.0` (constante de atracción) <br> `R = uRepulsion` (constante de repulsión) |
+| **Ecuación** | `F = sumatoria de (dir · (A/r - R/r²))` <br> donde: <br> `dir = (robot_pos - p)/r` <br> `r = [robot_pos - p]` <br> `A = 15.0` (constante de atracción) <br> `R = uRepulsion` (constante de repulsión) |
 | **Direccionalidad** | **Atracción** a larga distancia (r grande): partículas tienden hacia los robots. <br> **Repulsión** a corta distancia (r pequeña): partículas son expulsadas violentamente. |
 | **Parámetros** | `uRepulsion` (350-1500, controlado por mouse) |
 | **Parámetros que la afectan** | `uRepulsion`, `dt`, `speedFactor`, posiciones de robots |
-| **Efecto visual** | Las partículas crean una "aura" alrededor de cada robot. A mayor repulsión, más grande y definida es la aura de vacío alrededor de los robots. |
+| **Efecto visual** | Las partículas crean un "aura" alrededor de cada robot. A mayor repulsión, más grande y definida es la aura de vacío alrededor de los robots. |
 
 **Predicciones:**
-- ✅ **Si:** `uRepulsion` es alto → Las partículas forman un halo grande y vacío alrededor de cada robot.
-- ✅ **Si:** `uRepulsion` es bajo → Las partículas se pegan más a los robots, creando un "campo de energía" denso.
-- ✅ **Si:** Movemos el mouse arriba → Mayor repulsión → Halos más grandes.
-- ✅ **Si:** Movemos el mouse abajo → Menor repulsión → Halos más pequeños.
-- ✅ **Si:** Robot se mueve → Las partículas se mueven con él (atracción) pero mantienen distancia (repulsión).
-- ❌ **No:** Si cambiamos `forceMode` → Sigue activa (es independiente).
-- ❌ **No:** Si desactivamos robots → Esta fuerza desaparece.
+- Si `uRepulsion` es alto, las partículas se alejan demasiado y se concentran en las esquinas del boundary.
+- Si `uRepulsion` es bajo, las partículas logran pasar entre los robots.
+- Los cambios de concentración de robotcitos en las formaciones harán que las partículas se concentren algunas veces en los techos y suelos, y otras en las paredes laterales. 
 
 **Decisiones de diseño:**
 - Atracción débil (15.0) para que las partículas sigan a los robots sin volverse estáticas.
 - Repulsión variable (mouse) para dar control interpretativo en tiempo real.
 - Recorre los 50 robots en el shader (eficiente en GPU).
-- Sin límite de distancia: todas las partículas sienten todos los robots.
+- Todas las partículas sienten todos los robots, porque es un espacio pequeño y comprimido.
+- El propósito de esta fuerza es que las partículas no oculten por completo a los robots y siempre haya un ángulo desde dónde verlos, además de crear mayor variación en el comportamiento de estas. 
 
----
+___
 
 ### FUERZA 6: MICRO-TURBULENCIA
 
@@ -303,24 +298,22 @@ ___
 |-----------|-------------|
 | **Nombre** | Micro-turbulencia |
 | **Ecuación** | `F = (sin(5x+3y), sin(5y+3z), sin(5z+3x)) · 10` |
-| **Direccionalidad** | Ruido suave basado en la posición, con frecuencias espaciales medias. Crea remolinos pequeños y orgánicos. |
+| **Direccionalidad** | Ruido suave basado en la posición, con frecuencias medias. Crea remolinos pequeños y orgánicos. |
 | **Parámetros** | Ninguno (fija) |
 | **Parámetros que la afectan** | Solo la posición de la partícula |
-| **Efecto visual** | Las partículas nunca se mueven en líneas perfectamente rectas. Tienen un "temblor orgánico" que evita la esterilidad matemática. |
+| **Efecto visual** | Las partículas nunca se mueven en líneas perfectamente rectas. Tienen un "temblor orgánico" que evita que se vea repetitivo y estéril. |
 
 **Predicciones:**
-- ✅ **Si:** Las partículas están quietas → La turbulencia las hace vibrar ligeramente.
-- ✅ **Si:** Las partículas se mueven rápido → La turbulencia añade una pequeña componente caótica.
-- ✅ **Si:** Aumentamos `speedFactor` → La turbulencia escala con el tiempo (porque se aplica cada frame).
-- ❌ **No:** Si cambiamos `forceMode` → Sigue activa (es independiente).
-- ❌ **No:** Si cambiamos `uVibrationLevel` → Eso es otra fuerza (vibración), no turbulencia.
+- Si las partículas están quietas, la turbulencia las hace vibrar ligeramente.
+- Si aumento `speedFactor`, la turbulencia escala con el tiempo (porque se aplica cada frame).
 
 **Decisiones de diseño:**
 - Frecuencias 5 y 3 para remolinos de tamaño medio (ni microscópicos ni gigantes).
 - Multiplicador 10 para que sea sutil pero visible.
 - Sin parámetros para mantener la consistencia.
+- La uso porque el movimiento del fuego y el humo no es matemáticamente exacto, sino más orgánico y fluido.
 
----
+___
 
 ### FUERZA 7: VIBRACIÓN
 
@@ -328,31 +321,30 @@ ___
 |-----------|-------------|
 | **Nombre** | Vibración |
 | **Ecuación** | `F = (sin(150t+50x), cos(160t+50y), sin(170t+50z)) · uVibrationLevel · 30` |
-| **Direccionalidad** | Ruido de alta frecuencia temporal. Depende del tiempo y la posición, creando un "bailoteo" errático. |
+| **Direccionalidad** | Ruido de alta frecuencia temporal. Depende del tiempo y la posición, creando un movimiento errático. |
 | **Parámetros** | `uVibrationLevel` (0-1+) |
 | **Parámetros que la afectan** | `uVibrationLevel`, `uTime`, `speedFactor`, posición |
-| **Efecto visual** | **Nivel bajo:** Las partículas vibran sutilmente, como si estuvieran vivas. <br> **Nivel alto:** Las partículas explotan en un caos frenético, como si la fábrica estuviera en crisis. |
+| **Efecto visual** | **Nivel bajo:** Las partículas vibran sutilmente. <br> **Nivel alto:** Las partículas explotan, como si la fábrica estuviera en crisis o el ruido fuera muy alto. |
 
 **Predicciones:**
-- ✅ **Si:** `uVibrationLevel = 0` → No hay vibración.
-- ✅ **Si:** `uVibrationLevel` aumenta → Las partículas vibran más violentamente.
-- ✅ **Si:** Mantenemos presionada **Flecha derecha** → La vibración sube gradualmente.
-- ✅ **Si:** Soltamos **Flecha derecha** → La vibración vuelve a 0 suavemente.
-- ✅ **Si:** `speedFactor` es alto → La vibración se aplica con más frecuencia (más frames por segundo).
+- Si `uVibrationLevel = 0`, no hay vibración más allá de la turbulencia chiquita.
+- Si mantengo presionada la flechita derecha, la vibración sube gradualmente.
+- Si suelto la flechita derecha, la vibración vuelve a 0 rápido (pero con un smooth).
+- Si `speedFactor` es alto, la vibración se aplica con más frecuencia (más frames por segundo).
 
 **Decisiones de diseño:**
 - Frecuencias altas (150, 160, 170) para un temblor rápido, no una onda lenta.
 - Multiplicador 30 para amplificar el efecto.
 - Se acumula gradualmente (interpolación en `main.js`) para transiciones suaves.
-- Vinculada a **Flecha derecha** para momentos de caos/energía en la música.
+- La idea es usarlo en cada beat para dar ese efecto como de visualizador (SIN SER UN VISUALIZADOR!!!!!!!!!!!!!!!!!!!), y mantenerlo presionado en la parte de la canción donde el synth se vuelve más brillante (no sé cómo explicarlo? pero hace como un shuuuuuUUUUUUUUUUUUUU!U!UU!U!U!UU!U!U!UU!M)  
 
----
+____
 
-### FUERZA 8: AMORTIGUAMIENTO (Estabilidad)
+### FUERZA 8: AMORTIGUAMIENTO
 
 | Propiedad | Descripción |
 |-----------|-------------|
-| **Nombre** | Amortiguamiento de Estabilidad |
+| **Nombre** | Fricción |
 | **Ecuación** | `F = -v · 1.5` |
 | **Direccionalidad** | Siempre opuesta a la velocidad actual. |
 | **Parámetros** | Ninguno (fijo: 1.5) |
@@ -360,18 +352,15 @@ ___
 | **Efecto visual** | Las partículas alcanzan una velocidad terminal. Sin esto, las partículas acelerarían indefinidamente y explotarían. |
 
 **Predicciones:**
-- ✅ **Si:** `v` es grande → La amortiguación es fuerte (frena rápido).
-- ✅ **Si:** `v` es pequeña → La amortiguación es débil.
-- ✅ **Si:** Las fuerzas son constantes → Las partículas alcanzan equilibrio (velocidad terminal).
-- ❌ **No:** Si cambiamos `forceMode` → Sigue activa (es independiente).
-- ❌ **No:** Si cambiamos `uRepulsion` → No afecta esta fuerza.
+- Si `v` es grande, la amortiguación es fuerte (frena rápido).
+- Si `v` es pequeña, la amortiguación es débil.
+- Si las fuerzas son constantes, las partículas alcanzan equilibrio (velocidad terminal).
 
 **Decisiones de diseño:**
-- Constante 1.5 para estabilidad numérica sin matar la dinámica.
-- Esencial para mantener el sistema estable en GPU compute.
+- La necesito para mantener el sistema estable en GPU compute.
 - Combinada con el limitador de velocidad para seguridad.
 
----
+___
 
 ### FUERZA 9: LIMITADOR DE VELOCIDAD
 
@@ -385,60 +374,13 @@ ___
 | **Efecto visual** | Las partículas nunca se mueven demasiado rápido, incluso con fuerzas muy altas. |
 
 **Predicciones:**
-- ✅ **Si:** La partícula está muy acelerada → Se limita a maxSpeed.
-- ✅ **Si:** La partícula está en reposo → No afecta.
-- ✅ **Si:** Aumentamos `speedFactor` → La partícula alcanza maxSpeed más rápido.
-- ❌ **No:** Si cambiamos `uRepulsion` → No afecta.
+- Si la partícula está muy acelerada, se limita a maxSpeed.
+- Si la partícula está en reposo, no afecta.
+- Si aumento `speedFactor`, la partícula alcanza maxSpeed más rápido.
 
 **Decisiones de diseño:**
-- `maxSpeed = 5.0` elegido empíricamente para que el movimiento sea visible pero no borroso.
-- Crítico para la estabilidad numérica en simulaciones de GPU.
-- Se aplica **después** de la integración de velocidad.
+- `maxSpeed = 5.0` elegido con pruebas para que el movimiento sea visible pero no borroso.
 
----
+___
 
-## 🎯 RESUMEN DE INTERACCIONES ENTRE FUERZAS
 
-| Combinación | Efecto visual | Uso interpretativo |
-|-------------|---------------|-------------------|
-| **Grid (1) + Repulsión alta** | Partículas fluyen en pasillos pero rebotan en robots | "Fábrica en producción intensa" |
-| **Grid (1) + Repulsión baja** | Partículas envuelven robots en nubes de energía | "Fábrica construyendo robots" |
-| **Atractor (2) + Repulsión alta** | Ondas de calor que se chocan con halos de robots | "Pulsos de calor industrial" |
-| **Atractor (2) + Repulsión baja** | El fuego "abrasa" a los robots | "Fusión de robot y fuego" |
-| **Flow (3) + Repulsión alta** | Corrientes suaves que se curvan alrededor de robots | "Fábrica en modo reposo" |
-| **Vórtice (4) + Repulsión alta** | Remolinos de fuego que giran alrededor de robots | "Baile de fuego y robot" |
-| **Vórtice (4) + Vibración alta** | Caos total: vórtice + vibración errática | "Crisis en la fábrica" |
-| **Pulso (↑) + cualquier modo** | Explosión de luz, zoom y densidad de partículas | "Acento musical" |
-
----
-
-## 🔄 CADENA DE DECISIONES INTERPRETATIVAS
-
-La cadena completa desde la música hasta la visualización es:
-
-```
-Música (LesAlpx)
-↓
-Percepción humana (escucha activa)
-↓
-Decisión interpretativa (qué momento de la canción es)
-↓
-Gesto → interacción con controles
-  • Teclas 1-4 (cambiar atmósfera)
-  • Teclas 6-0 (cambiar coreografía de robots)
-  • Flechas (caos / color / pulso)
-  • Mouse Y (intensidad de repulsión)
-  • Z/X/Y (movimiento de cámara)
-↓
-Fuerzas en GPU compute
-↓
-Comportamiento emergente de partículas
-↓
-Render + post-procesado
-↓
-Visualización final
-```
-
-**NO es:** `audio → FFT → parámetro visual` (music visualizer tradicional).
-
-**SÍ es:** `música → decisión humana consciente → gesto → fuerza → emergencia`.
