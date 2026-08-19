@@ -111,7 +111,7 @@ ___
 | **Micro-turbulencia** | `F = (sin(5x+3y), sin(5y+3z), sin(5z+3x)) · 10` | Ninguno | `createSimulation.js` |
 | **Vibración** | `F = (sin(150t+50x), cos(160t+50y), sin(170t+50z)) · vibración · 30` | `uVibrationLevel` | `createSimulation.js` |
 | **Amortiguamiento** | `F = -v · 1.5` | Ninguno | `createSimulation.js` |
-| **Limitador de velocidad** | `if |v| > maxSpeed: v = normalize(v) · maxSpeed` | `maxSpeed` (5.0) | `createSimulation.js` |
+| **Limitador de velocidad** | `if [v] > maxSpeed: v = normalize(v) · maxSpeed` | `maxSpeed` (5.0) | `createSimulation.js` |
 
 ### Integración de fuerzas
 
@@ -121,7 +121,7 @@ ___
 | **Integración de velocidad** | Euler explícito: `v += F · dt` | `dt` calculado | `createSimulation.js` |
 | **Integración de posición** | Euler explícito: `p += v · dt` | `dt` calculado | `createSimulation.js` |
 | **Confinamiento** | Módulo en caja: `p = mod(p + bounds/2, bounds) - bounds/2` | `uBounds` | `createSimulation.js` |
-| **Limitación de velocidad** | Si `|v| > maxSpeed`: normalizar | `maxSpeed` (5.0) | `createSimulation.js` |
+| **Limitación de velocidad** | Si `[v] > maxSpeed`: normalizar | `maxSpeed` (5.0) | `createSimulation.js` |
 
 **Orden exacto de ejecución por frame:**
 
@@ -175,7 +175,7 @@ ___
 
 | Propiedad | Descripción |
 |-----------|-------------|
-| **Nombre** | Fuerza Grid |
+| **Nombre** | Fuerza Grid (Fuego normal) |
 | **Tecla** | `1` |
 | **Ecuación** | `F = (sin(p.y · 1.5), cos(p.z · 1.5), sin(p.x · 1.5)) · 40` |
 | **Direccionalidad** | Crea pasillos 3D invisibles usando senos y cosenos en cada eje. Las partículas se mueven en patrones de onda, creando un flujo similar a una cuadrícula. |
@@ -184,9 +184,9 @@ ___
 | **Efecto visual** | Cuando las partículas son pequeñitas, se ven como un tipo de tendrils que intentan acercarse a los robots desde arriba y abajo; cuando son grandes, se ven como llamas enormes de fuego porque las partículas se mezclan como una sola masa visualmente. En el color azul y tamaño pequeño, es delicado y bonito; en el color rojo y grandes, son intensas. |
 
 **Predicciones:**
-- ✅ Como la mayoría de formaciones se extienden hacia los lados y los robots ejercen repulsión sobre ellas, las partículas se van a concentrar en la zona de arriba y abajo; la excepción a esta regla sería, creo, en la formación de pared, donde se moverían a lado y lado de ellos.    
-- ✅ Aumentar el `speedFactor` haría que las partículas recorran el grid más rápido.  
-- ✅ Si se aumenta `uBounds` , el grid se estira y los patrones de onda cubren más espacio.  
+- Como la mayoría de formaciones se extienden hacia los lados y los robots ejercen repulsión sobre ellas, las partículas se van a concentrar en la zona de arriba y abajo; la excepción a esta regla sería, creo, en la formación de pared, donde se moverían a lado y lado de ellos.    
+- Aumentar el `speedFactor` haría que las partículas recorran el grid más rápido.  
+- Si se aumenta `uBounds` , el grid se estira y los patrones de onda cubren más espacio.  
 
 **Decisiones de diseño:** 
 - Diseñada para que se vea bien desde todos los ángulos y formaciones.   
@@ -201,25 +201,23 @@ ___
 |-----------|-------------|
 | **Nombre** | Fuerza Atractor/Onda de calor |
 | **Tecla** | `2` |
-| **Ecuación** | `F = normalize(p) · sin(|p| · 0.8 - t · 6.0) · 60` |
+| **Ecuación** | `F = normalize(p) · sin([p] · 0.8 - t · 6.0) · 60` |
 | **Direccionalidad** | Fuerza radial desde el centro que alterna entre atracción y repulsión en forma de onda expansiva. La onda se propaga desde el centro hacia afuera con el tiempo. |
 | **Parámetros** | `uTime` (tiempo de simulación) |
 | **Parámetros que la afectan** | `dt`, `speedFactor`, `uTime` |
-| **Efecto visual** | Las partículas pulsan rítmicamente hacia adentro y afuera del centro, como ondas de calor que se expanden desde el núcleo de la fábrica. |
+| **Efecto visual** | Las partículas pulsan rítmicamente hacia adentro y afuera del centro, como las ondas de calor que distorsionan la imagen cuando uno está en un lugar demasiado caliente. |
 
 **Predicciones:**
-- ✅ **Si:** La partícula está en una zona de atracción → Se mueve hacia el centro.
-- ✅ **Si:** La partícula está en una zona de repulsión → Se aleja del centro.
-- ✅ **Si:** `speedFactor` aumenta → La frecuencia de pulsación aumenta.
-- ✅ **Si:** `uTime` avanza → El patrón de ondas se mueve radialmente.
-- ❌ **No:** Si cambiamos `uRepulsion` → La repulsión de robots cambia, no esta fuerza.
+- Si la partícula está en una zona de atracción, se mueve hacia el centro.
+- Si la partícula está en una zona de repulsión, se aleja del centro.
+- Si `speedFactor` aumenta, la frecuencia de pulsación aumenta.
+- Si `uTime` avanza, el patrón de ondas se mueve radialmente.
 
 **Decisiones de diseño:**
 - Frecuencia `0.8` para que el patrón de ondas sea visible pero no demasiado denso.
-- Velocidad de fase `6.0` para que la onda se mueva a una velocidad perceptible.
-- Multiplicador `60` para crear un efecto visual dramático.
+- El diseño de este patrón está pensado para verse bien desde todos los ángulos, usarse en conjunto con el primer patrón de fuerzas, y reforzar los momentos de bass fuerte con la herramienta de pulsación de la flechita hacia arriba. No busca transmitir tanto la sensación de fuego, sino reforzar la musicalidad; es por esto que se usará alternando entre los demás patrones que sí están diseñados para parecer llamas.     
 
----
+___
 
 ### FUERZA 3: MODO FLOW DIAGONAL (Fuego tranquilo)
 
@@ -231,20 +229,19 @@ ___
 | **Direccionalidad** | Onda 3D que se mueve en diagonal a través del espacio. Cada componente depende de una coordenada diferente, creando un flujo complejo y menos caótico. |
 | **Parámetros** | `uTime` |
 | **Parámetros que la afectan** | `dt`, `speedFactor`, `uTime` |
-| **Efecto visual** | Flujo suave y ondulante, como una corriente de aire caliente que se desplaza lentamente entre los robots. Las partículas se mueven en trayectorias curvas y orgánicas. |
+| **Efecto visual** | Flujo suave y ondulante, como una corriente de aire caliente que se desplaza lentamente entre los robots. Las partículas se mueven en trayectorias curvas y orgánicas. En lugar de verse como un fuego que está intentando buscar activamente a los robots, debe verse como un fuego tranquilo de ambiente.|
 
 **Predicciones:**
-- ✅ **Si:** `speedFactor` aumenta → El flujo se acelera.
-- ✅ **Si:** La partícula está en una posición específica → La fuerza depende de esa posición.
-- ❌ **No:** Si cambiamos `uBounds` → El patrón se estira pero la dinámica es la misma.
-- ✅ **Si:** Aumentamos `uTime` → El frente de onda avanza.
+- Si `speedFactor` aumenta, el flujo se acelera.
+- Si la partícula está en una posición específica, la fuerza depende de esa posición.
+- Si aumento `uTime`, el frente de onda avanza.
 
 **Decisiones de diseño:**
 - Usada para momentos **más tranquilos** de la música.
 - Menor multiplicador (50) que los modos 1 y 2 para un efecto más sutil.
-- Nombres de ejes cruzados para crear un flujo no trivial.
+- Diseñado para repulsiones más bajas, permitiendo que los flujos atraviesen los espacios entre los robots y no se apachurren en las esquinas de los bounds.  
 
----
+___
 
 ### FUERZA 4: VÓRTICE (Variación del modo 2)
 
