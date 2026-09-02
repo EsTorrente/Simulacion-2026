@@ -55,7 +55,7 @@ En esta primera etapa el objetivo no era que se viera bonito. Quería comprobar 
 
 ___
 
-## 2. Segundo proyecto: Kuramoto–Sivashinsky
+### 2. Segundo proyecto: Kuramoto–Sivashinsky
 
 Después de tener funcionando el sistema de Kuramoto y el secuenciador, decidí trabajar la parte visual en un proyecto separado.
 
@@ -79,7 +79,7 @@ y se resta dentro de la actualización del campo.
 
 ___
 
-## 3. Evolución visual del campo
+### 3. Evolución visual del campo
 
 Una vez conseguí que la simulación pudiera mantenerse estable, empecé a trabajar la apariencia.
 
@@ -90,7 +90,7 @@ También incorporé efectos audiovisuales como cambios de intensidad, perturbaci
 
 ___
 
-## 4. Unión de ambos proyectos
+### 4. Unión de ambos proyectos
 
 Cuando los dos sistemas funcionaban por separado, pedí que fueran integrados.
 De esta manera, el comportamiento colectivo de los agentes afecta directamente a la evolución del campo visual. Pedí que refinara el UI y agregara unas tarjetas con los nombres de las palomas en cada lado de la pantalla, además de darme una opción de ocultar el secuenciador para poder admirar las visuales.
@@ -119,7 +119,7 @@ Además, modifiqué el secuenciador para que cada una de las ocho posiciones del
 
 ___
 
-## 8. Tutorial y producto final
+### 5. Tutorial y producto final
 
 Finalmente agregué un tutorial para que el sistema pudiera ser explorado sin necesidad de explicar previamente el funcionamiento.
 
@@ -139,7 +139,7 @@ También incluye una explicación sencilla del fenómeno de sincronización de K
 
 ___
 
-# 🌱 Herramientas e IA utilizadas
+## 🌱 Herramientas e IA utilizadas
 
 Para desarrollar el proyecto utilicé principalmente IA generativa como herramienta de programación y prototipado, pero no le pedí que resolviera todo el proyecto en un único prompt.
 
@@ -157,7 +157,7 @@ Esto fue especialmente importante porque los problemas que aparecían en una eta
 
 ___
 
-# 🌱 JUSTIFICACIONES
+## 🌱 JUSTIFICACIONES
 
 | Variable / concepto                     | ¿Qué representa en Kuramoto?                                                                                                                                                                                   | ¿Qué representa en mi proyecto?                                                                                                                                                                                                                           | ¿Cómo afecta la experiencia?                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -238,7 +238,6 @@ ___
 
 # Cumplimiento de los objetivos de la unidad
 
-# ✅ Cumplimiento de los objetivos de diseño
 
 | Requisito                                                    | Estado         | Implementación en Bird Sync                                                                                                                                                                                                                                |
 | ------------------------------------------------------------ | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
