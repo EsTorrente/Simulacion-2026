@@ -206,9 +206,6 @@ La intención de esta modificación es evitar que las ocho aves se comporten com
 ___
 
 ## Relación entre Kuramoto, sonido e imagen
-
-Una de las partes más importantes del proyecto fue evitar que Kuramoto se convirtiera simplemente en "un algoritmo que existe por detrás".
-
 En la experiencia, sus efectos aparecen en diferentes niveles.
 
 ### En el tiempo
