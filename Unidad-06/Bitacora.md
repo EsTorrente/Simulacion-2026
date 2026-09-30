@@ -111,7 +111,7 @@ Ya teniendo esto, el resultado que me arrojó Claude fue CASI PERFECTO!! solo tu
 
 ____
 
-## Explicación del programa
+# Explicación del programa
 
 Tengo 2 tipos distintos de agentes, pero la intención es hacer que entre transiciones se sienta que el uno se transforma en el otro:
 
@@ -121,3 +121,31 @@ Tengo 2 tipos distintos de agentes, pero la intención es hacer que entre transi
 | Agentes de pintura |	589.824	| Los ríos, el sol reflejándose en el agua, las vibras generales del terreno en el atardecer.
 | Aves | 784 | Los pelícanos de papel |
 
+Cada población vive en una textura RGBA float: .xy = posición, .zw = velocidad. Cada frame se lee la textura vieja, se calcula la nueva, y se hace swap. Además hay un trail que acumula lo que los agentes depositan y decae lentamente.
+
+## Agentes de pintura:
+Son el mismo material en todo momento. Lo que cambia entre stages es cuánto peso le dan al flow field vs. al Physarum. 
+- `Si solo flow field:` lineas largas y coherentes.
+- `Si solo Physarum`: redes ramificadas, patrones tipo moho/raíz/río.
+- `Miti/miti`: pintura arrastrada por una corriente.
+  
+Cada agente tiene una especie {0,1,2,3} que sale de un hash de su posición en la grilla. La especie determina:
+- a qué canal del trail pertenece (capa de pintura: rojo, naranja, amarillo, cremita)
+- qué pesos (flow) y (Physarum) tiene en el stage actual
+
+### Perciben:
+**Percepción del flow field:**
+- Solo el vector de su campo en su propia posición.
+- No ve a otros agentes, no ve el trail, no ve las aves (excepto cuando se inicializa desde ellas).
+  
+**Percepción del Physarum:**
+- Solo el valor del trail en 3 sensores situados a distancia.
+En cada sensor lee el vector de 4 canales del trail  y calcula un escalar sense() donde su propia especie atrae, las otras repelen.
+
+Todo lo que esté más allá de los sensores es invisible para ellos.
+- No hay percepción global. No sabe dónde está el centro de la pantalla, ni cuántos agentes hay, ni qué stage es.
+- No conoce el mouse directamente, a menos que yo dibuje en el trail o deforme el campo.
+  
+Calcula las fuerzas del flow field y la rotación del physarum.
+
+## Aves
