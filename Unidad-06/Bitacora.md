@@ -1,4 +1,4 @@
-# IDEACIÓN / PROCESO
+# 🌱 IDEACIÓN / PROCESO
 Inicialmente, elegí Wriggle de Cosmo Sheldrake como canción. Esto es lo que me imaginé como primer concepto:
 ```
 I want something whimsical and bizarre, that feels kind of like looking at microorganisms that move like pieces on a clock. I want each beat to give them a boost, so that their movement itself feels snappy, but the patterns they create feel organic. I want them to have different shapes. Some stars with many points (maybe 10+), some triangles, some circles... something that will vary their trails. At some points of the song I do want it to change to look like a flock of birds flying together in a fluid motion, before going back to the snappy weird little creatures. I also want to implement all the algorithms. For the steering, I want them to move with the beat of the song AWAY from each other; For the flocking, I want them to follow the mouse; for the flow fields, I want very wavey and fluid patterns. For physarum, very organic and moss-like shapes.
@@ -49,6 +49,7 @@ Cuando escuchaba la canción, me imaginaba a los pelícanos como siluetas voland
 Eso es lo que intenté capturar. La energía de los mitos y leyendas indígenas, los collage de papel, el teatro de sombras... todo eso que hace que las canciones de Cosmo Sheldrake se sientan como historias olvidadas de otro mundo. 
   
 Teniendo esto claro, volví a ChatGPT para que me ayudara a plantear un nuevo prompt para esta idea:
+<a name="score"></a>
   
 ```
 Let's change it up. I want to try going in a completely different direction.
@@ -107,11 +108,13 @@ GPU instancing
 The target development machine has an RTX 4060. Do NOT split the project into dozens of tiny files. I want a relatively compact project structure. The visual should still be subtly audio reactive. However, do NOT turn the project into a conventional frequency visualizer.
 
 ```
-Ya teniendo esto, el resultado que me arrojó Claude fue CASI PERFECTO!! solo tuve que hacerle un ajuste pequeño respecto a la cantidad de aves en los flock. Pero logró captar 100% lo que tenía en mente. :D
+Ya teniendo esto, el resultado que me arrojó Claude fue CASI PERFECTO!! Logró captar 100% lo que tenía en mente. :D
+Me dediqué a experimentar con los parámetros, ajustar comportamientos y velocidades, probar pequeñas variaciones y hacer ajustes chiquitos para comprender el comportamiento del programa.  
 
 ____
 
-# Explicación del programa
+<a name="explicacion"></a>
+# 🌿Explicación del programa
 
 Tengo 2 tipos distintos de agentes, pero la intención es hacer que entre transiciones se sienta que el uno se transforma en el otro:
 
@@ -133,7 +136,7 @@ Cada agente tiene una especie {0,1,2,3} que sale de un hash de su posición en l
 - a qué canal del trail pertenece (capa de pintura: rojo, naranja, amarillo, cremita)
 - qué pesos (flow) y (Physarum) tiene en el stage actual
 
-### Perciben:
+### Cada una percibe:
 **Percepción del flow field:**
 - Solo el vector de su campo en su propia posición.
 - No ve a otros agentes, no ve el trail, no ve las aves (excepto cuando se inicializa desde ellas).
@@ -149,3 +152,36 @@ Todo lo que esté más allá de los sensores es invisible para ellos.
 Calcula las fuerzas del flow field y la rotación del physarum.
 
 ## Aves
+Agentes de flocking puro. La geometría visible es un quad instanciado por ave, y el shader de fragmento dibuja una silueta de pelícano recortada en papel: triángulos planos, bordes irregulares (ruido), alas que aletean, cuello y pico (medio chiviado, pero se entiende que es un pajarito).
+
+### Cada una percibe:
+- Cada ave hace un loop sobre las 784 aves y para cada una encuentra la distancia entre ellos; si es vecina, se deja afectar por su velocidad y dirección.
+- Solo perciben 4 unidades; todo lo que esté más lejitos, le es invisible.
+- Si el mouse está a menos de 12 unidades, lo puede percibir.
+  
+Calcula las fuerzas de separación, de alineación, de cohesión, del flow field...
+  
+Con los seed, puedo controlar que aparezcan fuera de la pantalla o encima de los agentes de pintura. También les puedo aplicar otra fuerza para hacer que se salgan de la pantalla. 
+
+___
+
+Tengo también un flow field compartido entre los dos agentes, que es donde mis clics del mouse los afecta con una fuerza como de vortex. 
+El steering lo uso entre las transiciones de fases para mover a los pájaros y sacarlos/meterlos en la pantalla.
+
+**Verificaciones que hice durante el desarrollo:**
+- Cambiar `spd` escala la velocidad de todas las capas proporcionalmente
+- Cambiar `dec` alarga o acorta la persistencia del trail (lo medí a ojo en los stages de Physarum)
+- Cambiar swirl entre 0 y 1 transforma el flow field de corriente libre a mandala centrado (donde evitaban el medio del Canvas)
+- Cambiar wF/wP por especie permite que las cuatro capas de pintura coexistan con comportamientos distintos.
+  
+____
+
+# 🌻AUTOEVALUACIÓN
+
+| Criterio | Puntaje | Evidencia |
+|---|---|---|
+| 1. Cumplimiento del encargo | 25 / 25 | https://estorrente.github.io/SIM-U6-Agentes/ |
+| 2. Comprensión y verificación | 25 / 25 | Lo expliqué claramente en la bitácora [aquí](#explicacion)
+| 3. Diseño e intención | 25 / 25 | En ningún momento dejé a la IA inventar lo que quería que sucediera. [Mi idea de cada momento de la canción](#score) era supremamente claro, y exigí que el código se apegara a él. Había una intención muy clara de representar el estilo visual del cantante y conectarlo con la energía y narrativa de la canción, aportando también algunas partes de recuerdos de mi infancia (como Kiriku y el teatro de sombras) que relaciono con el tono narrativo de We Pelicans. 
+| 4. Interpretación humana | 25 / 25 | Todo está pensado para que yo conduzca el instrumento. CTRL avanza el score visual que YOOOO planeé completo, el mouse interviene el entorno (en el clímax dibujo un atrayente en el trail para que el physarum crezca por encima, y también puedo revolver el flow field con un vórtex), y con Z/X puedo apretar o dispersar el flock en vivo. Ninguna de esas cosas se da por temporizador ni por audio; si yo no toco el programa, ahí se queda en el primer physarum; nunca decide estructura. La sincronización con la música depende 100% de mi oído, yo decido cuándo cae el momento y aprieto CTRL. Y lo de usar una sola tecla para avanzar el score, en vez de una tecla por comportamiento, fue a propósito. En el proyecto de las fuerzas tenía como 10 botones para los cambios, y con los nervios terminé usando apenas como 4 :c. Con CTRL eso no me pasa.  
+| **Total** | **100 / 100** |
