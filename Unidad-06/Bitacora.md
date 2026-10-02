@@ -3,7 +3,7 @@ Inicialmente, elegí Wriggle de Cosmo Sheldrake como canción. Esto es lo que me
 ```
 I want something whimsical and bizarre, that feels kind of like looking at microorganisms that move like pieces on a clock. I want each beat to give them a boost, so that their movement itself feels snappy, but the patterns they create feel organic. I want them to have different shapes. Some stars with many points (maybe 10+), some triangles, some circles... something that will vary their trails. At some points of the song I do want it to change to look like a flock of birds flying together in a fluid motion, before going back to the snappy weird little creatures. I also want to implement all the algorithms. For the steering, I want them to move with the beat of the song AWAY from each other; For the flocking, I want them to follow the mouse; for the flow fields, I want very wavey and fluid patterns. For physarum, very organic and moss-like shapes.
 
-I want to use CTRL to move though stages/algorithms. Here is what I had in mind:
+For now, I want to use CTRL to move though stages/algorithms. Here is what I had in mind:
 
 Comienza con steering.
 00:00 - 2 agentes moviéndose a distintos ritmos; uno con los agudos de la canción, el otro con el beat. Formas distintas. Tamaños medianos, para ser visibles en la pantalla.
