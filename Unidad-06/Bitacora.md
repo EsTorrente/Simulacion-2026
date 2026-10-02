@@ -5,7 +5,7 @@ I want something whimsical and bizarre, that feels kind of like looking at micro
 
 For now, I want to use CTRL to move though stages/algorithms. Here is what I had in mind:
 
-Comienza con steering.
+- Comienza con steering.
 00:00 - 2 agentes moviéndose a distintos ritmos; uno con los agudos de la canción, el otro con el beat. Formas distintas. Tamaños medianos, para ser visibles en la pantalla.
 00:06 - 1 agente más aparece al presionar CTRL.
 00:12 - 5 agentes más aparecen al presionar CTRL.
