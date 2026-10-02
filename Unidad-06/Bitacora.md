@@ -39,13 +39,16 @@ Con una descripción mucho más extensa de mi visión, conseguík que ChatGPT me
 Sin embargo, me pegué un choque muy rápido cuando noté que los resultados que obtenía con la generación de la IA eran:
 1) Súper flops. Muy aburridos, peyes, nada único.  
 2) Diferentes a lo que imaginaba en mi cabeza. No lograban captar la esencia de los movimientos ni shots, a pesar de que el prompt lo describía SUPREMAMENTE claro.
-Me iba a resignar a aceptar el resultado... pero decidí mejor darle una oportunidad a otra canción del mismo artista. Esta vez, escogí `Pelicans We`.
+Me iba a resignar a aceptar el resultado... pero decidí mejor darle una oportunidad a otra canción del mismo artista. Esta vez, escogí `Pelicans We`; es una adaptación musical de un poema llamado "The Pelican Chorus" por Edward Lear, el poeta del "sinsentido".
+<img width="644" height="825" alt="image" src="https://github.com/user-attachments/assets/0c1bdc53-998b-4eaf-94f5-8b7395860f60" />  
+
   
 El cantante tiene una identidad visual muy marcada. Colores vibrantes: naranjas, amarillos, rojos, negro; ilustraciones de collage, papel, surrealismo...
 <img width="1126" height="1200" alt="image" src="https://github.com/user-attachments/assets/a28e95f4-d835-4e5b-bda1-d170d32766ce" /><img width="700" height="700" alt="image" src="https://github.com/user-attachments/assets/d2e6bbd2-7edf-415b-94ff-89dce8769e09" /><img width="391" height="511" alt="image" src="https://github.com/user-attachments/assets/09d293e5-c60d-48a8-817b-16c2fb88128c" /><img width="447" height="447" alt="image" src="https://github.com/user-attachments/assets/66150956-54f4-4dd0-9f79-4cc241e4b5eb" /><img width="447" height="447" alt="image" src="https://github.com/user-attachments/assets/4464bbc2-6911-40dc-aab6-c5f2ee3d50e5" />
     
-Cuando escuchaba la canción, me imaginaba a los pelícanos como siluetas volando sobre el río Nilo en el atardecer (como lo mencionan en la canción). Me recordaba a una estética como la de Kiriku:
-<img width="780" height="1170" alt="image" src="https://github.com/user-attachments/assets/b97e2d6d-7e50-40bd-b042-b6a05be300b5" /> <img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/61cfb7e6-ed30-463e-bc81-252114b782d7" />
+Cuando escuchaba la canción, me imaginaba a los pelícanos como siluetas volando sobre el río Nilo en el atardecer (como lo mencionan en la canción). Me recordaba a una estética como la de Kiriku y el teatro de sombras:
+<img width="780" height="1170" alt="image" src="https://github.com/user-attachments/assets/b97e2d6d-7e50-40bd-b042-b6a05be300b5" /> <img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/61cfb7e6-ed30-463e-bc81-252114b782d7" /><img width="474" height="266" alt="image" src="https://github.com/user-attachments/assets/0a20888b-d79e-42b4-ab0f-d441760a3e25" /><img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/2592f315-708e-4577-b17d-2eed02d0f003" /><img width="1024" height="659" alt="image" src="https://github.com/user-attachments/assets/b75c6822-bf65-4595-ad08-a87a770c630d" />
+  
 Eso es lo que intenté capturar. La energía de los mitos y leyendas indígenas, los collage de papel, el teatro de sombras... todo eso que hace que las canciones de Cosmo Sheldrake se sientan como historias olvidadas de otro mundo. 
   
 Teniendo esto claro, volví a ChatGPT para que me ayudara a plantear un nuevo prompt para esta idea:
@@ -60,9 +63,9 @@ I want the agents on the background to use physarum and feel like a lake vibrant
 It should feel ominous, powerful, a bit uneasy (like the song).
 I want the camera to be constantly rotating counter-clockwise slowly, on all stages, to add to the feeling of looking at a moving mandala. 
 
-Here is what I imagine. I will switch between each stage with CTRL:
+Here is what I imagine. I will switch between each stage with CTRL and a number:
 0:00 - 0:23:
-Flow fields with long lines (following example of https://www.tylerxhobbs.com/words/flow-fields), using a black background and coloured lines. They should start outside the screen and slowly draw themselves along the flow fields towards the center, covering the whole screen in flowing lines.
+Flow fields with long lines (following example of https://www.tylerxhobbs.com/words/flow-fields), using a black background and coloured lines. They should start outside the screen and slowly draw themselves along the flow fields towards the center, covering the whole screen in flowing lines. Let me control them with my mouse.
 
  0:24 - 00:49
 The lines transform into 3d birds, switching to flocking algorithm. The background changes to a rich orange, making the birds look like black silhouettes as they fly. When I hit CTRL, the background turns black (the same colour as the model of the birds) and only ONE bird changes to orange colour, so that we see only that one flying around. When I press CTRL again, it goes back to the initial colours where the background is orange and the birds are black. The purpose of this is to emphasize a specific beat.
