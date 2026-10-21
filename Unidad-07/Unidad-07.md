@@ -6,6 +6,8 @@
 ## 1. IDEACIÓN!q!!!!!
 
 ELEGÍ::: MEOW WOLF!!!
+<img width="2400" height="1260" alt="image" src="https://github.com/user-attachments/assets/a73cddac-ded4-4a6c-8245-4203743b48ec" />
+
 
 1. **Qué hace y a qué público se dirige:** 
 Meow Wolf crea experiencias artísticas inmersivas que combinan historias, personajes y entornos diseñados por artistas y técnicos. Se dirige al público interesado en el arte, la exploración y las experiencias interactivas. Mucha gente que se traba, también... porque sus experiencias son muy trippy.  
