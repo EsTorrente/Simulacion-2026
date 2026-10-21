@@ -1,4 +1,7 @@
 # Bitácora
+<img width="1878" height="967" alt="image" src="https://github.com/user-attachments/assets/ee10e00d-d769-4896-aadd-9539da210ec6" />
+<img width="1875" height="979" alt="image" src="https://github.com/user-attachments/assets/1b0ecc0d-9fb9-4a11-bc87-8dd443e224f9" />
+<img width="1859" height="941" alt="image" src="https://github.com/user-attachments/assets/4238d6e2-0220-405f-8b64-f5376ec8dd86" />
 
 ## 1. IDEACIÓN!q!!!!!
 
